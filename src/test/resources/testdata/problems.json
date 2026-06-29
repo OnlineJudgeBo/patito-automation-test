@@ -1,0 +1,12 @@
+[
+  {
+    "id": "105",
+    "title": "Suma Simple QA",
+    "timeLimit": "1.0",
+    "memoryLimit": "128",
+    "description": "Dado dos enteros A y B, imprima su suma.",
+    "sampleInput": "2 3",
+    "sampleOutput": "5",
+    "author": "QA Team"
+  }
+]
