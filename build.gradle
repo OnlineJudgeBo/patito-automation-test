@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+group = 'bo.juezvirtual.automation'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Selenium WebDriver
+    implementation 'org.seleniumhq.selenium:selenium-java:4.18.1'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
+
+    // Cucumber BDD
+    implementation 'io.cucumber:cucumber-java:7.15.0'
+    implementation 'io.cucumber:cucumber-junit-platform-engine:7.15.0'
+
+    // JUnit 5 Platform
+    implementation 'org.junit.platform:junit-platform-suite:1.10.2'
+    implementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    implementation 'org.junit.platform:junit-platform-console:1.10.2'
+
+    // JSON parsing for test data loading
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-simple:2.0.12'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+// Custom tasks modeled after AT-12/trello-api-tests
+task executeBDDTests(type: Test) {
+    description = "Executes the main Cucumber BDD scenarios."
+    group = "verification"
+    useJUnitPlatform()
+    // Default to running smoke or regression tests if no specific tag is provided
+    String tagExpression = System.getProperty("tags", "not @wip")
+    systemProperty "cucumber.filter.tags", tagExpression
+    outputs.upToDateWhen { false }
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+task reExecuteBDDTests(type: Test) {
+    description = "Reruns failed Cucumber BDD scenarios."
+    group = "verification"
+    useJUnitPlatform()
+    systemProperty "cucumber.filter.tags", "@failed"
+    outputs.upToDateWhen { false }
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+checkstyle {
+    toolVersion = '10.12.5'
+    configFile = file("${project.rootDir}/config/checkstyle/checkstyle.xml")
+    ignoreFailures = false
+    maxWarnings = 0
+}
