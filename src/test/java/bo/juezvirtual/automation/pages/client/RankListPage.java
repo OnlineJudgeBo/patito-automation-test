@@ -23,14 +23,6 @@ public final class RankListPage extends BasePage {
     }
 
     /**
-     * Retrieves the position of a user in the filtered list.
-     */
-    public String getUserPosition(String userId) {
-        By positionCell = By.xpath("//table[@id='ranklist']/tbody/tr[td/a[contains(text(), '" + userId + "')]]/td[1]");
-        return getText(positionCell);
-    }
-
-    /**
      * Retrieves the number of problems solved by a user in the filtered list.
      */
     public String getUserSolvedCount(String userId) {

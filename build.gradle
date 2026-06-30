@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 group = 'bo.juezvirtual.automation'
@@ -24,11 +25,18 @@ dependencies {
     implementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     implementation 'org.junit.platform:junit-platform-console:1.10.2'
 
+    // Allure Reporting
+    implementation 'io.qameta.allure:allure-cucumber7-jvm:2.24.0'
+
     // JSON parsing for test data loading
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
 
     // Logging
     implementation 'org.slf4j:slf4j-simple:2.0.12'
+}
+
+allure {
+    version = '2.24.0'
 }
 
 test {
@@ -39,29 +47,111 @@ test {
     }
 }
 
-// Custom tasks modeled after AT-12/trello-api-tests
-task executeBDDTests(type: Test) {
-    description = "Executes the main Cucumber BDD scenarios."
+task executeBDDTests(type: JavaExec) {
+    description = "Executes the main Cucumber BDD scenarios in priority order."
     group = "verification"
-    useJUnitPlatform()
-    // Default to running smoke or regression tests if no specific tag is provided
-    String tagExpression = System.getProperty("tags", "not @wip")
-    systemProperty "cucumber.filter.tags", tagExpression
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = "bo.juezvirtual.automation.runners.PriorityRunner"
+    
+    def sortedFeaturesList = getSortedFeaturesList()
+    args = sortedFeaturesList
+
+    doFirst {
+        println "Target ordered features: " + sortedFeaturesList
+    }
+    
+    // Pass environment system properties
+    systemProperty "env", System.getProperty("env", "dev")
+    systemProperty "allure.results.directory", "build/allure-results"
+    
+    // Pass tags if defined on command line (e.g. -Dtags="@smoke")
+    String tagExpression = System.getProperty("tags")
+    if (tagExpression != null && !tagExpression.isEmpty()) {
+        systemProperty "tags", tagExpression
+    }
+    
+    // Automatically generate Allure HTML report on completion
+    finalizedBy allureReport
+}
+
+task reExecuteBDDTests(type: JavaExec) {
+    description = "Reruns failed Cucumber BDD scenarios from Cucumber rerun files."
+    group = "verification"
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = "io.cucumber.core.cli.Main"
     outputs.upToDateWhen { false }
-    testLogging {
-        events "passed", "skipped", "failed"
+
+    onlyIf {
+        !getFailedScenarioPaths().isEmpty()
+    }
+
+    doFirst {
+        def failedScenarios = getFailedScenarioPaths()
+        println "Re-executing failed scenarios: ${failedScenarios}"
+        args = [
+            "--plugin", "pretty",
+            "--plugin", "html:build/reports/cucumber/rerun.html",
+            "--plugin", "json:build/reports/cucumber/rerun.json",
+            "--plugin", "junit:build/reports/cucumber/rerun.xml",
+            "--plugin", "message:build/reports/cucumber/rerun.ndjson",
+            "--plugin", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+            "--glue", "bo.juezvirtual.automation.steps"
+        ] + failedScenarios
     }
 }
 
-task reExecuteBDDTests(type: Test) {
-    description = "Reruns failed Cucumber BDD scenarios."
-    group = "verification"
-    useJUnitPlatform()
-    systemProperty "cucumber.filter.tags", "@failed"
-    outputs.upToDateWhen { false }
-    testLogging {
-        events "passed", "skipped", "failed"
+def getFailedScenarioPaths() {
+    def reportsDir = file("build/reports/cucumber")
+    if (!reportsDir.exists()) {
+        return []
     }
+    def failedScenarios = []
+    reportsDir.eachFileMatch(~/rerun-.*\.txt/) { file ->
+        file.readLines().findAll { !it.trim().isEmpty() }.each { failedScenarios << it.trim() }
+    }
+    return failedScenarios.unique()
+}
+
+def getSortedFeaturesList() {
+    def featuresDir = file("src/test/resources/features")
+    if (!featuresDir.exists()) {
+        return []
+    }
+
+    def featureFiles = []
+    featuresDir.eachFileRecurse(groovy.io.FileType.FILES) { featureFile ->
+        if (featureFile.name.endsWith(".feature")) {
+            featureFiles << [
+                path: project.relativePath(featureFile.absolutePath),
+                priority: getFeaturePriority(featureFile)
+            ]
+        }
+    }
+
+    featureFiles.sort { first, second ->
+        if (first.priority != second.priority) {
+            return first.priority <=> second.priority
+        }
+        return first.path <=> second.path
+    }
+
+    return featureFiles.collect { it.path }
+}
+
+def getFeaturePriority(File featureFile) {
+    int defaultPriority = 999
+    def priorityPattern = ~/@priority_(\d+)/
+
+    featureFile.eachLine { line ->
+        def matcher = line =~ priorityPattern
+        if (matcher.find()) {
+            defaultPriority = Math.min(defaultPriority, matcher.group(1).toInteger())
+        }
+    }
+
+    return defaultPriority
 }
 
 checkstyle {

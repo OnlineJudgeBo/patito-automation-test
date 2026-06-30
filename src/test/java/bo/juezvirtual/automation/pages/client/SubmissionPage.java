@@ -35,14 +35,4 @@ public final class SubmissionPage extends BasePage {
         // Click the native submit button which triggers the do_submit() serialization and form POST
         click(submitButton);
     }
-
-    /**
-     * Bypasses the Monaco Editor UI and submits the code directly by modifying the hidden form.
-     * Useful as a fallback or for fast performance testing.
-     */
-    public void submitCodeDirectly(String code, String languageId) {
-        executeJavaScript("document.getElementById('source').value = arguments[0];", code);
-        executeJavaScript("document.getElementById('language_id').value = arguments[1];", languageId);
-        executeJavaScript("document.getElementById('frmSolution').submit();");
-    }
 }

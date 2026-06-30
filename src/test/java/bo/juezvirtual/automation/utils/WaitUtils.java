@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.function.Function;
 
 /**
  * Utility helper class for explicit wait configurations in Selenium tests.
@@ -50,5 +51,11 @@ public final class WaitUtils {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
         wait.until(webDriver -> "complete".equals(
                 ((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+    }
+
+    public boolean waitUntil(Duration timeout, Duration pollingInterval, Function<WebDriver, Boolean> condition) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        wait.pollingEvery(pollingInterval);
+        return wait.until(condition);
     }
 }

@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
  */
 public final class ProblemSetPage extends BasePage {
     private final By searchField = By.cssSelector("#problemList_filter input");
-    private final By problemTable = By.id("problemList");
 
     public ProblemSetPage(WebDriver driver) {
         super(driver);

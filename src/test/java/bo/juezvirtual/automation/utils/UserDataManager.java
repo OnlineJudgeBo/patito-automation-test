@@ -1,14 +1,16 @@
 package bo.juezvirtual.automation.utils;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import bo.juezvirtual.automation.config.BrowserConfig;
 
 /**
  * Singleton manager to parse and load QA user credentials from users.json,
@@ -62,24 +64,38 @@ public final class UserDataManager {
             return null;
         }
         String key = alias.toLowerCase();
-        
+
         // Prioritize dynamic properties/environment overrides for default profiles
         if ("administrador_qa".equals(key)) {
-            String adminUser = bo.juezvirtual.automation.config.BrowserConfig.getAdminUsername();
-            String adminPass = bo.juezvirtual.automation.config.BrowserConfig.getAdminPassword();
+            String adminUser = BrowserConfig.getAdminUsername();
+            String adminPass = BrowserConfig.getAdminPassword();
             if (adminUser != null && !adminUser.isEmpty()) {
                 return new UserCredentials(adminUser, adminPass);
             }
         }
         if ("participante_qa".equals(key)) {
-            String clientUser = bo.juezvirtual.automation.config.BrowserConfig.getClientUsername();
-            String clientPass = bo.juezvirtual.automation.config.BrowserConfig.getClientPassword();
+            String clientUser = BrowserConfig.getClientUsername();
+            String clientPass = BrowserConfig.getClientPassword();
             if (clientUser != null && !clientUser.isEmpty()) {
                 return new UserCredentials(clientUser, clientPass);
             }
         }
 
         return USERS.get(key);
+    }
+
+    public static UserCredentials getLogin(String userAlias, String passwordAlias) {
+        return new UserCredentials(getUsername(userAlias), getPassword(passwordAlias));
+    }
+
+    private static String getUsername(String alias) {
+        UserCredentials credentials = getUser(alias);
+        return credentials.getUsername();
+    }
+
+    private static String getPassword(String alias) {
+        UserCredentials credentials = getUser(alias);
+        return credentials.getPassword();
     }
 
     public static final class UserCredentials {

@@ -28,13 +28,8 @@ public final class ClientLoginSteps {
 
     @When("el participante introduce el usuario {string} y clave {string}")
     public void elParticipanteIntroduceElUsuarioYClave(String user, String pass) {
-        UserDataManager.UserCredentials userCred = UserDataManager.getUser(user);
-        String resolvedUser = userCred != null ? userCred.getUsername() : user;
-
-        UserDataManager.UserCredentials passCred = UserDataManager.getUser(pass);
-        String resolvedPass = passCred != null ? passCred.getPassword() : pass;
-
-        clientLoginPage.login(resolvedUser, resolvedPass);
+        UserDataManager.UserCredentials credentials = UserDataManager.getLogin(user, pass);
+        clientLoginPage.login(credentials.getUsername(), credentials.getPassword());
     }
 
     @When("el participante inicia sesion con sus credenciales por defecto")

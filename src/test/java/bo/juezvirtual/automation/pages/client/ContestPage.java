@@ -9,18 +9,8 @@ import org.openqa.selenium.WebDriver;
  * Mapped to selectors in patito-client-web views/patito/contest.php.
  */
 public final class ContestPage extends BasePage {
-    private final By contestTable = By.id("contest-table");
-
     public ContestPage(WebDriver driver) {
         super(driver);
-    }
-
-    /**
-     * Navigates to a specific contest by clicking its title link in the table.
-     */
-    public void clickContestLink(String contestId) {
-        By contestLink = By.xpath("//a[contains(@href, 'contest.php?cid=" + contestId + "')]");
-        click(contestLink);
     }
 
     /**
