@@ -1,8 +1,28 @@
- {
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.test.defaultConfig": "cucumber",
+  "java.test.config": {
+    "cucumber": {
+      "name": "cucumber",
+      "workingDirectory": "${workspaceFolder}",
+      "vmArgs": [
+        "-Denv=dev",
+        "-Dallure.results.directory=build/allure-results"
+      ]
+    }
+  },
   "cucumberautocomplete.steps": [
     "src/test/java/**/*.java"
   ],
   "cucumberautocomplete.syncfeatures": "src/test/resources/features/**/*.feature",
   "cucumberautocomplete.strictGherkinCompletion": true,
-  "cucumberautocomplete.smartSnippets": true
+  "cucumberautocomplete.strictGherkinValidation": true,
+  "cucumberautocomplete.smartSnippets": true,
+  "cucumberautocomplete.gherkinDefinitionPart": "@(Given|When|Then|And|But)\\(",
+  "cucumberautocomplete.pureTextSteps": true,
+  "editor.quickSuggestions": {
+    "comments": false,
+    "strings": true,
+    "other": true
+  }
 }

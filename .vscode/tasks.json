@@ -1,0 +1,79 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Gradle: test",
+      "type": "process",
+      "command": "${workspaceFolder}/gradlew",
+      "args": [
+        "test"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": "$java"
+    },
+    {
+      "label": "Gradle: executeBDDTests",
+      "type": "process",
+      "command": "${workspaceFolder}/gradlew",
+      "args": [
+        "executeBDDTests"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": "$java"
+    },
+    {
+      "label": "Gradle: executeBDDTests con tags",
+      "type": "process",
+      "command": "${workspaceFolder}/gradlew",
+      "args": [
+        "executeBDDTests",
+        "-Dtags=${input:cucumberTags}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": "$java"
+    },
+    {
+      "label": "Gradle: executeBDDTests --debug-jvm",
+      "type": "process",
+      "command": "${workspaceFolder}/gradlew",
+      "args": [
+        "executeBDDTests",
+        "--debug-jvm"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "java",
+        "pattern": [
+          {
+            "regexp": ".*"
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Listening for transport dt_socket at address: 5005.*",
+          "endsPattern": ".*Listening for transport dt_socket at address: 5005.*"
+        }
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "cucumberTags",
+      "type": "promptString",
+      "description": "Tag expression de Cucumber. Ej: @smoke, not @wip, @login and not @slow",
+      "default": "@smoke"
+    }
+  ]
+}

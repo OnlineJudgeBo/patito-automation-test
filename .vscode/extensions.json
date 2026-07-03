@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "vscjava.vscode-java-pack",
+    "vscjava.vscode-gradle",
+    "alexkrechik.cucumberautocomplete"
+  ],
+  "unwantedRecommendations": [
+    "cucumber-java-test-runner"
+  ]
+}
