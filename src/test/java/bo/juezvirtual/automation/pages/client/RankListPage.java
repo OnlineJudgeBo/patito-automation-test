@@ -29,4 +29,12 @@ public final class RankListPage extends BasePage {
         By solvedCell = By.xpath("//table[@id='ranklist']/tbody/tr[td/a[contains(text(), '" + userId + "')]]/td[4]");
         return getText(solvedCell);
     }
+
+    /**
+     * Checks if a user appears in the filtered ranklist.
+     */
+    public boolean isUserListed(String userId) {
+        By userRow = By.xpath("//table[@id='ranklist']/tbody/tr[td/a[contains(text(), '" + userId + "')]]");
+        return isVisible(userRow);
+    }
 }

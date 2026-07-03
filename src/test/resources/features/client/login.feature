@@ -12,7 +12,6 @@ Feature: Inicio de Sesión de Participantes en Patito Client
     Examples:
       | usuario_alias     | clave_alias      |
       | participante_qa   | participante_qa  |
-      | userqa1           | userqa1          |
 
   Scenario Outline: Intento de inicio de sesión con credenciales inválidas
     Given el participante navega a la pagina de inicio de sesion

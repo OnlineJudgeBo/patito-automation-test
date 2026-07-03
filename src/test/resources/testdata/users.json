@@ -1,0 +1,14 @@
+{
+  "administrador_qa": {
+    "username": "patitoAdmin",
+    "password": "patitoAdmin"
+  },
+  "participante_qa": {
+    "username": "patito",
+    "password": "patito"
+  },
+  "userqa1": {
+    "username": "patito",
+    "password": "patito"
+  }
+}

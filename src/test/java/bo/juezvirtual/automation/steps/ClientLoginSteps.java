@@ -28,12 +28,18 @@ public final class ClientLoginSteps {
 
     @When("el participante introduce el usuario {string} y clave {string}")
     public void elParticipanteIntroduceElUsuarioYClave(String user, String pass) {
+        if (!driver.getCurrentUrl().contains("login.php")) {
+            elParticipanteNavegaALaPaginaDeInicioDeSesion();
+        }
         UserDataManager.UserCredentials credentials = UserDataManager.getLogin(user, pass);
         clientLoginPage.login(credentials.getUsername(), credentials.getPassword());
     }
 
     @When("el participante inicia sesion con sus credenciales por defecto")
     public void elParticipanteIniciaSesionConSusCredencialesPorDefecto() {
+        if (!driver.getCurrentUrl().contains("login.php")) {
+            elParticipanteNavegaALaPaginaDeInicioDeSesion();
+        }
         clientLoginPage.login(BrowserConfig.getClientUsername(), BrowserConfig.getClientPassword());
     }
 

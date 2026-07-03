@@ -3,6 +3,7 @@ package bo.juezvirtual.automation.steps;
 import bo.juezvirtual.automation.config.BrowserConfig;
 import bo.juezvirtual.automation.driver.DriverFactory;
 import bo.juezvirtual.automation.pages.client.ProblemDetailPage;
+import bo.juezvirtual.automation.pages.client.ProblemSetPage;
 import bo.juezvirtual.automation.pages.client.SubmissionPage;
 import bo.juezvirtual.automation.pages.client.StatusPage;
 import io.cucumber.java.en.Given;
@@ -17,12 +18,21 @@ import org.openqa.selenium.WebDriver;
 public final class SubmissionSteps {
     private final WebDriver driver = DriverFactory.getDriver();
     private final ProblemDetailPage problemDetailPage = new ProblemDetailPage(driver);
+    private final ProblemSetPage problemSetPage = new ProblemSetPage(driver);
     private final SubmissionPage submissionPage = new SubmissionPage(driver);
     private final StatusPage statusPage = new StatusPage(driver);
 
     @Given("el participante esta en la pagina del problema con ID {string}")
     public void elParticipanteEstaEnLaPaginaDelProblemaConID(String id) {
         driver.get(BrowserConfig.getClientUrl() + "/problem.php?id=" + id);
+    }
+
+    @Given("el participante esta en la pagina del problema {string}")
+    public void elParticipanteEstaEnLaPaginaDelProblema(String problemName) {
+        driver.get(BrowserConfig.getClientUrl() + "/problemset.php");
+        problemSetPage.clickProblemByName(problemName);
+        Assertions.assertTrue(problemDetailPage.isStatementVisible(),
+                "No se abrió el problema por nombre: " + problemName);
     }
 
     @When("hace clic en el boton Enviar")

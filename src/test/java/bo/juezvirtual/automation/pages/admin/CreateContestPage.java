@@ -1,9 +1,16 @@
 package bo.juezvirtual.automation.pages.admin;
 
 import bo.juezvirtual.automation.pages.BasePage;
+import bo.juezvirtual.automation.utils.SharedState;
+import bo.juezvirtual.automation.utils.UserDataManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Page Object representing administrative contest creation.
@@ -30,46 +37,32 @@ public final class CreateContestPage extends BasePage {
      */
     public void selectLanguages(String... languages) {
         for (String lang : languages) {
-            type(languageInput, lang);
-            try {
-                Thread.sleep(400); // Give react-select a tiny bit of time to filter options
-            } catch (InterruptedException ignored) {
-            }
-            driver.findElement(languageInput).sendKeys(Keys.ENTER);
+            WebElement input = waitUtils.waitForElementToBeVisible(languageInput);
+            input.sendKeys(lang);
+            waitForReactSelectFilter();
+            input.sendKeys(Keys.ENTER);
         }
     }
 
     /**
      * Fills out the contest creation form.
-     * Triggers appropriate field blurs to update React Jotai state bindings.
      */
-    public void fillContestDetails(String title, boolean isPrivate, String startDate, String startTime, 
+    public void fillContestDetails(String title, boolean isPrivate, String startDate, String startTime,
                                    String endDate, String endTime, String problemIds, String userIds) {
-        type(titleField, title);
-        
-        boolean currentlyChecked = driver.findElement(isPrivateCheckbox).isSelected();
-        if (isPrivate != currentlyChecked) {
-            org.openqa.selenium.JavascriptExecutor js = (org.openqa.selenium.JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", driver.findElement(isPrivateCheckbox));
-        }
-
-        type(startDateField, startDate);
-        type(startTimeField, startTime);
-        type(endDateField, endDate);
-        type(endTimeField, endTime);
-
-        // Select languages C, Java, Python3.12
-        selectLanguages("C", "Java", "Python3.12");
-
-        // Add problem IDs list
-        type(problemListArea, problemIds);
-        // Click title to force blur on the textarea and trigger jotai synchronization
-        click(titleField);
+        setPrivateFlag(isPrivate);
+        fillTextArea(problemListArea, problemIds);
 
         if (isPrivate) {
-            type(userListArea, userIds);
-            click(titleField); // Force blur
+            fillTextArea(userListArea, buildPrivateUserList(userIds));
         }
+
+        selectLanguages("c", "java", "python");
+        setFieldValueViaJs(titleField, title);
+        setPrivateFlag(isPrivate);
+        setFieldValueViaJs(startDateField, startDate);
+        setFieldValueViaJs(startTimeField, startTime);
+        setFieldValueViaJs(endDateField, endDate);
+        setFieldValueViaJs(endTimeField, endTime);
     }
 
     /**
@@ -77,5 +70,69 @@ public final class CreateContestPage extends BasePage {
      */
     public void clickSave() {
         click(submitButton);
+    }
+
+    private void setPrivateFlag(boolean isPrivate) {
+        boolean currentlyChecked = driver.findElement(isPrivateCheckbox).isSelected();
+        if (isPrivate != currentlyChecked) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(isPrivateCheckbox));
+        }
+    }
+
+    private void fillTextArea(By locator, String value) {
+        WebElement textArea = waitUtils.waitForElementToBeVisible(locator);
+        textArea.clear();
+        textArea.sendKeys(value);
+        textArea.sendKeys(Keys.TAB);
+    }
+
+    private String buildPrivateUserList(String userIds) {
+        Set<String> users = new LinkedHashSet<>();
+        for (String user : userIds.split("\\R")) {
+            addResolvedUser(users, user);
+        }
+        addResolvedUser(users, SharedState.getLatestRegisteredNickname());
+        return String.join("\n", users);
+    }
+
+    private void addResolvedUser(Set<String> users, String aliasOrUsername) {
+        if (aliasOrUsername == null || aliasOrUsername.trim().isEmpty()) {
+            return;
+        }
+        UserDataManager.UserCredentials credentials = UserDataManager.getUser(aliasOrUsername.trim());
+        users.add(credentials == null ? aliasOrUsername.trim() : credentials.getUsername());
+    }
+
+    private void setFieldValueViaJs(By locator, String value) {
+        WebElement element = waitUtils.waitForElementToBeVisible(locator);
+        element.click();
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        element.sendKeys(Keys.DELETE);
+        element.sendKeys(value);
+        element.sendKeys(Keys.TAB);
+        executeJavaScript(
+                "var el = arguments[0];"
+                        + "var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;"
+                        + "setter.call(el, arguments[1]);"
+                        + "el.dispatchEvent(new Event('input', { bubbles: true }));"
+                        + "el.dispatchEvent(new Event('change', { bubbles: true }));"
+                        + "el.dispatchEvent(new Event('blur', { bubbles: true }));",
+                element, value
+        );
+        if (!value.equals(element.getAttribute("value"))) {
+            element.click();
+            element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            element.sendKeys(Keys.DELETE);
+            element.sendKeys(value);
+            element.sendKeys(Keys.TAB);
+        }
+    }
+
+    private void waitForReactSelectFilter() {
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

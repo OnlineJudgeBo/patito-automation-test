@@ -1,8 +1,12 @@
 package bo.juezvirtual.automation.pages.client;
 
+import java.time.Duration;
+
+import bo.juezvirtual.automation.config.BrowserConfig;
 import bo.juezvirtual.automation.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * Page Object representing the public client login view.
@@ -25,6 +29,7 @@ public final class LoginPage extends BasePage {
         type(usernameField, username);
         type(passwordField, password);
         click(submitButton);
+        waitForLoginRequestToFinish();
     }
 
     /**
@@ -39,5 +44,24 @@ public final class LoginPage extends BasePage {
      */
     public String getErrorMessageText() {
         return getText(errorMessage);
+    }
+
+    /**
+     * Checks whether the login form is currently available.
+     */
+    public boolean isLoginFormVisible() {
+        return isVisible(usernameField);
+    }
+
+    private void waitForLoginRequestToFinish() {
+        waitUtils.waitUntil(
+                Duration.ofSeconds(BrowserConfig.getExplicitWait()),
+                Duration.ofMillis(200),
+                webDriver -> isLoggedIn(webDriver)
+                        || webDriver.findElements(errorMessage).stream().anyMatch(WebElement::isDisplayed));
+    }
+
+    private boolean isLoggedIn(WebDriver webDriver) {
+        return !webDriver.getCurrentUrl().contains("login.php");
     }
 }

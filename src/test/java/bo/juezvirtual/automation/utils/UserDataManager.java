@@ -90,12 +90,12 @@ public final class UserDataManager {
 
     private static String getUsername(String alias) {
         UserCredentials credentials = getUser(alias);
-        return credentials.getUsername();
+        return credentials != null ? credentials.getUsername() : alias;
     }
 
     private static String getPassword(String alias) {
         UserCredentials credentials = getUser(alias);
-        return credentials.getPassword();
+        return credentials != null ? credentials.getPassword() : alias;
     }
 
     public static final class UserCredentials {

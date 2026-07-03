@@ -32,6 +32,7 @@ public final class RegistrationSteps {
 
         clientRegisterPage.fillRegistrationForm(name, lastname, uniqueNickname, uniqueEmail, uniqueEmail, password, password);
         clientRegisterPage.clickRegister();
+        bo.juezvirtual.automation.utils.SharedState.setLatestRegisteredNickname(uniqueNickname);
     }
 
     @Then("deberia ver la alerta SweetAlert de exito {string}")

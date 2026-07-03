@@ -1,6 +1,9 @@
 package bo.juezvirtual.automation.steps;
 
 import bo.juezvirtual.automation.driver.DriverFactory;
+import bo.juezvirtual.automation.utils.AdminContestCleaner;
+import bo.juezvirtual.automation.utils.AdminProblemCleaner;
+import bo.juezvirtual.automation.utils.SharedState;
 import bo.juezvirtual.automation.utils.ScreenshotUtils;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -15,9 +18,20 @@ import org.openqa.selenium.WebDriver;
 public final class Hooks {
     private WebDriver driver;
 
-    @Before
+    @Before(order = 0)
     public void setUp() {
         driver = DriverFactory.getDriver();
+    }
+
+    @Before(value = "@clean_contest", order = 1)
+    public void finishRunningContestsBeforeCleanContestScenarios() {
+        AdminContestCleaner.finishRunningContestsAsAdmin(driver);
+        SharedState.clearContestTitles();
+    }
+
+    @Before(value = "@clean_problems", order = 2)
+    public void deleteProblemsBeforeCleanProblemsScenarios() {
+        AdminProblemCleaner.deleteAllProblemsAsAdmin(driver);
     }
 
     @After

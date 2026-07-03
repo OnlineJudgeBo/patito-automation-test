@@ -42,13 +42,15 @@ public final class RankListSteps {
 
     @When("busca el usuario {string} en el ranking")
     public void buscaElUsuarioEnElRanking(String userId) {
-        String resolvedUser = "default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId;
+        bo.juezvirtual.automation.utils.UserDataManager.UserCredentials creds = bo.juezvirtual.automation.utils.UserDataManager.getUser(userId);
+        String resolvedUser = creds != null ? creds.getUsername() : ("default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId);
         rankListPage.searchUser(resolvedUser);
     }
 
     @Then("el usuario {string} deberia estar listado en la clasificacion")
     public void elUsuarioDeberiaEstarListadoEnLaClasificacion(String userId) {
-        String resolvedUser = "default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId;
+        bo.juezvirtual.automation.utils.UserDataManager.UserCredentials creds = bo.juezvirtual.automation.utils.UserDataManager.getUser(userId);
+        String resolvedUser = creds != null ? creds.getUsername() : ("default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId);
         String solved = rankListPage.getUserSolvedCount(resolvedUser);
         Assertions.assertNotNull(solved, "El usuario no aparece listado en la clasificacion.");
     }

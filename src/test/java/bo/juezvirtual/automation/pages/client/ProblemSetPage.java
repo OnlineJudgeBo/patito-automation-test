@@ -3,6 +3,7 @@ package bo.juezvirtual.automation.pages.client;
 import bo.juezvirtual.automation.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  * Page Object representing the public client problem set catalog.
@@ -31,10 +32,28 @@ public final class ProblemSetPage extends BasePage {
     }
 
     /**
+     * Finds and opens a problem by its visible title.
+     */
+    public void clickProblemByName(String problemName) {
+        searchProblem(problemName);
+        By problemLink = By.xpath("//table[@id='problemList']/tbody/tr/td/a[contains(normalize-space(.), "
+                + xpathText(problemName) + ")]");
+        WebElement link = waitUtils.waitForElementToBeClickable(problemLink);
+        driver.get(link.getAttribute("href"));
+    }
+
+    /**
      * Checks if a problem is present in the table rows.
      */
     public boolean isProblemListed(String problemName) {
         By row = By.xpath("//table[@id='problemList']/tbody/tr[td[a[contains(text(), '" + problemName + "')]]]");
         return isVisible(row);
+    }
+
+    private String xpathText(String value) {
+        if (!value.contains("'")) {
+            return "'" + value + "'";
+        }
+        return "\"" + value + "\"";
     }
 }

@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
  */
 public final class StatusPage extends BasePage {
     private final By statusTable = By.id("status-table");
-    private final By pendingStatus = By.className("pending");
     private final By lastRowVerdict = By.xpath("//table[@id='status-table']/tbody/tr[1]/td[5]//div[contains(@class,'status-result')]");
     private final By lastRowRunId = By.xpath("//table[@id='status-table']/tbody/tr[1]/td[1]");
 
@@ -23,6 +22,7 @@ public final class StatusPage extends BasePage {
      * Reads the RunID/SolutionID of the latest submission (first row).
      */
     public String getLastSolutionRunId() {
+        waitUtils.waitForElementToBePresent(statusTable);
         return getText(lastRowRunId);
     }
 
@@ -30,7 +30,16 @@ public final class StatusPage extends BasePage {
      * Reads the verdict string (e.g. Accepted, Compile Error) of the latest submission.
      */
     public String getLastSolutionVerdict() {
+        waitUtils.waitForElementToBePresent(statusTable);
         return getText(lastRowVerdict);
+    }
+
+    /**
+     * Reads the verdict string for a specific RunID/SolutionID.
+     */
+    public String getVerdictByRunId(String runId) {
+        waitUtils.waitForElementToBePresent(statusTable);
+        return getText(verdictByRunId(runId));
     }
 
     /**
@@ -38,14 +47,22 @@ public final class StatusPage extends BasePage {
      * until it transitions away from pending/compiling states.
      */
     public void waitForSubmissionToFinishEvaluation() {
+        waitForSubmissionToFinishEvaluation(null);
+    }
+
+    /**
+     * Waits for a specific solution to finish evaluation.
+     */
+    public void waitForSubmissionToFinishEvaluation(String runId) {
         int maxAttempts = BrowserConfig.getEvaluationMaxAttempts();
         for (int i = 0; i < maxAttempts; i++) {
             driver.navigate().refresh();
             waitUtils.waitForPageToLoad();
+            waitUtils.waitForElementToBePresent(statusTable);
             
             boolean isPending = false;
             try {
-                String text = getText(lastRowVerdict).trim();
+                String text = runId == null ? getText(lastRowVerdict).trim() : getVerdictByRunId(runId).trim();
                 if (text.equalsIgnoreCase("Pending") 
                         || text.equalsIgnoreCase("Compiling") 
                         || text.equalsIgnoreCase("Running & Judging") 
@@ -72,5 +89,10 @@ public final class StatusPage extends BasePage {
                 return;
             }
         }
+    }
+
+    private By verdictByRunId(String runId) {
+        return By.xpath("//table[@id='status-table']/tbody/tr[td[1][normalize-space(.) = '" + runId + "']]/td[5]"
+                + "//*[contains(@class,'status-result') or self::td]");
     }
 }
