@@ -73,49 +73,50 @@ public final class AdminContestSteps {
     @Then("el concurso creado debe estar en la lista de concursos con los siguientes datos:")
     public void elConcursoCreadoDebeEstarEnLaListaDeConcursosConLosSiguientesDatos(DataTable table) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        for (Map<String, String> expected : table.asMaps(String.class, String.class)) {
-            WebElement row = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-                    "//table/tbody/tr[td[2]//a[contains(normalize-space(.), '" + expected.get("Nombre") + "')]]")));
-            String actualType = row.findElement(By.xpath("./td[5]")).getText().trim();
-            Assertions.assertEquals(expected.get("Tipo"), actualType, "El tipo de concurso no coincide.");
+        for (Map<String, String> expectedContest : table.asMaps(String.class, String.class)) {
+            WebElement contestRow = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+                    "//table/tbody/tr[td[2]//a[contains(normalize-space(.), '"
+                            + expectedContest.get("Nombre") + "')]]")));
+            String contestType = contestRow.findElement(By.xpath("./td[5]")).getText().trim();
+            Assertions.assertEquals(expectedContest.get("Tipo"), contestType, "El tipo de concurso no coincide.");
         }
     }
 
     private void createContest(
             String title, String contestType, String date, String time, String problemsList, String usersList) {
-        String resolvedDate = resolveDate(date);
-        String resolvedTime = resolveStartTime(time);
-        String resolvedEndTime = resolveEndTime(time);
-        String resolvedUsersList = "default_client".equalsIgnoreCase(usersList)
+        String contestDate = resolveDate(date);
+        String contestStartTime = resolveStartTime(time);
+        String contestEndTime = resolveEndTime(time);
+        String contestUsernames = "default_client".equalsIgnoreCase(usersList)
                 ? BrowserConfig.getClientUsername()
                 : usersList;
         boolean isPrivate = contestType.toLowerCase().contains("priv");
 
-        String resolvedProblemsList = resolveProblemList(problemsList);
+        String contestProblemIds = resolveProblemList(problemsList);
         driver.get(BrowserConfig.getAdminUrl() + "/contests/add");
         adminCreateContestPage.fillContestDetails(
-                title, isPrivate, resolvedDate, resolvedTime, resolvedDate, resolvedEndTime, resolvedProblemsList,
-                resolvedUsersList);
+                title, isPrivate, contestDate, contestStartTime, contestDate, contestEndTime, contestProblemIds,
+                contestUsernames);
         adminCreateContestPage.clickSave();
         rememberContestTitle(title, isPrivate);
     }
 
     private String resolveProblemList(String problemsList) {
-        StringBuilder resolved = new StringBuilder();
+        StringBuilder contestProblemIds = new StringBuilder();
         for (String problem : problemsList.split("[\r\n,]+")) {
-            String value = problem.trim();
-            if (value.isEmpty()) {
+            String problemTitleOrId = problem.trim();
+            if (problemTitleOrId.isEmpty()) {
                 continue;
             }
-            if (value.matches("\\d+")) {
-                resolved.append(value);
+            if (problemTitleOrId.matches("\\d+")) {
+                contestProblemIds.append(problemTitleOrId);
             } else {
                 driver.get(BrowserConfig.getAdminUrl() + "/problems");
-                resolved.append(adminProblemsPage.getProblemIdByTitle(value));
+                contestProblemIds.append(adminProblemsPage.getProblemIdByTitle(problemTitleOrId));
             }
-            resolved.append(System.lineSeparator());
+            contestProblemIds.append(System.lineSeparator());
         }
-        return resolved.toString().trim();
+        return contestProblemIds.toString().trim();
     }
 
     private void rememberContestTitle(String title, boolean isPrivate) {

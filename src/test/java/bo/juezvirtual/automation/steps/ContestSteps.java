@@ -209,14 +209,14 @@ public final class ContestSteps {
                 "La verificación debe realizarse desde la clasificación diaria: " + driver.getCurrentUrl());
 
         for (Map<String, String> expected : table.asMaps(String.class, String.class)) {
-            String user = resolveUser(expected.get("Usuario"));
-            rankListPage.searchUser(user);
+            String participantUsername = getParticipantUsername(expected.get("Usuario"));
+            rankListPage.searchUser(participantUsername);
             int minimumSolved = Integer.parseInt(expected.get("Resueltos"));
-            int solved = rankListPage.isUserListed(user)
-                    ? Integer.parseInt(rankListPage.getUserSolvedCount(user))
+            int solved = rankListPage.isUserListed(participantUsername)
+                    ? Integer.parseInt(rankListPage.getUserSolvedCount(participantUsername))
                     : 0;
             Assertions.assertTrue(solved >= minimumSolved,
-                    "El envío no se refleja en la clasificación diaria para " + user
+                    "El envío no se refleja en la clasificación diaria para " + participantUsername
                             + ". Esperado mínimo: " + minimumSolved + ", actual: " + solved);
         }
     }
@@ -257,17 +257,19 @@ public final class ContestSteps {
 
     @Then("los envios deben tener los siguientes estados en la pagina de status:")
     public void losEnviosDebenTenerLosSiguientesEstadosEnLaPaginaDeStatus(DataTable table) {
-        List<SubmissionResult> unmatchedResults = new ArrayList<>(latestSubmissionResults);
-        for (Map<String, String> expected : table.asMaps(String.class, String.class)) {
-            String problemCode = expected.get("Problema");
-            String expectedVerdict = expected.get("Estado");
+        List<SubmissionResult> pendingSubmissionResults = new ArrayList<>(latestSubmissionResults);
+        for (Map<String, String> expectedSubmission : table.asMaps(String.class, String.class)) {
+            String problemCode = expectedSubmission.get("Problema");
+            String expectedVerdict = expectedSubmission.get("Estado");
             if (isRepeatedHeaderRow(problemCode, expectedVerdict)) {
                 continue;
             }
-            SubmissionResult actual = findAndRemoveExpectedResult(unmatchedResults, expected);
-            Assertions.assertEquals(expectedVerdict.trim(), actual.verdict().trim(),
+            SubmissionResult submittedResult = findAndRemoveExpectedResult(
+                    pendingSubmissionResults, expectedSubmission);
+            Assertions.assertEquals(expectedVerdict.trim(), submittedResult.verdict().trim(),
                     "El veredicto del problema " + problemCode + " no coincide. Esperado: "
-                            + expectedVerdict + ", actual: " + actual.verdict() + ", RunID: " + actual.runId());
+                            + expectedVerdict + ", actual: " + submittedResult.verdict()
+                            + ", RunID: " + submittedResult.runId());
         }
     }
 
@@ -331,7 +333,7 @@ public final class ContestSteps {
         }
     }
 
-    private String resolveUser(String aliasOrUsername) {
+    private String getParticipantUsername(String aliasOrUsername) {
         UserDataManager.UserCredentials credentials = UserDataManager.getUser(aliasOrUsername);
         return credentials == null ? aliasOrUsername : credentials.getUsername();
     }
@@ -377,12 +379,13 @@ public final class ContestSteps {
         int maxAttempts = BrowserConfig.getEvaluationMaxAttempts();
         for (int attempt = 0; attempt < maxAttempts; attempt++) {
             try {
-                ContestPage.ContestRankRow actual = contestPage.getRankRowByUser(resolveUser(expected.get("USUARIO")));
-                assertIfPresent(expected, "#", actual.rank(), "El rango en la clasificación no coincide.");
-                assertIfPresent(expected, "NOMBRE", actual.name(), "El nombre del usuario no coincide.");
-                assertAtLeastIfPresent(expected, "RESUELTOS", actual.solved(),
+                ContestPage.ContestRankRow rankRow =
+                        contestPage.getRankRowByUser(getParticipantUsername(expected.get("USUARIO")));
+                assertIfPresent(expected, "#", rankRow.rank(), "El rango en la clasificación no coincide.");
+                assertIfPresent(expected, "NOMBRE", rankRow.name(), "El nombre del usuario no coincide.");
+                assertAtLeastIfPresent(expected, "RESUELTOS", rankRow.solved(),
                         "La cantidad de problemas resueltos no coincide.");
-                assertProblemResults(expected, actual);
+                assertProblemResults(expected, rankRow);
                 return;
             } catch (AssertionError error) {
                 lastFailure = error;
@@ -393,13 +396,13 @@ public final class ContestSteps {
         throw lastFailure == null ? new AssertionError("No se pudo leer la clasificación del contest.") : lastFailure;
     }
 
-    private void assertProblemResults(Map<String, String> expected, ContestPage.ContestRankRow actual) {
+    private void assertProblemResults(Map<String, String> expected, ContestPage.ContestRankRow rankRow) {
         for (Map.Entry<String, String> entry : expected.entrySet()) {
             String problemCode = entry.getKey();
             if (isRankMetadataColumn(problemCode)) {
                 continue;
             }
-            assertProblemResult(problemCode, entry.getValue(), actual.problemResult(problemCode));
+            assertProblemResult(problemCode, entry.getValue(), rankRow.problemResult(problemCode));
         }
     }
 
@@ -435,12 +438,12 @@ public final class ContestSteps {
     }
 
     private SubmissionResult findAndRemoveExpectedResult(
-            List<SubmissionResult> unmatchedResults, Map<String, String> expected) {
-        String problemCode = expected.get("Problema");
-        for (int i = 0; i < unmatchedResults.size(); i++) {
-            SubmissionResult candidate = unmatchedResults.get(i);
-            if (candidate.problemCode().equals(problemCode)) {
-                return unmatchedResults.remove(i);
+            List<SubmissionResult> pendingSubmissionResults, Map<String, String> expectedSubmission) {
+        String problemCode = expectedSubmission.get("Problema");
+        for (int i = 0; i < pendingSubmissionResults.size(); i++) {
+            SubmissionResult submittedResult = pendingSubmissionResults.get(i);
+            if (submittedResult.problemCode().equals(problemCode)) {
+                return pendingSubmissionResults.remove(i);
             }
         }
         Assertions.fail("No se registró envío para el problema " + problemCode);

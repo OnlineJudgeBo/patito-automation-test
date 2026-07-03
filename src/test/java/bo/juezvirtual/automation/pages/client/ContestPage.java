@@ -191,27 +191,27 @@ public final class ContestPage extends BasePage {
     }
 
     private WebElement getFirstContestLinkByAccess(String accessType) {
-        String normalizedAccess = normalizeAccess(accessType);
+        String accessLabel = normalizeAccess(accessType);
         String latestTitle = null;
-        if ("Privado".equalsIgnoreCase(normalizedAccess)) {
+        if ("Privado".equalsIgnoreCase(accessLabel)) {
             latestTitle = SharedState.getLatestPrivateContestTitle();
-        } else if ("Público".equalsIgnoreCase(normalizedAccess)) {
+        } else if ("Público".equalsIgnoreCase(accessLabel)) {
             latestTitle = SharedState.getLatestPublicContestTitle();
         }
 
         if (latestTitle != null && !latestTitle.isEmpty()) {
             try {
-                By specificLink = By.xpath("//table/tbody/tr[td[2]//a[contains(normalize-space(.), '"
+                By latestContestLink = By.xpath("//table/tbody/tr[td[2]//a[contains(normalize-space(.), '"
                         + latestTitle + "')]]/td[2]//a[contains(@href, 'contest.php?cid=')]");
-                return waitUtils.waitForElementToBeClickable(specificLink);
+                return waitUtils.waitForElementToBeClickable(latestContestLink);
             } catch (Exception e) {
                 // If another test did not create the contest in this JVM, use the first contest of that type.
             }
         }
 
-        By contestLink = By.xpath("//table/tbody/tr[td[4]//*[contains(normalize-space(.), '"
-                + normalizedAccess + "')]]/td[2]//a[contains(@href, 'contest.php?cid=')]");
-        return waitUtils.waitForElementToBeClickable(contestLink);
+        By firstContestLink = By.xpath("//table/tbody/tr[td[4]//*[contains(normalize-space(.), '"
+                + accessLabel + "')]]/td[2]//a[contains(@href, 'contest.php?cid=')]");
+        return waitUtils.waitForElementToBeClickable(firstContestLink);
     }
 
     private By problemLinks() {
@@ -219,8 +219,8 @@ public final class ContestPage extends BasePage {
     }
 
     private String normalizeAccess(String accessType) {
-        String value = accessType == null ? "" : accessType.trim().toLowerCase();
-        if (value.contains("priv")) {
+        String accessText = accessType == null ? "" : accessType.trim().toLowerCase();
+        if (accessText.contains("priv")) {
             return "Privado";
         }
         return "Público";

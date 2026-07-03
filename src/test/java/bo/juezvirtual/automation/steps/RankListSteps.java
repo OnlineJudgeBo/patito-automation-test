@@ -5,6 +5,7 @@ import bo.juezvirtual.automation.driver.DriverFactory;
 import bo.juezvirtual.automation.pages.client.ProblemSetPage;
 import bo.juezvirtual.automation.pages.client.RankListPage;
 import bo.juezvirtual.automation.pages.client.ContestPage;
+import bo.juezvirtual.automation.utils.UserDataManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -42,17 +43,23 @@ public final class RankListSteps {
 
     @When("busca el usuario {string} en el ranking")
     public void buscaElUsuarioEnElRanking(String userId) {
-        bo.juezvirtual.automation.utils.UserDataManager.UserCredentials creds = bo.juezvirtual.automation.utils.UserDataManager.getUser(userId);
-        String resolvedUser = creds != null ? creds.getUsername() : ("default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId);
-        rankListPage.searchUser(resolvedUser);
+        String rankingUsername = getRankingUsername(userId);
+        rankListPage.searchUser(rankingUsername);
     }
 
     @Then("el usuario {string} deberia estar listado en la clasificacion")
     public void elUsuarioDeberiaEstarListadoEnLaClasificacion(String userId) {
-        bo.juezvirtual.automation.utils.UserDataManager.UserCredentials creds = bo.juezvirtual.automation.utils.UserDataManager.getUser(userId);
-        String resolvedUser = creds != null ? creds.getUsername() : ("default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId);
-        String solved = rankListPage.getUserSolvedCount(resolvedUser);
+        String rankingUsername = getRankingUsername(userId);
+        String solved = rankListPage.getUserSolvedCount(rankingUsername);
         Assertions.assertNotNull(solved, "El usuario no aparece listado en la clasificacion.");
+    }
+
+    private String getRankingUsername(String userId) {
+        UserDataManager.UserCredentials credentials = UserDataManager.getUser(userId);
+        if (credentials != null) {
+            return credentials.getUsername();
+        }
+        return "default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId;
     }
 
     @Given("el participante navega a la lista de concursos")
