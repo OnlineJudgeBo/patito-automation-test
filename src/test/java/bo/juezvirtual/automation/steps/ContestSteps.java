@@ -313,7 +313,7 @@ public final class ContestSteps {
         String currentUrl = driver.getCurrentUrl();
         return currentUrl != null
                 && currentUrl.startsWith(BrowserConfig.getClientUrl())
-                && !currentUrl.contains("login.php");
+                && loginPage.isAuthenticated();
     }
 
     private boolean waitForParticipantAuthentication() {

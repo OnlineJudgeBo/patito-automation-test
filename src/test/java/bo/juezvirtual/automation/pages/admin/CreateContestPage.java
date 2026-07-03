@@ -8,7 +8,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -53,7 +55,9 @@ public final class CreateContestPage extends BasePage {
         fillTextArea(problemListArea, problemIds);
 
         if (isPrivate) {
-            fillTextArea(userListArea, buildPrivateUserList(userIds));
+            String privateUserList = buildPrivateUserList(userIds);
+            fillTextArea(userListArea, privateUserList);
+            waitForPrivateUsersToBeCommitted(privateUserList);
         }
 
         selectLanguages("c", "java", "python");
@@ -103,6 +107,20 @@ public final class CreateContestPage extends BasePage {
         users.add(credentials == null ? aliasOrUsername.trim() : credentials.getUsername());
     }
 
+    private void waitForPrivateUsersToBeCommitted(String privateUserList) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        for (String userId : privateUserList.split("\\R")) {
+            String normalizedUserId = userId.trim();
+            if (normalizedUserId.isEmpty()) {
+                continue;
+            }
+            wait.until(webDriver -> !webDriver.findElements(By.xpath(
+                    "//label[@for='selectedUser']/following-sibling::div[contains(normalize-space(.), "
+                            + xpathText(normalizedUserId) + ")]"
+            )).isEmpty());
+        }
+    }
+
     private void setFieldValueViaJs(By locator, String value) {
         WebElement element = waitUtils.waitForElementToBeVisible(locator);
         element.click();
@@ -126,6 +144,10 @@ public final class CreateContestPage extends BasePage {
             element.sendKeys(value);
             element.sendKeys(Keys.TAB);
         }
+    }
+
+    private String xpathText(String value) {
+        return "'" + value.replace("'", "\\'") + "'";
     }
 
     private void waitForReactSelectFilter() {

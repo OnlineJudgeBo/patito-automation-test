@@ -17,6 +17,9 @@ public final class LoginPage extends BasePage {
     private final By passwordField = By.id("password");
     private final By submitButton = By.cssSelector("form button[type='submit']");
     private final By errorMessage = By.cssSelector("p.text-red-500");
+    private final By authenticatedNavigationMarker = By.xpath(
+            "//a[normalize-space(.) = 'Salir' or contains(@href, 'logout.php')]"
+                    + " | //a[normalize-space(.) = 'Perfil' or contains(@href, 'profile.php')]");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -53,6 +56,13 @@ public final class LoginPage extends BasePage {
         return isVisible(usernameField);
     }
 
+    /**
+     * Checks whether the participant session exposes authenticated-only navigation.
+     */
+    public boolean isAuthenticated() {
+        return driver.findElements(authenticatedNavigationMarker).stream().anyMatch(WebElement::isDisplayed);
+    }
+
     private void waitForLoginRequestToFinish() {
         waitUtils.waitUntil(
                 Duration.ofSeconds(BrowserConfig.getExplicitWait()),
@@ -62,6 +72,6 @@ public final class LoginPage extends BasePage {
     }
 
     private boolean isLoggedIn(WebDriver webDriver) {
-        return !webDriver.getCurrentUrl().contains("login.php");
+        return webDriver.findElements(authenticatedNavigationMarker).stream().anyMatch(WebElement::isDisplayed);
     }
 }
