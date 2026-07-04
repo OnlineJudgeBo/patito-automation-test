@@ -1,0 +1,80 @@
+name: Selenium BDD Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Cucumber tags to run, example @contest'
+        required: false
+        default: ''
+      env:
+        description: 'Test environment from application.properties'
+        required: false
+        default: 'dev'
+      reset_db:
+        description: 'Run scripts/reset-test-db.sh --yes before tests'
+        required: false
+        type: boolean
+        default: true
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  e2e-tests:
+    name: Run Selenium BDD tests
+    runs-on: self-hosted
+    timeout-minutes: 180
+
+    env:
+      ENV_NAME: ${{ github.event.inputs.env || 'dev' }}
+      TAGS: ${{ github.event.inputs.tags || '' }}
+      RESET_DB: ${{ github.event.inputs.reset_db || 'true' }}
+      HEADLESS: 'true'
+
+    steps:
+      - name: Checkout tests repository
+        uses: actions/checkout@v4
+
+      - name: Ensure scripts are executable
+        run: |
+          chmod +x ./gradlew
+          chmod +x scripts/reset-test-db.sh
+
+      - name: Reset test database
+        if: env.RESET_DB == 'true'
+        run: scripts/reset-test-db.sh --yes
+
+      - name: Run BDD tests
+        run: |
+          set -e
+          if [ -n "$TAGS" ]; then
+            ./gradlew clean executeBDDTests --no-daemon -Denv="$ENV_NAME" -Dheadless="$HEADLESS" -Dtags="$TAGS"
+          else
+            ./gradlew clean executeBDDTests --no-daemon -Denv="$ENV_NAME" -Dheadless="$HEADLESS"
+          fi
+
+      - name: Upload Cucumber reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-reports-${{ github.run_number }}
+          path: |
+            build/reports/cucumber/**
+            build/reports/tests/**
+            build/reports/screenshots/**
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report-${{ github.run_number }}
+          path: |
+            build/reports/allure-report/**
+            build/allure-results/**
+          if-no-files-found: ignore
+          retention-days: 14
