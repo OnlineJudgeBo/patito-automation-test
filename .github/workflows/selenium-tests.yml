@@ -22,6 +22,11 @@ on:
       - develop
   pull_request:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   e2e-tests:
     name: Run Selenium BDD tests
@@ -56,6 +61,44 @@ jobs:
             ./gradlew clean executeBDDTests --no-daemon -Denv="$ENV_NAME" -Dheadless="$HEADLESS"
           fi
 
+      - name: Prepare GitHub Pages report
+        if: always()
+        run: |
+          mkdir -p build/pages
+          touch build/pages/.nojekyll
+
+          if [ -d build/reports/allure-report ]; then
+            cp -r build/reports/allure-report build/pages/allure
+          fi
+
+          if [ -d build/reports/cucumber ]; then
+            cp -r build/reports/cucumber build/pages/cucumber
+          fi
+
+          if [ -d build/reports/screenshots ]; then
+            cp -r build/reports/screenshots build/pages/screenshots
+          fi
+
+          cat > build/pages/index.html <<'EOF'
+          <!doctype html>
+          <html lang="es">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Patito Selenium Reports</title>
+          </head>
+          <body>
+            <h1>Patito Selenium Reports</h1>
+            <p>Reportes generados por GitHub Actions.</p>
+            <ul>
+              <li><a href="./allure/index.html">Allure Report</a></li>
+              <li><a href="./cucumber/cucumber.html">Cucumber Report</a></li>
+              <li><a href="./screenshots/">Screenshots</a></li>
+            </ul>
+          </body>
+          </html>
+          EOF
+
       - name: Upload Cucumber reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,3 +121,24 @@ jobs:
             build/allure-results/**
           if-no-files-found: ignore
           retention-days: 14
+
+      - name: Setup GitHub Pages
+        if: always() && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: always() && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/pages
+
+  deploy-pages:
+    name: Deploy reports to GitHub Pages
+    needs: e2e-tests
+    if: always() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
