@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="2.226" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Tabla de Clasificación Global" name="Buscar usuario en la tabla de clasificación" time="2.216">
+<system-out><![CDATA[
+Given el participante navega a la tabla de clasificacion global.............passed
+When busca el usuario "participante_qa" en el ranking.......................passed
+Then el usuario "participante_qa" deberia estar listado en la clasificacion.passed
+]]></system-out>
+</testcase>
+</testsuite>

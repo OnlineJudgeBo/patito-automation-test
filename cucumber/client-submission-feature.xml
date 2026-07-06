@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="125.774" tests="2" skipped="0" failures="2" errors="0">
+<testcase classname="Envío y Evaluación de Soluciones" name="Envío de solución correcta con veredicto Aceptado (AC)" time="62.875">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for condition to not be valid: url to contain &quot;/login&quot;. Current url: &quot;http://localhost:8083/admin/login&quot; (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:38927}, goog:processID: 138225, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:38927/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d45a661d3ccc0cfdfa13412f15744469">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for condition to not be valid: url to contain "/login". Current url: "http://localhost:8083/admin/login" (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:38927}, goog:processID: 138225, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:38927/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d45a661d3ccc0cfdfa13412f15744469
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at bo.juezvirtual.automation.utils.AdminContestCleaner.loginAsAdmin(AdminContestCleaner.java:64)
+	at bo.juezvirtual.automation.utils.AdminContestCleaner.finishRunningContestsAsAdmin(AdminContestCleaner.java:45)
+	at bo.juezvirtual.automation.steps.Hooks.finishRunningContestsBeforeCleanContestScenarios(Hooks.java:28)
+]]>
+</failure>
+<system-out><![CDATA[
+Given el administrador navega a la pagina de login del panel................skipped
+When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".skipped
+Then el administrador deberia ver el dashboard administrativo...............skipped
+Given el docente esta en la pagina de creacion de problemas.................skipped
+When crea un problema con titulo "Suma de dos números", tiempo "2", memoria "128", autor "Patito QA" y descripciones basicas.skipped
+Then el problema deberia ser guardado con exito.............................skipped
+And el problema "Suma de dos números" deberia aparecer listado..............skipped
+Given el docente esta en el administrador de archivos del problema "Suma de dos números".skipped
+When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.in".skipped
+Then el archivo "sum_1.in" deberia aparecer listado en la pagina............skipped
+When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.out".skipped
+Then el archivo "sum_1.out" deberia aparecer listado en la pagina...........skipped
+Given el participante navega a la pagina de inicio de sesion................skipped
+When el participante introduce el usuario "participante_qa" y clave "participante_qa".skipped
+Then el participante deberia ver el portal de inicio........................skipped
+Given el participante esta en la pagina del problema "Suma de dos números"..skipped
+When hace clic en el boton Enviar...........................................skipped
+And selecciona el lenguaje "Java" e ingresa el codigo:......................skipped
+Then deberia esperar la evaluacion y ver el veredicto "Accepted"............skipped
+]]></system-out>
+</testcase>
+<testcase classname="Envío y Evaluación de Soluciones" name="Envío de solución con error de compilación (CE)" time="62.88">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for condition to not be valid: url to contain &quot;/login&quot;. Current url: &quot;http://localhost:8083/admin/login&quot; (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42029}, goog:processID: 138603, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:42029/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 42b78cc94adcc68bc3d024a74b79f2dd">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for condition to not be valid: url to contain "/login". Current url: "http://localhost:8083/admin/login" (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42029}, goog:processID: 138603, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:42029/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 42b78cc94adcc68bc3d024a74b79f2dd
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at bo.juezvirtual.automation.utils.AdminContestCleaner.loginAsAdmin(AdminContestCleaner.java:64)
+	at bo.juezvirtual.automation.utils.AdminContestCleaner.finishRunningContestsAsAdmin(AdminContestCleaner.java:45)
+	at bo.juezvirtual.automation.steps.Hooks.finishRunningContestsBeforeCleanContestScenarios(Hooks.java:28)
+]]>
+</failure>
+<system-out><![CDATA[
+Given el administrador navega a la pagina de login del panel................skipped
+When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".skipped
+Then el administrador deberia ver el dashboard administrativo...............skipped
+Given el docente esta en la pagina de creacion de problemas.................skipped
+When crea un problema con titulo "Suma de dos números", tiempo "2", memoria "128", autor "Patito QA" y descripciones basicas.skipped
+Then el problema deberia ser guardado con exito.............................skipped
+And el problema "Suma de dos números" deberia aparecer listado..............skipped
+Given el docente esta en el administrador de archivos del problema "Suma de dos números".skipped
+When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.in".skipped
+Then el archivo "sum_1.in" deberia aparecer listado en la pagina............skipped
+When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.out".skipped
+Then el archivo "sum_1.out" deberia aparecer listado en la pagina...........skipped
+Given el participante navega a la pagina de inicio de sesion................skipped
+When el participante introduce el usuario "participante_qa" y clave "participante_qa".skipped
+Then el participante deberia ver el portal de inicio........................skipped
+Given el participante esta en la pagina del problema "Suma de dos números"..skipped
+When hace clic en el boton Enviar...........................................skipped
+And selecciona el lenguaje "Java" e ingresa el codigo:......................skipped
+Then deberia esperar la evaluacion y ver el veredicto "Compile Error".......skipped
+]]></system-out>
+</testcase>
+</testsuite>

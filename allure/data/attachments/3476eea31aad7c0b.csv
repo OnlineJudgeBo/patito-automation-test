@@ -1,0 +1,6 @@
+Problema	Nombre problema	Lenguaje	Codigo
+A	Suma de dos números	C++	suma_dos_numeros_wa.cpp
+A	Suma de dos números	C++	suma_dos_numeros_ce.cpp
+A	Suma de dos números	C++	suma_dos_numeros_tle.cpp
+B	Número par	C++	numero_par_ac.cpp
+B	Número par	C++	numero_par_wa.cpp
