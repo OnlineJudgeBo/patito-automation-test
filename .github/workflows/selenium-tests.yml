@@ -23,7 +23,9 @@ on:
   pull_request:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   e2e-tests:
@@ -50,7 +52,7 @@ jobs:
         if: env.RESET_DB == 'true'
         run: scripts/reset-test-db.sh --yes
 
-      - name: Run BDD tests
+      - name: Run BDD tests with automatic retry
         run: |
           set -e
           if [ -n "$TAGS" ]; then
@@ -79,6 +81,20 @@ jobs:
             cp -r build/reports/cucumber/. build/pages/cucumber/
           fi
 
+          if [ ! -f build/pages/cucumber/consolidated.html ]; then
+            cat > build/pages/cucumber/consolidated.html <<'EOF'
+          <!doctype html>
+          <html lang="es">
+          <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Reporte Cucumber consolidado</title></head>
+          <body>
+            <h1>Reporte Cucumber consolidado</h1>
+            <p>No se generó reporte Cucumber consolidado para esta corrida. Revisa los logs del job y los artefactos disponibles.</p>
+            <p><a href="../">Volver al índice</a></p>
+          </body>
+          </html>
+          EOF
+          fi
+
           if [ -d build/reports/screenshots ]; then
             cp -r build/reports/screenshots/. build/pages/screenshots/
           fi
@@ -96,8 +112,9 @@ jobs:
             <p>Reportes generados por GitHub Actions.</p>
             <p>Run: <a href="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}">#${GITHUB_RUN_NUMBER}</a></p>
             <ul>
-              <li><a href="./allure/index.html">Allure Report</a></li>
-              <li><a href="./cucumber/">Reportes Cucumber por feature</a></li>
+              <li><a href="./allure/index.html">Allure Report consolidado</a></li>
+              <li><a href="./cucumber/consolidated.html">Reporte Cucumber consolidado</a></li>
+              <li><a href="./cucumber/">Reportes Cucumber por feature y reintentos</a></li>
               <li><a href="./screenshots/">Screenshots</a></li>
             </ul>
           </body>
@@ -111,6 +128,7 @@ jobs:
           <body>
             <h1>Cucumber Reports</h1>
             <p><a href="../">Volver al índice</a></p>
+            <p><a href="./consolidated.html">Ver reporte consolidado con reintentos</a></p>
             <ul>
           EOF
           find build/pages/cucumber -maxdepth 1 -type f -name '*.html' ! -name 'index.html' -printf '%f\n' | sort | while read -r file; do
@@ -163,49 +181,27 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
-      - name: Publish reports to gh-pages branch
+      - name: Setup GitHub Pages
         if: always() && github.ref == 'refs/heads/main'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
+        uses: actions/configure-pages@v5
 
-          if [ ! -f build/pages/index.html ]; then
-            echo "No GitHub Pages report was prepared; skipping publish."
-            exit 0
-          fi
+      - name: Upload GitHub Pages artifact
+        if: always() && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/pages
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+  deploy-pages:
+    name: Deploy reports to GitHub Pages
+    needs: e2e-tests
+    if: always() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
 
-          publish_root="${RUNNER_TEMP:-/tmp}/patito-pages-${GITHUB_RUN_ID}"
-          pages_content="$publish_root/content"
-          pages_worktree="$publish_root/gh-pages"
-          rm -rf "$publish_root"
-          mkdir -p "$pages_content"
-          cp -a build/pages/. "$pages_content/"
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-          git fetch origin gh-pages || true
-          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
-            git worktree add "$pages_worktree" origin/gh-pages
-            git -C "$pages_worktree" checkout -B gh-pages
-          else
-            git worktree add --detach "$pages_worktree"
-            git -C "$pages_worktree" checkout --orphan gh-pages
-            git -C "$pages_worktree" rm -rf . || true
-          fi
-
-          find "$pages_worktree" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -a "$pages_content"/. "$pages_worktree"/
-          touch "$pages_worktree/.nojekyll"
-
-          git -C "$pages_worktree" add -A
-          if git -C "$pages_worktree" diff --cached --quiet; then
-            echo "No report changes to publish."
-          else
-            git -C "$pages_worktree" commit -m "Publish Selenium reports from run ${GITHUB_RUN_NUMBER}"
-            git -C "$pages_worktree" push origin gh-pages
-          fi
-
-          git worktree remove "$pages_worktree" --force
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
