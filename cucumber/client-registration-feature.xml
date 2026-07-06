@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="26.977" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Registro de Participantes en Patito Client" name="Registro de participante exitoso" time="26.767">
+<testsuite name="Cucumber" time="26.876" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Registro de Participantes en Patito Client" name="Registro de participante exitoso" time="25.582">
 <system-out><![CDATA[
 Given el participante navega a la pagina de registro........................passed
 When completa el registro con nombre "Pedro", apellido "Perez", nickname "pedro_qa", email "pedro@juez.bo", clave "PedroPass123".passed

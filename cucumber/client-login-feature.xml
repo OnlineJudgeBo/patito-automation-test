@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="70.037" tests="3" skipped="0" failures="1" errors="0">
-<testcase classname="Inicio de Sesión de Participantes en Patito Client" name="Inicio de sesión exitoso con credenciales válidas - Example #1.1" time="34.695">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@42b2319c (tried for 10 second(s) with 200 milliseconds interval)
+<testsuite name="Cucumber" time="67.736" tests="3" skipped="0" failures="1" errors="0">
+<testcase classname="Inicio de Sesión de Participantes en Patito Client" name="Inicio de sesión exitoso con credenciales válidas - Example #1.1" time="32.68">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@18a129b8 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:33311}, goog:processID: 153468, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33311/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 2dd1f63a0c7a86a93d6ef398460855ed">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@42b2319c (tried for 10 second(s) with 200 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:43055}, goog:processID: 167160, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43055/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 7f4ad8f17d444818d721f698588c25d7">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@18a129b8 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:33311}, goog:processID: 153468, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33311/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 2dd1f63a0c7a86a93d6ef398460855ed
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:43055}, goog:processID: 167160, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43055/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 7f4ad8f17d444818d721f698588c25d7
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
 	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
@@ -28,14 +28,14 @@ When el participante introduce el usuario "participante_qa" y clave "participant
 Then el participante deberia ver el portal de inicio........................skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Inicio de Sesión de Participantes en Patito Client" name="Intento de inicio de sesión con credenciales inválidas - Example #1.1" time="17.629">
+<testcase classname="Inicio de Sesión de Participantes en Patito Client" name="Intento de inicio de sesión con credenciales inválidas - Example #1.1" time="17.394">
 <system-out><![CDATA[
 Given el participante navega a la pagina de inicio de sesion................passed
 When el participante introduce el usuario "participante_qa" y clave "wrong_pass".passed
 Then el participante deberia ver el error de inicio de sesion "Error en el nombre de usuario o la contraseña".passed
 ]]></system-out>
 </testcase>
-<testcase classname="Inicio de Sesión de Participantes en Patito Client" name="Intento de inicio de sesión con credenciales inválidas - Example #1.2" time="17.692">
+<testcase classname="Inicio de Sesión de Participantes en Patito Client" name="Intento de inicio de sesión con credenciales inválidas - Example #1.2" time="17.636">
 <system-out><![CDATA[
 Given el participante navega a la pagina de inicio de sesion................passed
 When el participante introduce el usuario "userqa1" y clave "wrong_pass"....passed

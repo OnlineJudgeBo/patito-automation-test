@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="215.896" tests="5" skipped="0" failures="4" errors="0">
-<testcase classname="Gestión y uso de contests" name="Crear los problemas base para las pruebas de contests" time="46.174">
+<testsuite name="Cucumber" time="210.04" tests="5" skipped="0" failures="4" errors="0">
+<testcase classname="Gestión y uso de contests" name="Crear los problemas base para las pruebas de contests" time="45.922">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -11,19 +11,19 @@ Then los problemas deberian ser guardados con exito.........................pass
 And los siguientes problemas deberian aparecer listados:....................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Crear un contest público y validar el flujo del participante" time="41.145">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@786ce57e (tried for 10 second(s) with 200 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Crear un contest público y validar el flujo del participante" time="40.784">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@3abe94d9 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42087}, goog:processID: 155670, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:42087/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: f0f3fd9b89f6d1b3b544a10bbe31f1a5">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@786ce57e (tried for 10 second(s) with 200 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36231}, goog:processID: 169357, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36231/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1f865082e6e8142b4eba066c196206e0">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@3abe94d9 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42087}, goog:processID: 155670, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:42087/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: f0f3fd9b89f6d1b3b544a10bbe31f1a5
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36231}, goog:processID: 169357, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36231/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1f865082e6e8142b4eba066c196206e0
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
 	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
@@ -57,19 +57,19 @@ When selecciona el ranking..................................................skip
 Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:.skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Crear un contest privado y validar el acceso del participante registrado - Example #1.1" time="42.946">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55c596aa (tried for 10 second(s) with 200 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Crear un contest privado y validar el acceso del participante registrado - Example #1.1" time="41.11">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@75ee3ef (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:43645}, goog:processID: 155977, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43645/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ab8fd4f404db309899df569a13190e26">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55c596aa (tried for 10 second(s) with 200 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36521}, goog:processID: 169661, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36521/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1ef8eace79e88e60d68cc9f8f3796e4f">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@75ee3ef (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:43645}, goog:processID: 155977, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43645/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ab8fd4f404db309899df569a13190e26
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36521}, goog:processID: 169661, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36521/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1ef8eace79e88e60d68cc9f8f3796e4f
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
 	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
@@ -103,19 +103,19 @@ When selecciona el ranking..................................................skip
 Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:.skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest público" time="42.739">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@609b91b4 (tried for 10 second(s) with 200 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest público" time="40.953">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@44c164e5 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39923}, goog:processID: 156340, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39923/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: e13f04e57971817bbd4af66f6204af68">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@609b91b4 (tried for 10 second(s) with 200 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39435}, goog:processID: 169997, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39435/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 65d5497ba8a5a025cc1c00902d937224">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@44c164e5 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39923}, goog:processID: 156340, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39923/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: e13f04e57971817bbd4af66f6204af68
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39435}, goog:processID: 169997, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39435/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 65d5497ba8a5a025cc1c00902d937224
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
 	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
@@ -141,19 +141,19 @@ Then el sistema debe registrar el envío.....................................ski
 And los envios deben tener los siguientes estados en la pagina de status:...skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest privado" time="42.84">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55aee896 (tried for 10 second(s) with 200 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest privado" time="41.229">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@6d820f5e (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:35221}, goog:processID: 156647, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35221/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: e0bf3ab0ce8c0bfbd6ed5244fd931ad0">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55aee896 (tried for 10 second(s) with 200 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39685}, goog:processID: 170327, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39685/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 0bc90f77e2c74b47180ef817bebb9243">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@6d820f5e (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:35221}, goog:processID: 156647, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35221/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: e0bf3ab0ce8c0bfbd6ed5244fd931ad0
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39685}, goog:processID: 170327, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39685/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 0bc90f77e2c74b47180ef817bebb9243
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
 	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
