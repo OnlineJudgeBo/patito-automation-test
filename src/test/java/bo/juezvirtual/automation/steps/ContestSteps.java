@@ -3,10 +3,10 @@ package bo.juezvirtual.automation.steps;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -79,17 +79,6 @@ public final class ContestSteps {
                         + currentParticipantAlias);
         Assertions.assertFalse(credentials.getUsername().isBlank(),
                 "El participante registrado en el contest no tiene usuario configurado.");
-    }
-
-    @Given("el participante inició sesion correctamente")
-    @Given("el participante inició sesión correctamente")
-    @Given("el participante inició sesión con la cuenta registrada en el contest")
-    public void elParticipanteInicioSesionCorrectamente() {
-        if (isParticipantAlreadyAuthenticated() || waitForParticipantAuthentication()) {
-            participantSessionStarted = true;
-            return;
-        }
-        loginAsCurrentContestParticipant();
     }
 
     @When("el participante ingresa al contest privado")

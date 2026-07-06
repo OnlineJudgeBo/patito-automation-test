@@ -31,7 +31,6 @@ Feature: Gestión y uso de contests
       | Concurso Publico QA | Publico |
     Given existe un contest público activo
     And el participante introduce el usuario "participante_qa" y clave "participante_qa"
-    And el participante inició sesión correctamente
     When el participante ingresa al contest público
     Then debe ver la lista de problemas disponibles
     And cada problema debe mostrar su titulo
@@ -73,7 +72,6 @@ Feature: Gestión y uso de contests
       | Concurso Privado QA | Privado |
     Given existe un participante registrado en el contest
     When el participante introduce el usuario "<usuario_alias>" y clave "<clave_alias>"
-    And el participante inició sesión con la cuenta registrada en el contest
     And el participante ingresa al contest privado
     Then debe ver la lista de problemas disponibles
     And cada problema debe mostrar su titulo
@@ -114,7 +112,6 @@ Feature: Gestión y uso de contests
     Then el concurso deberia ser guardado con exito
     Given existe un contest público activo
     And el participante introduce el usuario "participante_qa" y clave "participante_qa"
-    And el participante inició sesión correctamente
     When el participante ingresa al contest público
     And el participante abre los siguientes problemas del contest y verifica sus nombres:
       | Identificador | Nombre               |
@@ -147,7 +144,6 @@ Feature: Gestión y uso de contests
     Then el concurso deberia ser guardado con exito
     Given existe un participante registrado en el contest
     And el participante introduce el usuario "participante_qa" y clave "participante_qa"
-    And el participante inició sesión con la cuenta registrada en el contest
     When el participante ingresa al contest privado
     And el participante abre los siguientes problemas del contest y verifica sus nombres:
       | Identificador | Nombre               |
