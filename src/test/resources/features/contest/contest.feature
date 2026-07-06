@@ -4,11 +4,13 @@ Feature: Gestión y uso de contests
   Quiero crear contests públicos y privados desde el panel administrativo
   Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones
 
-  @clean_problems @clean_contest
-  Scenario: Crear los problemas base para las pruebas de contests
+  Background:
     Given el administrador navega a la pagina de login del panel
     When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa"
     Then el administrador deberia ver el dashboard administrativo
+
+  @clean_problems @clean_contest
+  Scenario: Crear los problemas base para las pruebas de contests
     Given el docente esta en la pagina de creacion de problemas
     When crea los siguientes problemas:
       | Titulo               | Tiempo | Memoria | Autor     |
@@ -20,9 +22,7 @@ Feature: Gestión y uso de contests
       | Suma de dos números  |
       | Número par           |
 
-  Scenario: Crear un contest público y validar el flujo del participante
-    Given el administrador navega a la pagina de login del panel
-    When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa"
+  Scenario Outline: Crear un contest público y validar el flujo del participante
     Given el administrador esta en la pagina de creacion de concursos
     When crea un concurso "publico" con titulo "Concurso Publico QA", fecha "actual", hora "actual", problemas "Suma de dos números"
     Then el concurso deberia ser guardado con exito
@@ -30,7 +30,7 @@ Feature: Gestión y uso de contests
       | Nombre              | Tipo    |
       | Concurso Publico QA | Publico |
     Given existe un contest público activo
-    And el participante introduce el usuario "participante_qa" y clave "participante_qa"
+    And el participante introduce el usuario "<usuario_alias>" y clave "<clave_alias>"
     When el participante ingresa al contest público
     Then debe ver la lista de problemas disponibles
     And cada problema debe mostrar su titulo
@@ -52,19 +52,21 @@ Feature: Gestión y uso de contests
       | Problema | Nombre              | Setter | Aceptados | Envios |
       | 1A       | Suma de dos números |        |           | 1      |
     And debe verse el envío en la clasificación diaria:
-      | Usuario         | Resueltos |
-      | participante_qa | 1         |
+      | usuario_alias   | Resueltos |
+      | <usuario_alias> | 1         |
     When selecciona el ranking
     Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:
-      | # | NOMBRE | USUARIO         | RESUELTOS | A    |
-      |   |        | participante_qa | 1         | true |
+      | # | NOMBRE | usuario_alias   | RESUELTOS | A    |
+      |   |        | <usuario_alias> | 1         | true |
+
+    Examples:
+      | usuario_alias   | clave_alias     |
+      | participante_qa | participante_qa |
 
   Scenario Outline: Crear un contest privado y validar el acceso del participante registrado
-    Given el administrador navega a la pagina de login del panel
-    When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa"
     Given el administrador esta en la pagina de creacion de concursos
     When crea un concurso "privado" con titulo "Concurso Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números" y los siguientes usuarios habilitados
-      | Usuarios        |
+      | usuario_alias |
       | <usuario_alias> |
     Then el concurso deberia ser guardado con exito
     And el concurso creado debe estar en la lista de concursos con los siguientes datos:
@@ -93,25 +95,23 @@ Feature: Gestión y uso de contests
       | Problema | Nombre              | Setter | Aceptados | Envios |
       | 1A       | Suma de dos números |        |           | 1      |
     And debe verse el envío en la clasificación diaria:
-      | Usuario           | Resueltos |
+      | usuario_alias   | Resueltos |
       | <usuario_alias>   | 1         |
     When selecciona el ranking
     Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:
-      | # | NOMBRE | USUARIO         | RESUELTOS | A    |
+      | # | NOMBRE | usuario_alias   | RESUELTOS | A    |
       |   |        | <usuario_alias> | 1         | true |
 
     Examples:
       | usuario_alias    | clave_alias      |
       | participante_qa  | participante_qa  |
 
-  Scenario: Validar distintos veredictos del juez en un contest público
-    Given el administrador navega a la pagina de login del panel
-    When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa"
+  Scenario Outline: Validar distintos veredictos del juez en un contest público
     Given el administrador esta en la pagina de creacion de concursos
     When crea un concurso "publico" con titulo "Concurso Veredictos QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par"
     Then el concurso deberia ser guardado con exito
     Given existe un contest público activo
-    And el participante introduce el usuario "participante_qa" y clave "participante_qa"
+    And el participante introduce el usuario "<usuario_alias>" y clave "<clave_alias>"
     When el participante ingresa al contest público
     And el participante abre los siguientes problemas del contest y verifica sus nombres:
       | Identificador | Nombre               |
@@ -127,23 +127,24 @@ Feature: Gestión y uso de contests
     Then el sistema debe registrar el envío
     And los envios deben tener los siguientes estados en la pagina de status:
       | Problema | Estado |
-      | Problema | Estado |
       | A        | Wrong Answer |
       | A        | Compile Error |
       | A        | Time Limit Exceed |
       | B        | Accepted |
       | B        | Wrong Answer |
 
-  Scenario: Validar distintos veredictos del juez en un contest privado
-    Given el administrador navega a la pagina de login del panel
-    When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa"
+    Examples:
+      | usuario_alias    | clave_alias      |
+      | participante_qa  | participante_qa  |
+
+  Scenario Outline: Validar distintos veredictos del juez en un contest privado
     Given el administrador esta en la pagina de creacion de concursos
     When crea un concurso "privado" con titulo "Concurso Veredictos Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par" y los siguientes usuarios habilitados
-      | Usuarios         |
-      | participante_qa  |
+      | usuario_alias |
+      | <usuario_alias> |
     Then el concurso deberia ser guardado con exito
     Given existe un participante registrado en el contest
-    And el participante introduce el usuario "participante_qa" y clave "participante_qa"
+    And el participante introduce el usuario "<usuario_alias>" y clave "<clave_alias>"
     When el participante ingresa al contest privado
     And el participante abre los siguientes problemas del contest y verifica sus nombres:
       | Identificador | Nombre               |
@@ -164,3 +165,7 @@ Feature: Gestión y uso de contests
       | A        | Time Limit Exceed |
       | B        | Accepted |
       | B        | Wrong Answer |
+
+    Examples:
+      | usuario_alias    | clave_alias      |
+      | participante_qa  | participante_qa  |

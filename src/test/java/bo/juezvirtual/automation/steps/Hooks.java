@@ -20,6 +20,7 @@ public final class Hooks {
 
     @Before(order = 0)
     public void setUp() {
+        SharedState.clearContestParticipantAlias();
         driver = DriverFactory.getDriver();
     }
 

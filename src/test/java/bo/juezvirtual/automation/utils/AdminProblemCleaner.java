@@ -20,6 +20,7 @@ import bo.juezvirtual.automation.pages.admin.AdminLoginPage;
  * admin problem list.
  */
 public final class AdminProblemCleaner {
+    private static final String ADMIN_ALIAS = "administrador_qa";
     private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(15);
     private static final int MAX_DELETE_ATTEMPTS = 500;
     private static final By PROBLEM_ROWS = By.cssSelector("table tbody tr");
@@ -72,11 +73,7 @@ public final class AdminProblemCleaner {
 
     private static void loginAsAdmin(WebDriver driver, WebDriverWait wait) {
         driver.get(BrowserConfig.getAdminUrl() + "/login");
-        UserDataManager.UserCredentials adminCredentials = UserDataManager.getUser("administrador_qa");
-        if (adminCredentials == null) {
-            adminCredentials = new UserDataManager.UserCredentials(
-                    BrowserConfig.getAdminUsername(), BrowserConfig.getAdminPassword());
-        }
+        UserDataManager.UserCredentials adminCredentials = UserDataManager.getUser(ADMIN_ALIAS);
         new AdminLoginPage(driver).login(adminCredentials.getUsername(), adminCredentials.getPassword());
         wait.until(ExpectedConditions.not(ExpectedConditions.urlContains("/login")));
     }

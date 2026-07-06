@@ -1,7 +1,6 @@
 package bo.juezvirtual.automation.pages.admin;
 
 import bo.juezvirtual.automation.pages.BasePage;
-import bo.juezvirtual.automation.utils.SharedState;
 import bo.juezvirtual.automation.utils.UserDataManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -95,7 +94,6 @@ public final class CreateContestPage extends BasePage {
         for (String user : userIds.split("\\R")) {
             addResolvedUser(users, user);
         }
-        addResolvedUser(users, SharedState.getLatestRegisteredNickname());
         return String.join("\n", users);
     }
 
@@ -103,8 +101,12 @@ public final class CreateContestPage extends BasePage {
         if (aliasOrUsername == null || aliasOrUsername.trim().isEmpty()) {
             return;
         }
-        UserDataManager.UserCredentials credentials = UserDataManager.getUser(aliasOrUsername.trim());
-        users.add(credentials == null ? aliasOrUsername.trim() : credentials.getUsername());
+        String alias = aliasOrUsername.trim();
+        UserDataManager.UserCredentials credentials = UserDataManager.getUser(alias);
+        if (credentials == null) {
+            throw new IllegalArgumentException("No existe el alias de usuario en users.json: " + alias);
+        }
+        users.add(credentials.getUsername());
     }
 
     private void waitForPrivateUsersToBeCommitted(String privateUserList) {

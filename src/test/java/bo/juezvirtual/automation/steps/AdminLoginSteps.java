@@ -32,11 +32,6 @@ public final class AdminLoginSteps {
         adminLoginPage.login(credentials.getUsername(), credentials.getPassword());
     }
 
-    @When("el administrador inicia sesion con sus credenciales por defecto")
-    public void elAdministradorIniciaSesionConSusCredencialesPorDefecto() {
-        adminLoginPage.login(BrowserConfig.getAdminUsername(), BrowserConfig.getAdminPassword());
-    }
-
     @Then("el administrador deberia ver el dashboard administrativo")
     public void elAdministradorDeberiaVerElDashboardAdministrativo() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

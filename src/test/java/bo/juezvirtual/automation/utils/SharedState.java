@@ -2,6 +2,7 @@ package bo.juezvirtual.automation.utils;
 
 public final class SharedState {
     private static String latestRegisteredNickname;
+    private static String contestParticipantAlias;
     private static String latestPrivateContestTitle;
     private static String latestPublicContestTitle;
 
@@ -14,6 +15,18 @@ public final class SharedState {
 
     public static synchronized void setLatestRegisteredNickname(String nickname) {
         latestRegisteredNickname = nickname;
+    }
+
+    public static synchronized String getContestParticipantAlias() {
+        return contestParticipantAlias;
+    }
+
+    public static synchronized void setContestParticipantAlias(String alias) {
+        contestParticipantAlias = alias;
+    }
+
+    public static synchronized void clearContestParticipantAlias() {
+        contestParticipantAlias = null;
     }
 
     public static synchronized String getLatestPrivateContestTitle() {

@@ -24,6 +24,7 @@ import bo.juezvirtual.automation.pages.client.ProblemDetailPage;
 import bo.juezvirtual.automation.pages.client.RankListPage;
 import bo.juezvirtual.automation.pages.client.StatusPage;
 import bo.juezvirtual.automation.pages.client.SubmissionPage;
+import bo.juezvirtual.automation.utils.SharedState;
 import bo.juezvirtual.automation.utils.UserDataManager;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -42,28 +43,20 @@ public final class ContestSteps {
     private final SubmissionPage submissionPage = new SubmissionPage(driver);
     private final StatusPage statusPage = new StatusPage(driver);
 
-    private static final String REGISTERED_CONTEST_PARTICIPANT_ALIAS = "participante_qa";
-
     private String contestAccessType = "publico";
     private String currentContestId;
-    private String currentParticipantAlias = REGISTERED_CONTEST_PARTICIPANT_ALIAS;
+    private String participantAlias;
     private boolean participantSessionStarted;
     private final List<SubmissionResult> latestSubmissionResults = new ArrayList<>();
 
     @Given("existe un contest privado activo")
     public void existeUnContestPrivadoActivo() {
-        contestAccessType = "privado";
-        driver.get(BrowserConfig.getClientUrl() + "/contest.php");
-        currentContestId = contestPage.getFirstContestIdByAccess(contestAccessType);
-        Assertions.assertFalse(currentContestId.isBlank(), "No se encontró un contest privado activo/listado.");
+        seleccionarContestActivo("privado");
     }
 
     @Given("existe un contest público activo")
     public void existeUnContestPublicoActivo() {
-        contestAccessType = "publico";
-        driver.get(BrowserConfig.getClientUrl() + "/contest.php");
-        currentContestId = contestPage.getFirstContestIdByAccess(contestAccessType);
-        Assertions.assertFalse(currentContestId.isBlank(), "No se encontró un contest público activo/listado.");
+        seleccionarContestActivo("publico");
     }
 
     @Given("existe un participante registrado en el contest")
@@ -73,23 +66,38 @@ public final class ContestSteps {
         ensureContestSelected();
         Assertions.assertNotNull(currentContestId,
                 "Debe existir un contest seleccionado antes de validar el participante registrado.");
-        UserDataManager.UserCredentials credentials = UserDataManager.getUser(currentParticipantAlias);
+        String userFromContest = SharedState.getContestParticipantAlias();
+        Assertions.assertTrue(userFromContest != null && !userFromContest.isBlank(),
+                "Debe indicarse el alias del participante desde el feature.");
+        participantAlias = userFromContest;
+        UserDataManager.UserCredentials credentials = UserDataManager.getUser(participantAlias);
         Assertions.assertNotNull(credentials,
                 "No se encontraron credenciales para el participante registrado en el contest: "
-                        + currentParticipantAlias);
+                        + participantAlias);
         Assertions.assertFalse(credentials.getUsername().isBlank(),
                 "El participante registrado en el contest no tiene usuario configurado.");
     }
 
     @When("el participante ingresa al contest privado")
     public void elParticipanteIngresaAlContestPrivado() {
-        contestAccessType = "privado";
-        openSelectedContest();
+        ingresarAlContest("privado");
     }
 
     @When("el participante ingresa al contest público")
     public void elParticipanteIngresaAlContestPublico() {
-        contestAccessType = "publico";
+        ingresarAlContest("publico");
+    }
+
+    private void seleccionarContestActivo(String accessType) {
+        contestAccessType = accessType;
+        driver.get(BrowserConfig.getClientUrl() + "/contest.php");
+        currentContestId = contestPage.getFirstContestIdByAccess(contestAccessType);
+        Assertions.assertFalse(currentContestId.isBlank(),
+                "No se encontró un contest " + contestAccessType + " activo/listado.");
+    }
+
+    private void ingresarAlContest(String accessType) {
+        contestAccessType = accessType;
         openSelectedContest();
     }
 
@@ -198,7 +206,7 @@ public final class ContestSteps {
                 "La verificación debe realizarse desde la clasificación diaria: " + driver.getCurrentUrl());
 
         for (Map<String, String> expected : table.asMaps(String.class, String.class)) {
-            String participantUsername = getParticipantUsername(expected.get("Usuario"));
+            String participantUsername = UserDataManager.getUsername(expected.get("usuario_alias"));
             rankListPage.searchUser(participantUsername);
             int minimumSolved = Integer.parseInt(expected.get("Resueltos"));
             int solved = rankListPage.isUserListed(participantUsername)
@@ -250,9 +258,6 @@ public final class ContestSteps {
         for (Map<String, String> expectedSubmission : table.asMaps(String.class, String.class)) {
             String problemCode = expectedSubmission.get("Problema");
             String expectedVerdict = expectedSubmission.get("Estado");
-            if (isRepeatedHeaderRow(problemCode, expectedVerdict)) {
-                continue;
-            }
             SubmissionResult submittedResult = findAndRemoveExpectedResult(
                     pendingSubmissionResults, expectedSubmission);
             Assertions.assertEquals(expectedVerdict.trim(), submittedResult.verdict().trim(),
@@ -282,6 +287,10 @@ public final class ContestSteps {
     }
 
     private void loginAsCurrentContestParticipant() {
+        String userFromContest = SharedState.getContestParticipantAlias();
+        Assertions.assertTrue(userFromContest != null && !userFromContest.isBlank(),
+                "Debe indicarse el alias del participante desde el feature.");
+        participantAlias = userFromContest;
         driver.get(BrowserConfig.getClientUrl() + "/login.php");
         if (waitForParticipantAuthentication()) {
             participantSessionStarted = true;
@@ -290,7 +299,7 @@ public final class ContestSteps {
         Assertions.assertTrue(loginPage.isLoginFormVisible(),
                 "No se encontró el formulario de login del participante en: " + driver.getCurrentUrl());
         UserDataManager.UserCredentials credentials = UserDataManager.getLogin(
-                currentParticipantAlias, currentParticipantAlias);
+                participantAlias, participantAlias);
         loginPage.login(credentials.getUsername(), credentials.getPassword());
         Assertions.assertFalse(driver.getCurrentUrl().contains("login.php"),
                 "El participante registrado en el contest no pudo iniciar sesión: "
@@ -320,11 +329,6 @@ public final class ContestSteps {
             driver.get(BrowserConfig.getClientUrl() + "/contest.php");
             currentContestId = contestPage.getFirstContestIdByAccess(contestAccessType);
         }
-    }
-
-    private String getParticipantUsername(String aliasOrUsername) {
-        UserDataManager.UserCredentials credentials = UserDataManager.getUser(aliasOrUsername);
-        return credentials == null ? aliasOrUsername : credentials.getUsername();
     }
 
     private void assertIfPresent(Map<String, String> expected, String key, String actual, String message) {
@@ -369,7 +373,7 @@ public final class ContestSteps {
         for (int attempt = 0; attempt < maxAttempts; attempt++) {
             try {
                 ContestPage.ContestRankRow rankRow =
-                        contestPage.getRankRowByUser(getParticipantUsername(expected.get("USUARIO")));
+                        contestPage.getRankRowByUser(UserDataManager.getUsername(expected.get("usuario_alias")));
                 assertIfPresent(expected, "#", rankRow.rank(), "El rango en la clasificación no coincide.");
                 assertIfPresent(expected, "NOMBRE", rankRow.name(), "El nombre del usuario no coincide.");
                 assertAtLeastIfPresent(expected, "RESUELTOS", rankRow.solved(),
@@ -398,7 +402,7 @@ public final class ContestSteps {
     private boolean isRankMetadataColumn(String columnName) {
         return "#".equals(columnName)
                 || "NOMBRE".equalsIgnoreCase(columnName)
-                || "USUARIO".equalsIgnoreCase(columnName)
+                || "usuario_alias".equalsIgnoreCase(columnName)
                 || "RESUELTOS".equalsIgnoreCase(columnName);
     }
 
@@ -435,13 +439,7 @@ public final class ContestSteps {
                 return pendingSubmissionResults.remove(i);
             }
         }
-        Assertions.fail("No se registró envío para el problema " + problemCode);
-        throw new IllegalStateException("Unreachable assertion path");
-    }
-
-    private boolean isRepeatedHeaderRow(String problemCode, String expectedVerdict) {
-        return "Problema".equalsIgnoreCase(String.valueOf(problemCode).trim())
-                && "Estado".equalsIgnoreCase(String.valueOf(expectedVerdict).trim());
+        throw new AssertionError("No se registró envío para el problema " + problemCode);
     }
 
     private void ensureSubmitPageHasContestId() {

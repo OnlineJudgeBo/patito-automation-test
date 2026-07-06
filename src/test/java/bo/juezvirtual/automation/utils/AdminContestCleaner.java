@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Administrative cleanup helper for ending contests that are currently running.
  */
 public final class AdminContestCleaner {
+    private static final String ADMIN_ALIAS = "administrador_qa";
     private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(15);
     private static final DateTimeFormatter FORM_DATE = DateTimeFormatter.ISO_LOCAL_DATE;
     private static final DateTimeFormatter FORM_TIME = DateTimeFormatter.ofPattern("HH:mm");
@@ -55,11 +56,7 @@ public final class AdminContestCleaner {
 
     private static void loginAsAdmin(WebDriver driver, WebDriverWait wait) {
         driver.get(BrowserConfig.getAdminUrl() + "/login");
-        UserDataManager.UserCredentials adminCredentials = UserDataManager.getUser("administrador_qa");
-        if (adminCredentials == null) {
-            adminCredentials = new UserDataManager.UserCredentials(
-                    BrowserConfig.getAdminUsername(), BrowserConfig.getAdminPassword());
-        }
+        UserDataManager.UserCredentials adminCredentials = UserDataManager.getUser(ADMIN_ALIAS);
         new AdminLoginPage(driver).login(adminCredentials.getUsername(), adminCredentials.getPassword());
         wait.until(ExpectedConditions.not(ExpectedConditions.urlContains("/login")));
     }

@@ -10,11 +10,8 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import bo.juezvirtual.automation.config.BrowserConfig;
-
 /**
- * Singleton manager to parse and load QA user credentials from users.json,
- * with transparent fallback support for BrowserConfig properties and environment variables.
+ * Singleton manager to parse and load QA user credentials from users.json.
  */
 public final class UserDataManager {
     private static final Map<String, UserCredentials> USERS = new HashMap<>();
@@ -46,7 +43,7 @@ public final class UserDataManager {
                     JsonNode userNode = entry.getValue();
                     String username = userNode.get("username").asText();
                     String password = userNode.get("password").asText();
-                    USERS.put(alias.toLowerCase(), new UserCredentials(username, password));
+                    USERS.put(alias.toLowerCase(), new UserCredentials(alias, username, password));
                 });
             } else {
                 System.err.println("Warning: users.json could not be loaded!");
@@ -65,32 +62,23 @@ public final class UserDataManager {
         }
         String key = alias.toLowerCase();
 
-        // Prioritize dynamic properties/environment overrides for default profiles
-        if ("administrador_qa".equals(key)) {
-            String adminUser = BrowserConfig.getAdminUsername();
-            String adminPass = BrowserConfig.getAdminPassword();
-            if (adminUser != null && !adminUser.isEmpty()) {
-                return new UserCredentials(adminUser, adminPass);
-            }
-        }
-        if ("participante_qa".equals(key)) {
-            String clientUser = BrowserConfig.getClientUsername();
-            String clientPass = BrowserConfig.getClientPassword();
-            if (clientUser != null && !clientUser.isEmpty()) {
-                return new UserCredentials(clientUser, clientPass);
-            }
-        }
-
         return USERS.get(key);
     }
 
     public static UserCredentials getLogin(String userAlias, String passwordAlias) {
-        return new UserCredentials(getUsername(userAlias), getPassword(passwordAlias));
+        UserCredentials user = getUser(userAlias);
+        if (user == null) {
+            throw new IllegalArgumentException("No existe el alias de usuario en users.json: " + userAlias);
+        }
+        return new UserCredentials(user.getAlias(), user.getUsername(), getPassword(passwordAlias));
     }
 
-    private static String getUsername(String alias) {
+    public static String getUsername(String alias) {
         UserCredentials credentials = getUser(alias);
-        return credentials != null ? credentials.getUsername() : alias;
+        if (credentials == null) {
+            throw new IllegalArgumentException("No existe el alias de usuario en users.json: " + alias);
+        }
+        return credentials.getUsername();
     }
 
     private static String getPassword(String alias) {
@@ -99,12 +87,18 @@ public final class UserDataManager {
     }
 
     public static final class UserCredentials {
+        private final String alias;
         private final String username;
         private final String password;
 
-        public UserCredentials(String username, String password) {
+        public UserCredentials(String alias, String username, String password) {
+            this.alias = alias;
             this.username = username;
             this.password = password;
+        }
+
+        public String getAlias() {
+            return alias;
         }
 
         public String getUsername() {

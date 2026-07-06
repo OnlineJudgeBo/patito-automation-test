@@ -19,9 +19,9 @@ Feature: Envío y Evaluación de Soluciones
     When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.out"
     Then el archivo "sum_1.out" deberia aparecer listado en la pagina
 
-  Scenario: Envío de solución correcta con veredicto Aceptado (AC)
+  Scenario Outline: Envío de solución correcta con veredicto Aceptado (AC)
     Given el participante navega a la pagina de inicio de sesion
-    When el participante introduce el usuario "participante_qa" y clave "participante_qa"
+    When el participante introduce el usuario "<usuario_alias>" y clave "<clave_alias>"
     Then el participante deberia ver el portal de inicio
     Given el participante esta en la pagina del problema "Suma de dos números"
     When hace clic en el boton Enviar
@@ -41,9 +41,13 @@ Feature: Envío y Evaluación de Soluciones
       """
     Then deberia esperar la evaluacion y ver el veredicto "Accepted"
 
-  Scenario: Envío de solución con error de compilación (CE)
+    Examples:
+      | usuario_alias   | clave_alias     |
+      | participante_qa | participante_qa |
+
+  Scenario Outline: Envío de solución con error de compilación (CE)
     Given el participante navega a la pagina de inicio de sesion
-    When el participante introduce el usuario "participante_qa" y clave "participante_qa"
+    When el participante introduce el usuario "<usuario_alias>" y clave "<clave_alias>"
     Then el participante deberia ver el portal de inicio
     Given el participante esta en la pagina del problema "Suma de dos números"
     When hace clic en el boton Enviar
@@ -59,3 +63,7 @@ Feature: Envío y Evaluación de Soluciones
       }
       """
     Then deberia esperar la evaluacion y ver el veredicto "Compile Error"
+
+    Examples:
+      | usuario_alias   | clave_alias     |
+      | participante_qa | participante_qa |

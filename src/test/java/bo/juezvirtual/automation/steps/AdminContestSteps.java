@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -37,19 +38,12 @@ public final class AdminContestSteps {
         driver.get(BrowserConfig.getAdminUrl() + "/contests/add");
     }
 
-    @When("crea un concurso privado con titulo {string}, fecha {string}, hora {string}, problemas {string} y usuarios habilitados {string}")
-    public void creaUnConcursoPrivadoConTituloFechaHoraProblemasYUsuariosHabilitados(
-            String title, String date, String time, String problemsList, String usersList) {
-        createContest(title, "privado", date, time, problemsList, usersList);
-    }
-
     @When("crea un concurso {string} con titulo {string}, fecha {string}, hora {string}, problemas {string} y los siguientes usuarios habilitados")
     public void creaUnConcursoConUsuariosHabilitados(
             String contestType, String title, String date, String time, String problemsList, DataTable usersTable) {
-        List<String> users = usersTable.asList();
-        if (!users.isEmpty() && "Usuarios".equalsIgnoreCase(users.get(0))) {
-            users = users.subList(1, users.size());
-        }
+        List<String> users = usersTable.asMaps().stream()
+                .map(row -> row.get("usuario_alias"))
+                .collect(Collectors.toList());
         createContest(title, contestType, date, time, problemsList, String.join("\n", users));
     }
 
@@ -87,10 +81,14 @@ public final class AdminContestSteps {
         String contestDate = resolveDate(date);
         String contestStartTime = resolveStartTime(time);
         String contestEndTime = resolveEndTime(time);
-        String contestUsernames = "default_client".equalsIgnoreCase(usersList)
-                ? BrowserConfig.getClientUsername()
-                : usersList;
+        String contestUsernames = usersList;
         boolean isPrivate = contestType.toLowerCase().contains("priv");
+        if (isPrivate) {
+            String firstUser = usersList.split("\\R")[0].trim();
+            if (!firstUser.isEmpty()) {
+                SharedState.setContestParticipantAlias(firstUser);
+            }
+        }
 
         String contestProblemIds = resolveProblemList(problemsList);
         driver.get(BrowserConfig.getAdminUrl() + "/contests/add");

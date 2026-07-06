@@ -3,6 +3,7 @@ package bo.juezvirtual.automation.steps;
 import bo.juezvirtual.automation.config.BrowserConfig;
 import bo.juezvirtual.automation.driver.DriverFactory;
 import bo.juezvirtual.automation.pages.client.LoginPage;
+import bo.juezvirtual.automation.utils.SharedState;
 import bo.juezvirtual.automation.utils.UserDataManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,16 +32,9 @@ public final class ClientLoginSteps {
         if (!driver.getCurrentUrl().contains("login.php")) {
             elParticipanteNavegaALaPaginaDeInicioDeSesion();
         }
+        SharedState.setContestParticipantAlias(user);
         UserDataManager.UserCredentials credentials = UserDataManager.getLogin(user, pass);
         clientLoginPage.login(credentials.getUsername(), credentials.getPassword());
-    }
-
-    @When("el participante inicia sesion con sus credenciales por defecto")
-    public void elParticipanteIniciaSesionConSusCredencialesPorDefecto() {
-        if (!driver.getCurrentUrl().contains("login.php")) {
-            elParticipanteNavegaALaPaginaDeInicioDeSesion();
-        }
-        clientLoginPage.login(BrowserConfig.getClientUsername(), BrowserConfig.getClientPassword());
     }
 
     @Then("el participante deberia ver el portal de inicio")

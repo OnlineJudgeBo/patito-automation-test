@@ -62,30 +62,6 @@ public final class BrowserConfig {
         return url;
     }
 
-    public static String getAdminUsername() {
-        return System.getenv("ADMIN_USERNAME") != null 
-            ? System.getenv("ADMIN_USERNAME") 
-            : PROPERTIES.getProperty(env + ".admin.username");
-    }
-
-    public static String getAdminPassword() {
-        return System.getenv("ADMIN_PASSWORD") != null 
-            ? System.getenv("ADMIN_PASSWORD") 
-            : PROPERTIES.getProperty(env + ".admin.password");
-    }
-
-    public static String getClientUsername() {
-        return System.getenv("CLIENT_USERNAME") != null 
-            ? System.getenv("CLIENT_USERNAME") 
-            : PROPERTIES.getProperty(env + ".client.username");
-    }
-
-    public static String getClientPassword() {
-        return System.getenv("CLIENT_PASSWORD") != null 
-            ? System.getenv("CLIENT_PASSWORD") 
-            : PROPERTIES.getProperty(env + ".client.password");
-    }
-
     public static int getEvaluationMaxAttempts() {
         return Integer.parseInt(PROPERTIES.getProperty("evaluation.max.attempts", "15"));
     }

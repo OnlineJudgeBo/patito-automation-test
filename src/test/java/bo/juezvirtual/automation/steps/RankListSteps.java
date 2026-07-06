@@ -43,23 +43,15 @@ public final class RankListSteps {
 
     @When("busca el usuario {string} en el ranking")
     public void buscaElUsuarioEnElRanking(String userId) {
-        String rankingUsername = getRankingUsername(userId);
+        String rankingUsername = UserDataManager.getUsername(userId);
         rankListPage.searchUser(rankingUsername);
     }
 
     @Then("el usuario {string} deberia estar listado en la clasificacion")
     public void elUsuarioDeberiaEstarListadoEnLaClasificacion(String userId) {
-        String rankingUsername = getRankingUsername(userId);
+        String rankingUsername = UserDataManager.getUsername(userId);
         String solved = rankListPage.getUserSolvedCount(rankingUsername);
         Assertions.assertNotNull(solved, "El usuario no aparece listado en la clasificacion.");
-    }
-
-    private String getRankingUsername(String userId) {
-        UserDataManager.UserCredentials credentials = UserDataManager.getUser(userId);
-        if (credentials != null) {
-            return credentials.getUsername();
-        }
-        return "default_client".equalsIgnoreCase(userId) ? BrowserConfig.getClientUsername() : userId;
     }
 
     @Given("el participante navega a la lista de concursos")
