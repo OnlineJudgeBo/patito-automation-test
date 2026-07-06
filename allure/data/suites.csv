@@ -1,79 +1,79 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sun Jul 05 21:33:03 BOT 2026","Sun Jul 05 21:33:21 BOT 2026","17666","","Inicio de Sesión de Participantes en Patito Client","","Intento de inicio de sesión con credenciales inválidas","","Intento de inicio de sesión con credenciales inválidas","  Como participante del Juez Virtual
-  Quiero iniciar sesión con mi usuario y contraseña
-  Para acceder a resolver problemas y ver mis envíos"
-"skipped","Sun Jul 05 21:31:07 BOT 2026","Sun Jul 05 21:31:39 BOT 2026","31955","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - ¿Es primo?","","Crear problema y validar que se lista - ¿Es primo?","  Como docente o administrador del Juez Virtual
+"passed","Sun Jul 05 22:29:04 BOT 2026","Sun Jul 05 22:29:43 BOT 2026","38687","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Máximo de un arreglo","","Crear problema y validar que se lista - Máximo de un arreglo","  Como docente o administrador del Juez Virtual
   Quiero registrar nuevos problemas
   Para que los participantes puedan resolverlos"
-"skipped","Sun Jul 05 21:29:31 BOT 2026","Sun Jul 05 21:30:03 BOT 2026","31953","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Contar vocales","","Crear problema y validar que se lista - Contar vocales","  Como docente o administrador del Juez Virtual
+"passed","Sun Jul 05 22:30:22 BOT 2026","Sun Jul 05 22:31:00 BOT 2026","38647","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Serie Fibonacci","","Crear problema y validar que se lista - Serie Fibonacci","  Como docente o administrador del Juez Virtual
   Quiero registrar nuevos problemas
   Para que los participantes puedan resolverlos"
-"broken","Sun Jul 05 21:32:11 BOT 2026","Sun Jul 05 21:32:45 BOT 2026","34809","","Inicio de Sesión de Participantes en Patito Client","","Inicio de sesión exitoso con credenciales válidas","","Inicio de sesión exitoso con credenciales válidas","  Como participante del Juez Virtual
-  Quiero iniciar sesión con mi usuario y contraseña
-  Para acceder a resolver problemas y ver mis envíos"
-"skipped","Sun Jul 05 21:35:29 BOT 2026","Sun Jul 05 21:36:32 BOT 2026","62889","","Gestión y uso de contests","","Crear los problemas base para las pruebas de contests","","Crear los problemas base para las pruebas de contests","  Como administrador del Juez Virtual
-  Quiero crear contests públicos y privados desde el panel administrativo
-  Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
-"skipped","Sun Jul 05 21:33:23 BOT 2026","Sun Jul 05 21:34:26 BOT 2026","62874","","Envío y Evaluación de Soluciones","","Envío de solución correcta con veredicto Aceptado (AC)","","Envío de solución correcta con veredicto Aceptado (AC)","  Como participante registrado en el Juez Virtual
-  Quiero enviar código de solución para un problema
-  Para verificar si es correcto (Accepted) o tiene errores"
-"broken","Sun Jul 05 21:40:24 BOT 2026","Sun Jul 05 21:41:42 BOT 2026","77462","","Gestión y uso de contests","","Validar distintos veredictos del juez en un contest privado","","Validar distintos veredictos del juez en un contest privado","  Como administrador del Juez Virtual
-  Quiero crear contests públicos y privados desde el panel administrativo
-  Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
-"passed","Sun Jul 05 21:26:34 BOT 2026","Sun Jul 05 21:26:51 BOT 2026","16798","","Inicio de Sesión Administrativo en Juez Virtual Admin","","Intento de inicio de sesión administrativo con credenciales invalidas","","Intento de inicio de sesión administrativo con credenciales invalidas","  Como administrador, docente o auxiliar
+"passed","Sun Jul 05 22:24:52 BOT 2026","Sun Jul 05 22:24:53 BOT 2026","1741","","Inicio de Sesión Administrativo en Juez Virtual Admin","","Inicio de sesión administrativo exitoso con rol de Administrador","","Inicio de sesión administrativo exitoso con rol de Administrador","  Como administrador, docente o auxiliar
   Quiero iniciar sesión en el panel administrativo
   Para gestionar usuarios, problemas, concursos y configuraciones"
-"skipped","Sun Jul 05 21:34:26 BOT 2026","Sun Jul 05 21:35:29 BOT 2026","62880","","Envío y Evaluación de Soluciones","","Envío de solución con error de compilación (CE)","","Envío de solución con error de compilación (CE)","  Como participante registrado en el Juez Virtual
+"broken","Sun Jul 05 22:31:01 BOT 2026","Sun Jul 05 22:31:35 BOT 2026","34694","","Inicio de Sesión de Participantes en Patito Client","","Inicio de sesión exitoso con credenciales válidas","","Inicio de sesión exitoso con credenciales válidas","  Como participante del Juez Virtual
+  Quiero iniciar sesión con mi usuario y contraseña
+  Para acceder a resolver problemas y ver mis envíos"
+"broken","Sun Jul 05 22:33:28 BOT 2026","Sun Jul 05 22:34:43 BOT 2026","74759","","Envío y Evaluación de Soluciones","","Envío de solución con error de compilación (CE)","","Envío de solución con error de compilación (CE)","  Como participante registrado en el Juez Virtual
   Quiero enviar código de solución para un problema
   Para verificar si es correcto (Accepted) o tiene errores"
-"passed","Sun Jul 05 21:23:25 BOT 2026","Sun Jul 05 21:24:01 BOT 2026","35268","","Registro de Participantes en Patito Client","","Registro de participante exitoso","","Registro de participante exitoso","  Como usuario visitante del Juez Virtual
+"broken","Sun Jul 05 22:32:13 BOT 2026","Sun Jul 05 22:33:28 BOT 2026","75107","","Envío y Evaluación de Soluciones","","Envío de solución correcta con veredicto Aceptado (AC)","","Envío de solución correcta con veredicto Aceptado (AC)","  Como participante registrado en el Juez Virtual
+  Quiero enviar código de solución para un problema
+  Para verificar si es correcto (Accepted) o tiene errores"
+"broken","Sun Jul 05 22:35:29 BOT 2026","Sun Jul 05 22:36:10 BOT 2026","41145","","Gestión y uso de contests","","Crear un contest público y validar el flujo del participante","","Crear un contest público y validar el flujo del participante","  Como administrador del Juez Virtual
+  Quiero crear contests públicos y privados desde el panel administrativo
+  Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
+"passed","Sun Jul 05 22:23:18 BOT 2026","Sun Jul 05 22:24:11 BOT 2026","53338","","Administrador de Archivos de Problemas","","Carga exitosa de archivo de entrada de casos de prueba (.in)","","Carga exitosa de archivo de entrada de casos de prueba (.in)","  Como docente del Juez Virtual
+  Quiero cargar archivos de casos de prueba (.in y .out)
+  Para que el Juez Virtual evalúe las soluciones de los participantes"
+"broken","Sun Jul 05 22:36:10 BOT 2026","Sun Jul 05 22:36:53 BOT 2026","42945","","Gestión y uso de contests","","Crear un contest privado y validar el acceso del participante registrado","","Crear un contest privado y validar el acceso del participante registrado","  Como administrador del Juez Virtual
+  Quiero crear contests públicos y privados desde el panel administrativo
+  Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
+"passed","Sun Jul 05 22:27:47 BOT 2026","Sun Jul 05 22:28:26 BOT 2026","38883","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Contar vocales","","Crear problema y validar que se lista - Contar vocales","  Como docente o administrador del Juez Virtual
+  Quiero registrar nuevos problemas
+  Para que los participantes puedan resolverlos"
+"passed","Sun Jul 05 22:24:11 BOT 2026","Sun Jul 05 22:24:52 BOT 2026","40506","","Administrador de Archivos de Problemas","","Carga exitosa de archivo de salida de casos de prueba (.out)","","Carga exitosa de archivo de salida de casos de prueba (.out)","  Como docente del Juez Virtual
+  Quiero cargar archivos de casos de prueba (.in y .out)
+  Para que el Juez Virtual evalúe las soluciones de los participantes"
+"passed","Sun Jul 05 22:29:43 BOT 2026","Sun Jul 05 22:30:22 BOT 2026","38897","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - ¿Es primo?","","Crear problema y validar que se lista - ¿Es primo?","  Como docente o administrador del Juez Virtual
+  Quiero registrar nuevos problemas
+  Para que los participantes puedan resolverlos"
+"passed","Sun Jul 05 22:25:51 BOT 2026","Sun Jul 05 22:26:30 BOT 2026","38683","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Mayor de tres","","Crear problema y validar que se lista - Mayor de tres","  Como docente o administrador del Juez Virtual
+  Quiero registrar nuevos problemas
+  Para que los participantes puedan resolverlos"
+"passed","Sun Jul 05 22:26:30 BOT 2026","Sun Jul 05 22:27:08 BOT 2026","38433","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Tabla de multiplicar","","Crear problema y validar que se lista - Tabla de multiplicar","  Como docente o administrador del Juez Virtual
+  Quiero registrar nuevos problemas
+  Para que los participantes puedan resolverlos"
+"passed","Sun Jul 05 22:22:51 BOT 2026","Sun Jul 05 22:23:18 BOT 2026","26742","","Registro de Participantes en Patito Client","","Registro de participante exitoso","","Registro de participante exitoso","  Como usuario visitante del Juez Virtual
   Quiero registrar un nuevo perfil de participante
   Para poder iniciar sesión y resolver problemas"
-"skipped","Sun Jul 05 21:30:35 BOT 2026","Sun Jul 05 21:31:07 BOT 2026","31961","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Máximo de un arreglo","","Crear problema y validar que se lista - Máximo de un arreglo","  Como docente o administrador del Juez Virtual
+"passed","Sun Jul 05 22:25:13 BOT 2026","Sun Jul 05 22:25:51 BOT 2026","37838","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Número par","","Crear problema y validar que se lista - Número par","  Como docente o administrador del Juez Virtual
   Quiero registrar nuevos problemas
   Para que los participantes puedan resolverlos"
-"skipped","Sun Jul 05 21:27:55 BOT 2026","Sun Jul 05 21:28:27 BOT 2026","31971","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Mayor de tres","","Crear problema y validar que se lista - Mayor de tres","  Como docente o administrador del Juez Virtual
-  Quiero registrar nuevos problemas
-  Para que los participantes puedan resolverlos"
-"skipped","Sun Jul 05 21:26:51 BOT 2026","Sun Jul 05 21:27:23 BOT 2026","32018","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Suma de dos números","","Crear problema y validar que se lista - Suma de dos números","  Como docente o administrador del Juez Virtual
-  Quiero registrar nuevos problemas
-  Para que los participantes puedan resolverlos"
-"skipped","Sun Jul 05 21:24:01 BOT 2026","Sun Jul 05 21:25:04 BOT 2026","63174","","Administrador de Archivos de Problemas","","Carga exitosa de archivo de entrada de casos de prueba (.in)","","Carga exitosa de archivo de entrada de casos de prueba (.in)","  Como docente del Juez Virtual
-  Quiero cargar archivos de casos de prueba (.in y .out)
-  Para que el Juez Virtual evalúe las soluciones de los participantes"
-"skipped","Sun Jul 05 21:28:27 BOT 2026","Sun Jul 05 21:28:59 BOT 2026","32024","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Tabla de multiplicar","","Crear problema y validar que se lista - Tabla de multiplicar","  Como docente o administrador del Juez Virtual
-  Quiero registrar nuevos problemas
-  Para que los participantes puedan resolverlos"
-"broken","Sun Jul 05 21:36:32 BOT 2026","Sun Jul 05 21:37:49 BOT 2026","77544","","Gestión y uso de contests","","Crear un contest público y validar el flujo del participante","","Crear un contest público y validar el flujo del participante","  Como administrador del Juez Virtual
+"broken","Sun Jul 05 22:36:53 BOT 2026","Sun Jul 05 22:37:36 BOT 2026","42740","","Gestión y uso de contests","","Validar distintos veredictos del juez en un contest público","","Validar distintos veredictos del juez en un contest público","  Como administrador del Juez Virtual
   Quiero crear contests públicos y privados desde el panel administrativo
   Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
-"broken","Sun Jul 05 21:39:07 BOT 2026","Sun Jul 05 21:40:24 BOT 2026","77434","","Gestión y uso de contests","","Validar distintos veredictos del juez en un contest público","","Validar distintos veredictos del juez en un contest público","  Como administrador del Juez Virtual
-  Quiero crear contests públicos y privados desde el panel administrativo
-  Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
-"passed","Sun Jul 05 21:32:45 BOT 2026","Sun Jul 05 21:33:03 BOT 2026","17676","","Inicio de Sesión de Participantes en Patito Client","","Intento de inicio de sesión con credenciales inválidas","","Intento de inicio de sesión con credenciales inválidas","  Como participante del Juez Virtual
-  Quiero iniciar sesión con mi usuario y contraseña
-  Para acceder a resolver problemas y ver mis envíos"
-"skipped","Sun Jul 05 21:30:03 BOT 2026","Sun Jul 05 21:30:35 BOT 2026","31956","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Invertir una cadena","","Crear problema y validar que se lista - Invertir una cadena","  Como docente o administrador del Juez Virtual
-  Quiero registrar nuevos problemas
-  Para que los participantes puedan resolverlos"
-"passed","Sun Jul 05 21:33:21 BOT 2026","Sun Jul 05 21:33:23 BOT 2026","2216","","Tabla de Clasificación Global","","Buscar usuario en la tabla de clasificación","","Buscar usuario en la tabla de clasificación","  Como participante o visitante del Juez Virtual
-  Quiero ver el ranking general de competidores
-  Para conocer el desempeño y efectividad de los usuarios"
-"skipped","Sun Jul 05 21:25:04 BOT 2026","Sun Jul 05 21:26:07 BOT 2026","62962","","Administrador de Archivos de Problemas","","Carga exitosa de archivo de salida de casos de prueba (.out)","","Carga exitosa de archivo de salida de casos de prueba (.out)","  Como docente del Juez Virtual
-  Quiero cargar archivos de casos de prueba (.in y .out)
-  Para que el Juez Virtual evalúe las soluciones de los participantes"
-"skipped","Sun Jul 05 21:31:39 BOT 2026","Sun Jul 05 21:32:11 BOT 2026","31959","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Serie Fibonacci","","Crear problema y validar que se lista - Serie Fibonacci","  Como docente o administrador del Juez Virtual
-  Quiero registrar nuevos problemas
-  Para que los participantes puedan resolverlos"
-"skipped","Sun Jul 05 21:28:59 BOT 2026","Sun Jul 05 21:29:31 BOT 2026","32029","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Factorial","","Crear problema y validar que se lista - Factorial","  Como docente o administrador del Juez Virtual
-  Quiero registrar nuevos problemas
-  Para que los participantes puedan resolverlos"
-"broken","Sun Jul 05 21:26:07 BOT 2026","Sun Jul 05 21:26:34 BOT 2026","26969","","Inicio de Sesión Administrativo en Juez Virtual Admin","","Inicio de sesión administrativo exitoso con rol de Administrador","","Inicio de sesión administrativo exitoso con rol de Administrador","  Como administrador, docente o auxiliar
+"passed","Sun Jul 05 22:24:53 BOT 2026","Sun Jul 05 22:25:10 BOT 2026","16771","","Inicio de Sesión Administrativo en Juez Virtual Admin","","Intento de inicio de sesión administrativo con credenciales invalidas","","Intento de inicio de sesión administrativo con credenciales invalidas","  Como administrador, docente o auxiliar
   Quiero iniciar sesión en el panel administrativo
   Para gestionar usuarios, problemas, concursos y configuraciones"
-"broken","Sun Jul 05 21:37:49 BOT 2026","Sun Jul 05 21:39:07 BOT 2026","77522","","Gestión y uso de contests","","Crear un contest privado y validar el acceso del participante registrado","","Crear un contest privado y validar el acceso del participante registrado","  Como administrador del Juez Virtual
+"passed","Sun Jul 05 22:31:53 BOT 2026","Sun Jul 05 22:32:11 BOT 2026","17691","","Inicio de Sesión de Participantes en Patito Client","","Intento de inicio de sesión con credenciales inválidas","","Intento de inicio de sesión con credenciales inválidas","  Como participante del Juez Virtual
+  Quiero iniciar sesión con mi usuario y contraseña
+  Para acceder a resolver problemas y ver mis envíos"
+"passed","Sun Jul 05 22:34:43 BOT 2026","Sun Jul 05 22:35:29 BOT 2026","46167","","Gestión y uso de contests","","Crear los problemas base para las pruebas de contests","","Crear los problemas base para las pruebas de contests","  Como administrador del Juez Virtual
   Quiero crear contests públicos y privados desde el panel administrativo
   Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
-"skipped","Sun Jul 05 21:27:23 BOT 2026","Sun Jul 05 21:27:55 BOT 2026","31992","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Número par","","Crear problema y validar que se lista - Número par","  Como docente o administrador del Juez Virtual
+"passed","Sun Jul 05 22:28:26 BOT 2026","Sun Jul 05 22:29:04 BOT 2026","38598","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Invertir una cadena","","Crear problema y validar que se lista - Invertir una cadena","  Como docente o administrador del Juez Virtual
   Quiero registrar nuevos problemas
   Para que los participantes puedan resolverlos"
+"skipped","Sun Jul 05 22:25:10 BOT 2026","Sun Jul 05 22:25:13 BOT 2026","2695","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Suma de dos números","","Crear problema y validar que se lista - Suma de dos números","  Como docente o administrador del Juez Virtual
+  Quiero registrar nuevos problemas
+  Para que los participantes puedan resolverlos"
+"broken","Sun Jul 05 22:37:36 BOT 2026","Sun Jul 05 22:38:19 BOT 2026","42839","","Gestión y uso de contests","","Validar distintos veredictos del juez en un contest privado","","Validar distintos veredictos del juez en un contest privado","  Como administrador del Juez Virtual
+  Quiero crear contests públicos y privados desde el panel administrativo
+  Para que los participantes vean problemas, envíen soluciones y aparezcan en las clasificaciones"
+"passed","Sun Jul 05 22:32:11 BOT 2026","Sun Jul 05 22:32:13 BOT 2026","2421","","Tabla de Clasificación Global","","Buscar usuario en la tabla de clasificación","","Buscar usuario en la tabla de clasificación","  Como participante o visitante del Juez Virtual
+  Quiero ver el ranking general de competidores
+  Para conocer el desempeño y efectividad de los usuarios"
+"passed","Sun Jul 05 22:27:08 BOT 2026","Sun Jul 05 22:27:47 BOT 2026","38764","","Gestión de Problemas en Panel Administrativo","","Crear problema y validar que se lista - Factorial","","Crear problema y validar que se lista - Factorial","  Como docente o administrador del Juez Virtual
+  Quiero registrar nuevos problemas
+  Para que los participantes puedan resolverlos"
+"passed","Sun Jul 05 22:31:35 BOT 2026","Sun Jul 05 22:31:53 BOT 2026","17629","","Inicio de Sesión de Participantes en Patito Client","","Intento de inicio de sesión con credenciales inválidas","","Intento de inicio de sesión con credenciales inválidas","  Como participante del Juez Virtual
+  Quiero iniciar sesión con mi usuario y contraseña
+  Para acceder a resolver problemas y ver mis envíos"

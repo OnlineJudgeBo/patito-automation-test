@@ -1,67 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="372.893" tests="5" skipped="0" failures="5" errors="0">
-<testcase classname="Gestión y uso de contests" name="Crear los problemas base para las pruebas de contests" time="62.891">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for condition to not be valid: url to contain &quot;/login&quot;. Current url: &quot;http://localhost:8083/admin/login&quot; (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:41799}, goog:processID: 139001, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:41799/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 28b75b588be8d99d4a371296c01381fc">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for condition to not be valid: url to contain "/login". Current url: "http://localhost:8083/admin/login" (tried for 15 second(s) with 500 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:41799}, goog:processID: 139001, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:41799/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 28b75b588be8d99d4a371296c01381fc
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.AdminContestCleaner.loginAsAdmin(AdminContestCleaner.java:64)
-	at bo.juezvirtual.automation.utils.AdminContestCleaner.finishRunningContestsAsAdmin(AdminContestCleaner.java:45)
-	at bo.juezvirtual.automation.steps.Hooks.finishRunningContestsBeforeCleanContestScenarios(Hooks.java:28)
-]]>
-</failure>
+<testsuite name="Cucumber" time="215.896" tests="5" skipped="0" failures="4" errors="0">
+<testcase classname="Gestión y uso de contests" name="Crear los problemas base para las pruebas de contests" time="46.174">
 <system-out><![CDATA[
-Given el administrador navega a la pagina de login del panel................skipped
-When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".skipped
-Then el administrador deberia ver el dashboard administrativo...............skipped
-Given el docente esta en la pagina de creacion de problemas.................skipped
-When crea los siguientes problemas:.........................................skipped
-Then los problemas deberian ser guardados con exito.........................skipped
-And los siguientes problemas deberian aparecer listados:....................skipped
+Given el administrador navega a la pagina de login del panel................passed
+When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
+Then el administrador deberia ver el dashboard administrativo...............passed
+Given el docente esta en la pagina de creacion de problemas.................passed
+When crea los siguientes problemas:.........................................passed
+Then los problemas deberian ser guardados con exito.........................passed
+And los siguientes problemas deberian aparecer listados:....................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Crear un contest público y validar el flujo del participante" time="77.544">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Crear un contest público y validar el flujo del participante" time="41.145">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@786ce57e (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:46429}, goog:processID: 139399, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46429/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 354707401b0c4c092595c4016b89945d">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42087}, goog:processID: 155670, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:42087/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f0f3fd9b89f6d1b3b544a10bbe31f1a5">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@786ce57e (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:46429}, goog:processID: 139399, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46429/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 354707401b0c4c092595c4016b89945d
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:42087}, goog:processID: 155670, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:42087/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f0f3fd9b89f6d1b3b544a10bbe31f1a5
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitForElementToBeVisible(WaitUtils.java:27)
-	at bo.juezvirtual.automation.pages.admin.ProblemsPage.getProblemIdByTitle(ProblemsPage.java:92)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.resolveProblemList(AdminContestSteps.java:115)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.createContest(AdminContestSteps.java:95)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.creaUnConcursoSinUsuarios(AdminContestSteps.java:59)
-	at ✽.crea un concurso "publico" con titulo "Concurso Publico QA", fecha "actual", hora "actual", problemas "Suma de dos números"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:27)
+	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
+	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
+	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
+	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
+	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:33)
 ]]>
 </failure>
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
 Given el administrador esta en la pagina de creacion de concursos...........passed
-When crea un concurso "publico" con titulo "Concurso Publico QA", fecha "actual", hora "actual", problemas "Suma de dos números".failed
-Then el concurso deberia ser guardado con exito.............................skipped
-And el concurso creado debe estar en la lista de concursos con los siguientes datos:.skipped
-Given existe un contest público activo......................................skipped
-And el participante introduce el usuario "participante_qa" y clave "participante_qa".skipped
+When crea un concurso "publico" con titulo "Concurso Publico QA", fecha "actual", hora "actual", problemas "Suma de dos números".passed
+Then el concurso deberia ser guardado con exito.............................passed
+And el concurso creado debe estar en la lista de concursos con los siguientes datos:.passed
+Given existe un contest público activo......................................passed
+And el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
 And el participante inició sesión correctamente.............................skipped
 When el participante ingresa al contest público.............................skipped
 Then debe ver la lista de problemas disponibles.............................skipped
@@ -77,38 +57,37 @@ When selecciona el ranking..................................................skip
 Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:.skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Crear un contest privado y validar el acceso del participante registrado - Example #1.1" time="77.522">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Crear un contest privado y validar el acceso del participante registrado - Example #1.1" time="42.946">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55c596aa (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:46035}, goog:processID: 139793, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46035/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 600ed981855644af1f9ee59880813d2f">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:43645}, goog:processID: 155977, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43645/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ab8fd4f404db309899df569a13190e26">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55c596aa (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:46035}, goog:processID: 139793, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46035/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 600ed981855644af1f9ee59880813d2f
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:43645}, goog:processID: 155977, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43645/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ab8fd4f404db309899df569a13190e26
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitForElementToBeVisible(WaitUtils.java:27)
-	at bo.juezvirtual.automation.pages.admin.ProblemsPage.getProblemIdByTitle(ProblemsPage.java:92)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.resolveProblemList(AdminContestSteps.java:115)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.createContest(AdminContestSteps.java:95)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.creaUnConcursoConUsuariosHabilitados(AdminContestSteps.java:53)
-	at ✽.crea un concurso "privado" con titulo "Concurso Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números" y los siguientes usuarios habilitados(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:67)
+	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
+	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
+	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
+	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
+	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:75)
 ]]>
 </failure>
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
 Given el administrador esta en la pagina de creacion de concursos...........passed
-When crea un concurso "privado" con titulo "Concurso Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números" y los siguientes usuarios habilitados.failed
-Then el concurso deberia ser guardado con exito.............................skipped
-And el concurso creado debe estar en la lista de concursos con los siguientes datos:.skipped
-Given existe un participante registrado en el contest.......................skipped
-When el participante introduce el usuario "participante_qa" y clave "participante_qa".skipped
+When crea un concurso "privado" con titulo "Concurso Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números" y los siguientes usuarios habilitados.passed
+Then el concurso deberia ser guardado con exito.............................passed
+And el concurso creado debe estar en la lista de concursos con los siguientes datos:.passed
+Given existe un participante registrado en el contest.......................passed
+When el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
 And el participante inició sesión con la cuenta registrada en el contest....skipped
 And el participante ingresa al contest privado..............................skipped
 Then debe ver la lista de problemas disponibles.............................skipped
@@ -124,37 +103,36 @@ When selecciona el ranking..................................................skip
 Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:.skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest público" time="77.434">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest público" time="42.739">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@609b91b4 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:33613}, goog:processID: 140232, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33613/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 9e6aac0fea0d8b00cd0a01eccacad7c9">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39923}, goog:processID: 156340, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39923/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e13f04e57971817bbd4af66f6204af68">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@609b91b4 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:33613}, goog:processID: 140232, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33613/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 9e6aac0fea0d8b00cd0a01eccacad7c9
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39923}, goog:processID: 156340, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39923/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e13f04e57971817bbd4af66f6204af68
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitForElementToBeVisible(WaitUtils.java:27)
-	at bo.juezvirtual.automation.pages.admin.ProblemsPage.getProblemIdByTitle(ProblemsPage.java:92)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.resolveProblemList(AdminContestSteps.java:115)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.createContest(AdminContestSteps.java:95)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.creaUnConcursoSinUsuarios(AdminContestSteps.java:59)
-	at ✽.crea un concurso "publico" con titulo "Concurso Veredictos QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:113)
+	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
+	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
+	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
+	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
+	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:116)
 ]]>
 </failure>
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
 Given el administrador esta en la pagina de creacion de concursos...........passed
-When crea un concurso "publico" con titulo "Concurso Veredictos QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par".failed
-Then el concurso deberia ser guardado con exito.............................skipped
-Given existe un contest público activo......................................skipped
-And el participante introduce el usuario "participante_qa" y clave "participante_qa".skipped
+When crea un concurso "publico" con titulo "Concurso Veredictos QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par".passed
+Then el concurso deberia ser guardado con exito.............................passed
+Given existe un contest público activo......................................passed
+And el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
 And el participante inició sesión correctamente.............................skipped
 When el participante ingresa al contest público.............................skipped
 And el participante abre los siguientes problemas del contest y verifica sus nombres:.skipped
@@ -163,37 +141,36 @@ Then el sistema debe registrar el envío.....................................ski
 And los envios deben tener los siguientes estados en la pagina de status:...skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest privado" time="77.462">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest privado" time="42.84">
+<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55aee896 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36701}, goog:processID: 140649, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36701/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 8d42890b406b86618a7dabac887526b4">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //table/tbody/tr[td[2]//a[contains(normalize-space(.), 'Suma de dos números')]]/td[1] (tried for 10 second(s) with 500 milliseconds interval)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:35221}, goog:processID: 156647, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35221/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e0bf3ab0ce8c0bfbd6ed5244fd931ad0">
+<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007fd168465410@55aee896 (tried for 10 second(s) with 200 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36701}, goog:processID: 140649, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36701/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 8d42890b406b86618a7dabac887526b4
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:35221}, goog:processID: 156647, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35221/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e0bf3ab0ce8c0bfbd6ed5244fd931ad0
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitForElementToBeVisible(WaitUtils.java:27)
-	at bo.juezvirtual.automation.pages.admin.ProblemsPage.getProblemIdByTitle(ProblemsPage.java:92)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.resolveProblemList(AdminContestSteps.java:115)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.createContest(AdminContestSteps.java:95)
-	at bo.juezvirtual.automation.steps.AdminContestSteps.creaUnConcursoConUsuariosHabilitados(AdminContestSteps.java:53)
-	at ✽.crea un concurso "privado" con titulo "Concurso Veredictos Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par" y los siguientes usuarios habilitados(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:144)
+	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
+	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
+	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
+	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
+	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:149)
 ]]>
 </failure>
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
 Given el administrador esta en la pagina de creacion de concursos...........passed
-When crea un concurso "privado" con titulo "Concurso Veredictos Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par" y los siguientes usuarios habilitados.failed
-Then el concurso deberia ser guardado con exito.............................skipped
-Given existe un participante registrado en el contest.......................skipped
-And el participante introduce el usuario "participante_qa" y clave "participante_qa".skipped
+When crea un concurso "privado" con titulo "Concurso Veredictos Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par" y los siguientes usuarios habilitados.passed
+Then el concurso deberia ser guardado con exito.............................passed
+Given existe un participante registrado en el contest.......................passed
+And el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
 And el participante inició sesión con la cuenta registrada en el contest....skipped
 When el participante ingresa al contest privado.............................skipped
 And el participante abre los siguientes problemas del contest y verifica sus nombres:.skipped

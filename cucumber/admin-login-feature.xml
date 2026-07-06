@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="43.799" tests="2" skipped="0" failures="1" errors="0">
-<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Inicio de sesión administrativo exitoso con rol de Administrador" time="26.972">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for condition to not be valid: url to contain &quot;/login&quot;. Current url: &quot;http://localhost:8083/admin/login&quot; (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:44185}, goog:processID: 133898, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:44185/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 6066caddd54a1e657d38d1dfe35bff87">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for condition to not be valid: url to contain "/login". Current url: "http://localhost:8083/admin/login" (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:44185}, goog:processID: 133898, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:44185/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 6066caddd54a1e657d38d1dfe35bff87
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.steps.AdminLoginSteps.elAdministradorDeberiaVerElDashboardAdministrativo(AdminLoginSteps.java:43)
-	at ✽.el administrador deberia ver el dashboard administrativo(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/admin/login.feature:10)
-]]>
-</failure>
+<testsuite name="Cucumber" time="18.54" tests="2" skipped="0" failures="0" errors="0">
+<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Inicio de sesión administrativo exitoso con rol de Administrador" time="1.743">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
-Then el administrador deberia ver el dashboard administrativo...............failed
+Then el administrador deberia ver el dashboard administrativo...............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Intento de inicio de sesión administrativo con credenciales invalidas" time="16.799">
+<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Intento de inicio de sesión administrativo con credenciales invalidas" time="16.771">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "wrong_pass".passed

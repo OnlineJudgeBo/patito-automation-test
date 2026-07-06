@@ -1,1 +1,1 @@
-file:src/test/resources/features/contest/contest.feature:8:23:107:109:140
+file:src/test/resources/features/contest/contest.feature:23:107:109:140
