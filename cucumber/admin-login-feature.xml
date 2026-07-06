@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="18.678" tests="2" skipped="0" failures="0" errors="0">
-<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Inicio de sesión administrativo exitoso con rol de Administrador" time="1.854">
+<testsuite name="Cucumber" time="18.85" tests="2" skipped="0" failures="0" errors="0">
+<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Inicio de sesión administrativo exitoso con rol de Administrador" time="1.98">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
 Then el administrador deberia ver el dashboard administrativo...............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Intento de inicio de sesión administrativo con credenciales invalidas" time="16.798">
+<testcase classname="Inicio de Sesión Administrativo en Juez Virtual Admin" name="Intento de inicio de sesión administrativo con credenciales invalidas" time="16.843">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "wrong_pass".passed

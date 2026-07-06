@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="210.04" tests="5" skipped="0" failures="4" errors="0">
-<testcase classname="Gestión y uso de contests" name="Crear los problemas base para las pruebas de contests" time="45.922">
+<testsuite name="Cucumber" time="251.312" tests="5" skipped="0" failures="4" errors="0">
+<testcase classname="Gestión y uso de contests" name="Crear los problemas base para las pruebas de contests" time="45.867">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -11,26 +11,16 @@ Then los problemas deberian ser guardados con exito.........................pass
 And los siguientes problemas deberian aparecer listados:....................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Crear un contest público y validar el flujo del participante" time="40.784">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@3abe94d9 (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36231}, goog:processID: 169357, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36231/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 1f865082e6e8142b4eba066c196206e0">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@3abe94d9 (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36231}, goog:processID: 169357, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36231/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 1f865082e6e8142b4eba066c196206e0
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
-	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
-	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
-	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
-	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:33)
+<testcase classname="Gestión y uso de contests" name="Crear un contest público y validar el flujo del participante" time="34.769">
+<failure type="org.opentest4j.AssertionFailedError" message="El veredicto del problema A no coincide. Esperado: Accepted, actual: Compile Error, RunID: 5015 ==&gt; expected: &lt;Accepted&gt; but was: &lt;Compile Error&gt;">
+<![CDATA[org.opentest4j.AssertionFailedError: El veredicto del problema A no coincide. Esperado: Accepted, actual: Compile Error, RunID: 5015 ==> expected: <Accepted> but was: <Compile Error>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at bo.juezvirtual.automation.steps.ContestSteps.losEnviosDebenTenerLosSiguientesEstadosEnLaPaginaDeStatus(ContestSteps.java:269)
+	at ✽.los envios deben tener los siguientes estados en la pagina de status:(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:49)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -41,42 +31,32 @@ When crea un concurso "publico" con titulo "Concurso Publico QA", fecha "actual"
 Then el concurso deberia ser guardado con exito.............................passed
 And el concurso creado debe estar en la lista de concursos con los siguientes datos:.passed
 Given existe un contest público activo......................................passed
-And el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
-And el participante inició sesión correctamente.............................skipped
-When el participante ingresa al contest público.............................skipped
-Then debe ver la lista de problemas disponibles.............................skipped
-And cada problema debe mostrar su titulo....................................skipped
-And cada problema debe mostrar su identificador.............................skipped
+And el participante introduce el usuario "participante_qa" y clave "participante_qa".passed
+And el participante inició sesión correctamente.............................passed
+When el participante ingresa al contest público.............................passed
+Then debe ver la lista de problemas disponibles.............................passed
+And cada problema debe mostrar su titulo....................................passed
+And cada problema debe mostrar su identificador.............................passed
 And debe mostrar los siguientes datos del contest:..........................skipped
-When el participante abre los siguientes problemas del contest y verifica sus nombres:.skipped
-And el participante envía las siguientes soluciones:........................skipped
-Then el sistema debe registrar el envío.....................................skipped
-And los envios deben tener los siguientes estados en la pagina de status:...skipped
+When el participante abre los siguientes problemas del contest y verifica sus nombres:.passed
+And el participante envía las siguientes soluciones:........................passed
+Then el sistema debe registrar el envío.....................................passed
+And los envios deben tener los siguientes estados en la pagina de status:...failed
 And debe verse el envío en la clasificación diaria:.........................skipped
 When selecciona el ranking..................................................skipped
 Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:.skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Crear un contest privado y validar el acceso del participante registrado - Example #1.1" time="41.11">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@75ee3ef (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36521}, goog:processID: 169661, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36521/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 1ef8eace79e88e60d68cc9f8f3796e4f">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@75ee3ef (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:36521}, goog:processID: 169661, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36521/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 1ef8eace79e88e60d68cc9f8f3796e4f
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
-	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
-	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
-	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
-	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:75)
+<testcase classname="Gestión y uso de contests" name="Crear un contest privado y validar el acceso del participante registrado - Example #1.1" time="26.003">
+<failure type="org.opentest4j.AssertionFailedError" message="No se muestra una lista de problemas del contest. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;">
+<![CDATA[org.opentest4j.AssertionFailedError: No se muestra una lista de problemas del contest. ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at bo.juezvirtual.automation.steps.ContestSteps.debeVerLaListaDeProblemasDisponibles(ContestSteps.java:191)
+	at ✽.debe ver la lista de problemas disponibles(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:78)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -87,10 +67,10 @@ When crea un concurso "privado" con titulo "Concurso Privado QA", fecha "actual"
 Then el concurso deberia ser guardado con exito.............................passed
 And el concurso creado debe estar en la lista de concursos con los siguientes datos:.passed
 Given existe un participante registrado en el contest.......................passed
-When el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
-And el participante inició sesión con la cuenta registrada en el contest....skipped
-And el participante ingresa al contest privado..............................skipped
-Then debe ver la lista de problemas disponibles.............................skipped
+When el participante introduce el usuario "participante_qa" y clave "participante_qa".passed
+And el participante inició sesión con la cuenta registrada en el contest....passed
+And el participante ingresa al contest privado..............................passed
+Then debe ver la lista de problemas disponibles.............................failed
 And cada problema debe mostrar su titulo....................................skipped
 And cada problema debe mostrar su identificador.............................skipped
 And debe mostrar los siguientes datos del contest:..........................skipped
@@ -103,26 +83,16 @@ When selecciona el ranking..................................................skip
 Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:.skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest público" time="40.953">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@44c164e5 (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39435}, goog:processID: 169997, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39435/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 65d5497ba8a5a025cc1c00902d937224">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@44c164e5 (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39435}, goog:processID: 169997, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39435/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 65d5497ba8a5a025cc1c00902d937224
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
-	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
-	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
-	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
-	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:116)
+<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest público" time="118.173">
+<failure type="org.opentest4j.AssertionFailedError" message="El veredicto del problema A no coincide. Esperado: Wrong Answer, actual: Compile Error, RunID: 5016 ==&gt; expected: &lt;Wrong Answer&gt; but was: &lt;Compile Error&gt;">
+<![CDATA[org.opentest4j.AssertionFailedError: El veredicto del problema A no coincide. Esperado: Wrong Answer, actual: Compile Error, RunID: 5016 ==> expected: <Wrong Answer> but was: <Compile Error>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at bo.juezvirtual.automation.steps.ContestSteps.losEnviosDebenTenerLosSiguientesEstadosEnLaPaginaDeStatus(ContestSteps.java:269)
+	at ✽.los envios deben tener los siguientes estados en la pagina de status:(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:131)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -132,35 +102,27 @@ Given el administrador esta en la pagina de creacion de concursos...........pass
 When crea un concurso "publico" con titulo "Concurso Veredictos QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par".passed
 Then el concurso deberia ser guardado con exito.............................passed
 Given existe un contest público activo......................................passed
-And el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
-And el participante inició sesión correctamente.............................skipped
-When el participante ingresa al contest público.............................skipped
-And el participante abre los siguientes problemas del contest y verifica sus nombres:.skipped
-And el participante envía las siguientes soluciones:........................skipped
-Then el sistema debe registrar el envío.....................................skipped
-And los envios deben tener los siguientes estados en la pagina de status:...skipped
+And el participante introduce el usuario "participante_qa" y clave "participante_qa".passed
+And el participante inició sesión correctamente.............................passed
+When el participante ingresa al contest público.............................passed
+And el participante abre los siguientes problemas del contest y verifica sus nombres:.passed
+And el participante envía las siguientes soluciones:........................passed
+Then el sistema debe registrar el envío.....................................passed
+And los envios deben tener los siguientes estados en la pagina de status:...failed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest privado" time="41.229">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@6d820f5e (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39685}, goog:processID: 170327, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39685/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 0bc90f77e2c74b47180ef817bebb9243">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@6d820f5e (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:39685}, goog:processID: 170327, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39685/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 0bc90f77e2c74b47180ef817bebb9243
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
-	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
-	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
-	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
-	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:149)
+<testcase classname="Gestión y uso de contests" name="Validar distintos veredictos del juez en un contest privado" time="26.459">
+<failure type="org.opentest4j.AssertionFailedError" message="El contest no muestra problemas disponibles. ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;">
+<![CDATA[org.opentest4j.AssertionFailedError: El contest no muestra problemas disponibles. ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at bo.juezvirtual.automation.steps.ContestSteps.elParticipanteEstaEnLaListaDeProblemasDelContest(ContestSteps.java:110)
+	at bo.juezvirtual.automation.steps.ContestSteps.elParticipanteAbrioElProblemaDelContestYVerificaElNombre(ContestSteps.java:122)
+	at bo.juezvirtual.automation.steps.ContestSteps.elParticipanteAbreLosSiguientesProblemasDelContestYVerificaSusNombres(ContestSteps.java:133)
+	at ✽.el participante abre los siguientes problemas del contest y verifica sus nombres:(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/contest/contest.feature:152)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -170,10 +132,10 @@ Given el administrador esta en la pagina de creacion de concursos...........pass
 When crea un concurso "privado" con titulo "Concurso Veredictos Privado QA", fecha "actual", hora "actual", problemas "Suma de dos números, Número par" y los siguientes usuarios habilitados.passed
 Then el concurso deberia ser guardado con exito.............................passed
 Given existe un participante registrado en el contest.......................passed
-And el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
-And el participante inició sesión con la cuenta registrada en el contest....skipped
-When el participante ingresa al contest privado.............................skipped
-And el participante abre los siguientes problemas del contest y verifica sus nombres:.skipped
+And el participante introduce el usuario "participante_qa" y clave "participante_qa".passed
+And el participante inició sesión con la cuenta registrada en el contest....passed
+When el participante ingresa al contest privado.............................passed
+And el participante abre los siguientes problemas del contest y verifica sus nombres:.failed
 And el participante envía las siguientes soluciones:........................skipped
 Then el sistema debe registrar el envío.....................................skipped
 And los envios deben tener los siguientes estados en la pagina de status:...skipped

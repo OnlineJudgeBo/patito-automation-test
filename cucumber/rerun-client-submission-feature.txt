@@ -1,1 +1,1 @@
-file:src/test/resources/features/client/submission.feature:22:44
+file:src/test/resources/features/client/submission.feature:22

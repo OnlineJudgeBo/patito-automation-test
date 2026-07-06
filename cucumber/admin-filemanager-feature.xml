@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="53.113" tests="2" skipped="0" failures="1" errors="0">
-<testcase classname="Administrador de Archivos de Problemas" name="Carga exitosa de archivo de entrada de casos de prueba (.in)" time="11.847">
+<testsuite name="Cucumber" time="56.16" tests="2" skipped="0" failures="1" errors="0">
+<testcase classname="Administrador de Archivos de Problemas" name="Carga exitosa de archivo de entrada de casos de prueba (.in)" time="11.634">
 <failure type="org.openqa.selenium.WebDriverException" message="unknown error: unhandled inspector error: {&quot;code&quot;:-32000,&quot;message&quot;:&quot;Node with given id does not belong to the document&quot;}
   (Session info: chrome=150.0.7871.46)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [45e5126ed873d69122d370efd84dc593, isElementEnabled {id=f.D7E0FB69F7DF3983C25468D1771FB012.d.B450FF8B997C12787770A013632EF3A6.e.374}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:35665}, goog:processID: 163166, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35665/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on linux (45e5126ed873d69122d370efd84dc593)] -&gt; css selector: table tbody tr]
-Session ID: 45e5126ed873d69122d370efd84dc593">
+Command: [57327c0464c7620551bf319f51c18545, isElementEnabled {id=f.25061E2C398418A4E9027D606BD85022.d.156AE0FCE54B48C95AFECC078480C022.e.312}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:46555}, goog:processID: 300165, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46555/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on linux (57327c0464c7620551bf319f51c18545)] -&gt; css selector: table tbody tr]
+Session ID: 57327c0464c7620551bf319f51c18545">
 <![CDATA[org.openqa.selenium.WebDriverException: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
   (Session info: chrome=150.0.7871.46)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [45e5126ed873d69122d370efd84dc593, isElementEnabled {id=f.D7E0FB69F7DF3983C25468D1771FB012.d.B450FF8B997C12787770A013632EF3A6.e.374}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:35665}, goog:processID: 163166, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35665/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on linux (45e5126ed873d69122d370efd84dc593)] -> css selector: table tbody tr]
-Session ID: 45e5126ed873d69122d370efd84dc593
+Command: [57327c0464c7620551bf319f51c18545, isElementEnabled {id=f.25061E2C398418A4E9027D606BD85022.d.156AE0FCE54B48C95AFECC078480C022.e.312}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:46555}, goog:processID: 300165, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46555/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on linux (57327c0464c7620551bf319f51c18545)] -> css selector: table tbody tr]
+Session ID: 57327c0464c7620551bf319f51c18545
 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
@@ -51,7 +51,7 @@ When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.in".
 Then el archivo "sum_1.in" deberia aparecer listado en la pagina............skipped
 ]]></system-out>
 </testcase>
-<testcase classname="Administrador de Archivos de Problemas" name="Carga exitosa de archivo de salida de casos de prueba (.out)" time="41.222">
+<testcase classname="Administrador de Archivos de Problemas" name="Carga exitosa de archivo de salida de casos de prueba (.out)" time="44.471">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed

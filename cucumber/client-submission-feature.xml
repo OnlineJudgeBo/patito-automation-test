@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="146.467" tests="2" skipped="0" failures="2" errors="0">
-<testcase classname="Envío y Evaluación de Soluciones" name="Envío de solución correcta con veredicto Aceptado (AC)" time="73.367">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@476a0071 (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:33731}, goog:processID: 168179, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33731/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 427c906061009d0ba8787532c7484070">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@476a0071 (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:33731}, goog:processID: 168179, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33731/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 427c906061009d0ba8787532c7484070
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
-	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
-	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
-	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
-	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/client/submission.feature:24)
+<testsuite name="Cucumber" time="99.129" tests="2" skipped="0" failures="1" errors="0">
+<testcase classname="Envío y Evaluación de Soluciones" name="Envío de solución correcta con veredicto Aceptado (AC)" time="49.821">
+<failure type="org.opentest4j.AssertionFailedError" message="El veredicto final no coincide. ==&gt; expected: &lt;Accepted&gt; but was: &lt;Compile Error&gt;">
+<![CDATA[org.opentest4j.AssertionFailedError: El veredicto final no coincide. ==> expected: <Accepted> but was: <Compile Error>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at bo.juezvirtual.automation.steps.SubmissionSteps.deberiaEsperarLaEvaluacionYVerElVeredicto(SubmissionSteps.java:53)
+	at ✽.deberia esperar la evaluacion y ver el veredicto "Accepted"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/client/submission.feature:42)
 ]]>
 </failure>
 <system-out><![CDATA[
@@ -36,36 +26,15 @@ Then el archivo "sum_1.in" deberia aparecer listado en la pagina............pass
 When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.out".passed
 Then el archivo "sum_1.out" deberia aparecer listado en la pagina...........passed
 Given el participante navega a la pagina de inicio de sesion................passed
-When el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
-Then el participante deberia ver el portal de inicio........................skipped
-Given el participante esta en la pagina del problema "Suma de dos números"..skipped
-When hace clic en el boton Enviar...........................................skipped
-And selecciona el lenguaje "Java" e ingresa el codigo:......................skipped
-Then deberia esperar la evaluacion y ver el veredicto "Accepted"............skipped
+When el participante introduce el usuario "participante_qa" y clave "participante_qa".passed
+Then el participante deberia ver el portal de inicio........................passed
+Given el participante esta en la pagina del problema "Suma de dos números"..passed
+When hace clic en el boton Enviar...........................................passed
+And selecciona el lenguaje "Java" e ingresa el codigo:......................passed
+Then deberia esperar la evaluacion y ver el veredicto "Accepted"............failed
 ]]></system-out>
 </testcase>
-<testcase classname="Envío y Evaluación de Soluciones" name="Envío de solución con error de compilación (CE)" time="73.06">
-<failure type="org.openqa.selenium.TimeoutException" message="Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@6f56e5c (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:40441}, goog:processID: 168592, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:40441/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 92a607ecdf6612e6abc495e6e9e27543">
-<![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for bo.juezvirtual.automation.pages.client.LoginPage$$Lambda/0x00007f09a83f98a0@6f56e5c (tried for 10 second(s) with 200 milliseconds interval)
-Build info: version: '4.18.1', revision: 'b1d3319b48'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.12.94+deb13-amd64', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.46, chrome: {chromedriverVersion: 150.0.7871.46 (5b586c06e0d2..., userDataDir: /tmp/org.chromium.Chromium....}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:40441}, goog:processID: 168592, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:40441/devtoo..., se:cdpVersion: 150.0.7871.46, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 92a607ecdf6612e6abc495e6e9e27543
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at bo.juezvirtual.automation.utils.WaitUtils.waitUntil(WaitUtils.java:59)
-	at bo.juezvirtual.automation.pages.client.LoginPage.waitForLoginRequestToFinish(LoginPage.java:67)
-	at bo.juezvirtual.automation.pages.client.LoginPage.login(LoginPage.java:35)
-	at bo.juezvirtual.automation.steps.ClientLoginSteps.elParticipanteIntroduceElUsuarioYClave(ClientLoginSteps.java:35)
-	at ✽.el participante introduce el usuario "participante_qa" y clave "participante_qa"(file:///opt/actions-runner/patito-automation-test/_work/patito-automation-test/patito-automation-test/src/test/resources/features/client/submission.feature:46)
-]]>
-</failure>
+<testcase classname="Envío y Evaluación de Soluciones" name="Envío de solución con error de compilación (CE)" time="49.287">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -80,12 +49,12 @@ Then el archivo "sum_1.in" deberia aparecer listado en la pagina............pass
 When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.out".passed
 Then el archivo "sum_1.out" deberia aparecer listado en la pagina...........passed
 Given el participante navega a la pagina de inicio de sesion................passed
-When el participante introduce el usuario "participante_qa" y clave "participante_qa".failed
-Then el participante deberia ver el portal de inicio........................skipped
-Given el participante esta en la pagina del problema "Suma de dos números"..skipped
-When hace clic en el boton Enviar...........................................skipped
-And selecciona el lenguaje "Java" e ingresa el codigo:......................skipped
-Then deberia esperar la evaluacion y ver el veredicto "Compile Error".......skipped
+When el participante introduce el usuario "participante_qa" y clave "participante_qa".passed
+Then el participante deberia ver el portal de inicio........................passed
+Given el participante esta en la pagina del problema "Suma de dos números"..passed
+When hace clic en el boton Enviar...........................................passed
+And selecciona el lenguaje "Java" e ingresa el codigo:......................passed
+Then deberia esperar la evaluacion y ver el veredicto "Compile Error".......passed
 ]]></system-out>
 </testcase>
 </testsuite>

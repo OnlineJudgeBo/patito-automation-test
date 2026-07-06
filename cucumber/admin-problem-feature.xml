@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="385.169" tests="10" skipped="0" failures="0" errors="0">
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.1" time="38.432">
+<testsuite name="Cucumber" time="386.188" tests="10" skipped="0" failures="0" errors="0">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.1" time="38.708">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -11,7 +11,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Suma de dos números" deberia aparecer listado..............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.2" time="38.626">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.2" time="39.214">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -22,7 +22,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Número par" deberia aparecer listado.......................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.3" time="38.351">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.3" time="38.484">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -33,7 +33,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Mayor de tres" deberia aparecer listado....................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.4" time="38.827">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.4" time="38.95">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -44,7 +44,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Tabla de multiplicar" deberia aparecer listado.............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.5" time="38.409">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.5" time="38.467">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -55,7 +55,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Factorial" deberia aparecer listado........................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.6" time="38.388">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.6" time="38.419">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -66,7 +66,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Contar vocales" deberia aparecer listado...................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.7" time="38.318">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.7" time="38.768">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -77,7 +77,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Invertir una cadena" deberia aparecer listado..............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.8" time="39.017">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.8" time="38.348">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -88,7 +88,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "Máximo de un arreglo" deberia aparecer listado.............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.9" time="38.384">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.9" time="38.285">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed
@@ -99,7 +99,7 @@ Then el problema deberia ser guardado con exito.............................pass
 And el problema "¿Es primo?" deberia aparecer listado.......................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.10" time="38.332">
+<testcase classname="Gestión de Problemas en Panel Administrativo" name="Crear problema y validar que se lista - &lt;titulo&gt; - Example #1.10" time="38.458">
 <system-out><![CDATA[
 Given el administrador navega a la pagina de login del panel................passed
 When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa".passed

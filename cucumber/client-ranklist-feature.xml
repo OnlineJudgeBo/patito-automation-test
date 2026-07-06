@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="2.373" tests="1" skipped="0" failures="0" errors="0">
-<testcase classname="Tabla de Clasificación Global" name="Buscar usuario en la tabla de clasificación" time="2.361">
+<testsuite name="Cucumber" time="2.033" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Tabla de Clasificación Global" name="Buscar usuario en la tabla de clasificación" time="2.024">
 <system-out><![CDATA[
 Given el participante navega a la tabla de clasificacion global.............passed
 When busca el usuario "participante_qa" en el ranking.......................passed
