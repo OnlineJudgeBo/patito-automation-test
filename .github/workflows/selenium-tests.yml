@@ -23,9 +23,7 @@ on:
   pull_request:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   e2e-tests:
@@ -64,22 +62,28 @@ jobs:
       - name: Prepare GitHub Pages report
         if: always()
         run: |
-          mkdir -p build/pages
+          set -euo pipefail
+          rm -rf build/pages
+          mkdir -p build/pages/allure build/pages/cucumber build/pages/screenshots
           touch build/pages/.nojekyll
 
-          if [ -d build/reports/allure-report ]; then
-            cp -r build/reports/allure-report build/pages/allure
+          # Gradle Allure creates build/reports/allure-report/allureReport/index.html.
+          # Publish the contents under /allure/ so /allure/index.html works.
+          if [ -d build/reports/allure-report/allureReport ]; then
+            cp -r build/reports/allure-report/allureReport/. build/pages/allure/
+          elif [ -d build/reports/allure-report ]; then
+            cp -r build/reports/allure-report/. build/pages/allure/
           fi
 
           if [ -d build/reports/cucumber ]; then
-            cp -r build/reports/cucumber build/pages/cucumber
+            cp -r build/reports/cucumber/. build/pages/cucumber/
           fi
 
           if [ -d build/reports/screenshots ]; then
-            cp -r build/reports/screenshots build/pages/screenshots
+            cp -r build/reports/screenshots/. build/pages/screenshots/
           fi
 
-          cat > build/pages/index.html <<'EOF'
+          cat > build/pages/index.html <<EOF
           <!doctype html>
           <html lang="es">
           <head>
@@ -90,10 +94,47 @@ jobs:
           <body>
             <h1>Patito Selenium Reports</h1>
             <p>Reportes generados por GitHub Actions.</p>
+            <p>Run: <a href="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}">#${GITHUB_RUN_NUMBER}</a></p>
             <ul>
               <li><a href="./allure/index.html">Allure Report</a></li>
-              <li><a href="./cucumber/cucumber.html">Cucumber Report</a></li>
+              <li><a href="./cucumber/">Reportes Cucumber por feature</a></li>
               <li><a href="./screenshots/">Screenshots</a></li>
+            </ul>
+          </body>
+          </html>
+          EOF
+
+          cat > build/pages/cucumber/index.html <<'EOF'
+          <!doctype html>
+          <html lang="es">
+          <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cucumber Reports</title></head>
+          <body>
+            <h1>Cucumber Reports</h1>
+            <p><a href="../">Volver al índice</a></p>
+            <ul>
+          EOF
+          find build/pages/cucumber -maxdepth 1 -type f -name '*.html' ! -name 'index.html' -printf '%f\n' | sort | while read -r file; do
+            printf '              <li><a href="./%s">%s</a></li>\n' "$file" "$file" >> build/pages/cucumber/index.html
+          done
+          cat >> build/pages/cucumber/index.html <<'EOF'
+            </ul>
+          </body>
+          </html>
+          EOF
+
+          cat > build/pages/screenshots/index.html <<'EOF'
+          <!doctype html>
+          <html lang="es">
+          <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Screenshots</title></head>
+          <body>
+            <h1>Screenshots</h1>
+            <p><a href="../">Volver al índice</a></p>
+            <ul>
+          EOF
+          find build/pages/screenshots -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort | while read -r file; do
+            printf '              <li><a href="./%s">%s</a></li>\n' "$file" "$file" >> build/pages/screenshots/index.html
+          done
+          cat >> build/pages/screenshots/index.html <<'EOF'
             </ul>
           </body>
           </html>
@@ -122,23 +163,49 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
-      - name: Setup GitHub Pages
+      - name: Publish reports to gh-pages branch
         if: always() && github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
 
-      - name: Upload GitHub Pages artifact
-        if: always() && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build/pages
+          if [ ! -f build/pages/index.html ]; then
+            echo "No GitHub Pages report was prepared; skipping publish."
+            exit 0
+          fi
 
-  deploy-pages:
-    name: Deploy reports to GitHub Pages
-    needs: e2e-tests
-    if: always() && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
-    steps:
-      - name: Deploy GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          publish_root="${RUNNER_TEMP:-/tmp}/patito-pages-${GITHUB_RUN_ID}"
+          pages_content="$publish_root/content"
+          pages_worktree="$publish_root/gh-pages"
+          rm -rf "$publish_root"
+          mkdir -p "$pages_content"
+          cp -a build/pages/. "$pages_content/"
+
+          git fetch origin gh-pages || true
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+            git worktree add "$pages_worktree" origin/gh-pages
+            git -C "$pages_worktree" checkout -B gh-pages
+          else
+            git worktree add --detach "$pages_worktree"
+            git -C "$pages_worktree" checkout --orphan gh-pages
+            git -C "$pages_worktree" rm -rf . || true
+          fi
+
+          find "$pages_worktree" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$pages_content"/. "$pages_worktree"/
+          touch "$pages_worktree/.nojekyll"
+
+          git -C "$pages_worktree" add -A
+          if git -C "$pages_worktree" diff --cached --quiet; then
+            echo "No report changes to publish."
+          else
+            git -C "$pages_worktree" commit -m "Publish Selenium reports from run ${GITHUB_RUN_NUMBER}"
+            git -C "$pages_worktree" push origin gh-pages
+          fi
+
+          git worktree remove "$pages_worktree" --force
