@@ -1,22 +1,24 @@
 package bo.juezvirtual.automation.steps;
 
-import bo.juezvirtual.automation.driver.DriverFactory;
-import bo.juezvirtual.automation.utils.AdminContestCleaner;
-import bo.juezvirtual.automation.utils.AdminProblemCleaner;
-import bo.juezvirtual.automation.utils.SharedState;
-import bo.juezvirtual.automation.utils.ScreenshotUtils;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import bo.juezvirtual.automation.driver.DriverFactory;
+import bo.juezvirtual.automation.utils.AdminContestCleaner;
+import bo.juezvirtual.automation.utils.AdminProblemCleaner;
+import bo.juezvirtual.automation.utils.ScreenshotUtils;
+import bo.juezvirtual.automation.utils.SharedState;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 /**
  * Cucumber hooks that manage webdriver lifetime and screenshot capture.
  */
 public final class Hooks {
     private WebDriver driver;
+    private static boolean cleanedProblemsForContestFeature = false;
 
     @Before(order = 0)
     public void setUp() {
@@ -31,10 +33,14 @@ public final class Hooks {
     }
 
     @Before(value = "@clean_problems", order = 2)
-    public void deleteProblemsBeforeCleanProblemsScenarios() {
+    public void cleanProblemsOnceForContestFeature() {
+        if (cleanedProblemsForContestFeature) {
+            return;
+        }
+    
         AdminProblemCleaner.deleteAllProblemsAsAdmin(driver);
+        cleanedProblemsForContestFeature = true;
     }
-
     @After
     public void tearDown(Scenario scenario) {
         if (driver != null) {

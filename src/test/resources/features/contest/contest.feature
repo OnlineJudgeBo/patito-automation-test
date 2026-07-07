@@ -1,4 +1,4 @@
-@contest @regression
+@contest @regression  @clean_contest @clean_problems @zzzz
 Feature: Gestión y uso de contests
   Como administrador del Juez Virtual
   Quiero crear contests públicos y privados desde el panel administrativo
@@ -9,7 +9,6 @@ Feature: Gestión y uso de contests
     When el administrador introduce el usuario "administrador_qa" y clave "administrador_qa"
     Then el administrador deberia ver el dashboard administrativo
 
-  @clean_problems @clean_contest
   Scenario: Crear los problemas base para las pruebas de contests
     Given el docente esta en la pagina de creacion de problemas
     When crea los siguientes problemas:
