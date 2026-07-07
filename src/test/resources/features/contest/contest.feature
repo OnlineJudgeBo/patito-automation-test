@@ -85,7 +85,7 @@ Feature: Gestión y uso de contests
       | A              | Suma de dos números  |
     And el participante envía las siguientes soluciones:
       | Problema | Nombre problema      | Lenguaje | Codigo                       |
-      | A        | Suma de dos números  | C++      | suma_dos_numeros_valido.cpp |
+      | A        | Suma de dos números  | C++      | suma_dos_numeros_ac.cpp |
     Then el sistema debe registrar el envío
     And los envios deben tener los siguientes estados en la pagina de status:
       | Problema | Estado |
