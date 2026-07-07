@@ -137,10 +137,32 @@ public final class AdminProblemSteps {
     private void uploadDefaultContestTestCases(String title) {
         String baseName = testCaseBaseNameFor(title);
         elDocenteEstaEnElAdministradorDeArchivosDelProblema(title);
+        deleteDefaultTestCasesForOtherProblems(baseName);
         subeElArchivoDeCasosDePruebaConRutaAbsoluta("src/test/resources/testcases/" + baseName + "_1.in");
         elArchivoDeberiaAparecerListadoEnLaPagina(baseName + "_1.in");
         subeElArchivoDeCasosDePruebaConRutaAbsoluta("src/test/resources/testcases/" + baseName + "_1.out");
         elArchivoDeberiaAparecerListadoEnLaPagina(baseName + "_1.out");
+        assertOnlyExpectedDefaultContestTestCasesAreListed(baseName);
+    }
+
+    private void deleteDefaultTestCasesForOtherProblems(String expectedBaseName) {
+        for (String baseName : List.of("sum", "numero_par")) {
+            if (baseName.equals(expectedBaseName)) {
+                continue;
+            }
+            adminFileManagerPage.deleteFileIfPresent(baseName + "_1.in");
+            adminFileManagerPage.deleteFileIfPresent(baseName + "_1.out");
+        }
+    }
+
+    private void assertOnlyExpectedDefaultContestTestCasesAreListed(String expectedBaseName) {
+        for (String baseName : List.of("sum", "numero_par")) {
+            boolean shouldExist = baseName.equals(expectedBaseName);
+            Assertions.assertEquals(shouldExist, adminFileManagerPage.isFileUploaded(baseName + "_1.in"),
+                    "El archivo .in listado no corresponde al problema: " + baseName + "_1.in");
+            Assertions.assertEquals(shouldExist, adminFileManagerPage.isFileUploaded(baseName + "_1.out"),
+                    "El archivo .out listado no corresponde al problema: " + baseName + "_1.out");
+        }
     }
 
     private String testCaseBaseNameFor(String title) {
