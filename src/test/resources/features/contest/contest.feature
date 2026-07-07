@@ -1,4 +1,4 @@
-@contest @regression  @clean_contest @clean_problems @zzzz
+@contest @regression  @clean_contest @clean_problems
 Feature: Gestión y uso de contests
   Como administrador del Juez Virtual
   Quiero crear contests públicos y privados desde el panel administrativo
