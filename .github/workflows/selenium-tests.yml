@@ -1,5 +1,4 @@
 name: Selenium BDD Tests
-
 on:
   workflow_dispatch:
     inputs:
@@ -16,6 +15,10 @@ on:
         required: false
         type: boolean
         default: true
+      run_marker:
+        description: 'Unique identifier injected by the calling workflow'
+        required: false
+        default: ''
   push:
     branches:
       - main
