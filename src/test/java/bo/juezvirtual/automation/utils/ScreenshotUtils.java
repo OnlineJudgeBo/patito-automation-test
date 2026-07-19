@@ -23,19 +23,21 @@ public final class ScreenshotUtils {
      * Captures a screenshot of the current browser view and saves it to build/reports/screenshots.
      */
     public static void takeScreenshot(WebDriver driver, String testName) {
-        if (driver instanceof TakesScreenshot) {
+        if (!(driver instanceof TakesScreenshot)) {
+            return;
+        }
+
+        try {
             File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String filename = testName.replaceAll("[^a-zA-Z0-9_]", "_") + "_" + timestamp + ".png";
             Path destPath = Paths.get("build", "reports", "screenshots", filename);
 
-            try {
-                Files.createDirectories(destPath.getParent());
-                Files.copy(srcFile.toPath(), destPath);
-                System.out.println("Screenshot saved to: " + destPath.toAbsolutePath());
-            } catch (IOException e) {
-                System.err.println("Failed to save screenshot: " + e.getMessage());
-            }
+            Files.createDirectories(destPath.getParent());
+            Files.copy(srcFile.toPath(), destPath);
+            System.out.println("Screenshot saved to: " + destPath.toAbsolutePath());
+        } catch (IOException | RuntimeException e) {
+            System.err.println("Failed to save screenshot: " + e.getMessage());
         }
     }
 }

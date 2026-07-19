@@ -80,12 +80,17 @@ public final class DriverFactory {
      * Shuts down the WebDriver instance for the current thread and removes it from memory.
      */
     public static void quitDriver() {
-        if (DRIVER_THREAD_LOCAL.get() != null) {
-            try {
-                DRIVER_THREAD_LOCAL.get().quit();
-            } finally {
-                DRIVER_THREAD_LOCAL.remove();
-            }
+        WebDriver driver = DRIVER_THREAD_LOCAL.get();
+        if (driver == null) {
+            return;
+        }
+
+        try {
+            driver.quit();
+        } catch (RuntimeException e) {
+            System.err.println("Could not close WebDriver cleanly: " + e.getMessage());
+        } finally {
+            DRIVER_THREAD_LOCAL.remove();
         }
     }
 }

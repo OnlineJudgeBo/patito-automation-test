@@ -63,7 +63,6 @@ public final class AdminProblemCleaner {
             if (PROBLEMS_TO_DELETE.contains(problemName)) {
                 row.findElement(By.xpath(".//a[normalize-space(.) = 'Borrar']")).click();
                 deleted++;
-                wait.until(ExpectedConditions.stalenessOf(row));
             }
         }
 

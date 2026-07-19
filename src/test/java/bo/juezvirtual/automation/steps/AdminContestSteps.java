@@ -2,7 +2,7 @@ package bo.juezvirtual.automation.steps;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +29,7 @@ import io.cucumber.java.en.When;
  * Steps for administrative contest management.
  */
 public final class AdminContestSteps {
+    private static final DateTimeFormatter FORM_TIME = DateTimeFormatter.ofPattern("HH:mm");
     private final WebDriver driver = DriverFactory.getDriver();
     private final CreateContestPage adminCreateContestPage = new CreateContestPage(driver);
     private final ProblemsPage adminProblemsPage = new ProblemsPage(driver);
@@ -78,9 +79,7 @@ public final class AdminContestSteps {
 
     private void createContest(
             String title, String contestType, String date, String time, String problemsList, String usersList) {
-        String contestDate = resolveDate(date);
-        String contestStartTime = resolveStartTime(time);
-        String contestEndTime = resolveEndTime(time);
+        ContestSchedule schedule = calculateTime(date, time, LocalDateTime.now());
         String contestUsernames = usersList;
         boolean isPrivate = contestType.toLowerCase().contains("priv");
         if (isPrivate) {
@@ -93,8 +92,8 @@ public final class AdminContestSteps {
         String contestProblemIds = resolveProblemList(problemsList);
         driver.get(BrowserConfig.getAdminUrl() + "/contests/add");
         adminCreateContestPage.fillContestDetails(
-                title, isPrivate, contestDate, contestStartTime, contestDate, contestEndTime, contestProblemIds,
-                contestUsernames);
+                title, isPrivate, schedule.startDate(), schedule.startTime(), schedule.endDate(), schedule.endTime(),
+                contestProblemIds, contestUsernames);
         adminCreateContestPage.clickSave();
         rememberContestTitle(title, isPrivate);
     }
@@ -125,28 +124,22 @@ public final class AdminContestSteps {
         }
     }
 
-    private String resolveDate(String date) {
-        if ("actual".equalsIgnoreCase(date)) {
-            return LocalDate.now().toString();
+    static ContestSchedule calculateTime(String date, String time, LocalDateTime now) {
+        LocalDate contestDate = "actual".equalsIgnoreCase(date) ? now.toLocalDate() : LocalDate.parse(date);
+        if (!"actual".equalsIgnoreCase(time)) {
+            return new ContestSchedule(contestDate.toString(), time, contestDate.toString(), time);
         }
-        return date;
+
+        LocalDateTime reference = LocalDateTime.of(contestDate, now.toLocalTime());
+        LocalDateTime startsAt = reference.minusMinutes(1);
+        LocalDateTime endsAt = reference.plusHours(2);
+        return new ContestSchedule(
+                startsAt.toLocalDate().toString(),
+                startsAt.toLocalTime().format(FORM_TIME),
+                endsAt.toLocalDate().toString(),
+                endsAt.toLocalTime().format(FORM_TIME));
     }
 
-    private String resolveStartTime(String time) {
-        if ("actual".equalsIgnoreCase(time)) {
-            return LocalTime.now()
-                    .minusMinutes(1)
-                    .format(DateTimeFormatter.ofPattern("HH:mm"));
-        }
-        return time;
-    }
-
-    private String resolveEndTime(String time) {
-        if ("actual".equalsIgnoreCase(time)) {
-            return LocalTime.now()
-                    .plusHours(2)
-                    .format(DateTimeFormatter.ofPattern("HH:mm"));
-        }
-        return time;
+    record ContestSchedule(String startDate, String startTime, String endDate, String endTime) {
     }
 }

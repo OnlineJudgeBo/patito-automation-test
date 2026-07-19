@@ -43,20 +43,24 @@ public final class Hooks {
     }
     @After
     public void tearDown(Scenario scenario) {
-        if (driver != null) {
-            if (scenario.isFailed()) {
-                // 1. Save standard screenshot file in the filesystem
-                ScreenshotUtils.takeScreenshot(driver, scenario.getName());
-                
-                // 2. Embed screenshot directly inside the Cucumber HTML Report
-                try {
-                    byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-                    scenario.attach(screenshotBytes, "image/png", scenario.getName());
-                } catch (Exception e) {
-                    System.err.println("Could not attach screenshot to Cucumber report: " + e.getMessage());
-                }
+        try {
+            if (driver == null || !scenario.isFailed()) {
+                return;
             }
+
+            // 1. Save standard screenshot file in the filesystem
+            ScreenshotUtils.takeScreenshot(driver, scenario.getName());
+
+            // 2. Embed screenshot directly inside the Cucumber HTML Report
+            try {
+                byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshotBytes, "image/png", scenario.getName());
+            } catch (Exception e) {
+                System.err.println("Could not attach screenshot to Cucumber report: " + e.getMessage());
+            }
+        } finally {
             DriverFactory.quitDriver();
+            driver = null;
         }
     }
 }
