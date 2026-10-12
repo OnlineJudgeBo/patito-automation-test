@@ -378,6 +378,7 @@ public final class ContestSteps {
                 assertIfPresent(expected, "NOMBRE", rankRow.name(), "El nombre del usuario no coincide.");
                 assertAtLeastIfPresent(expected, "RESUELTOS", rankRow.solved(),
                         "La cantidad de problemas resueltos no coincide.");
+                assertIfPresent(expected, "PUNTOS", rankRow.solved(), "El puntaje en la clasificación no coincide.");
                 assertProblemResults(expected, rankRow);
                 return;
             } catch (AssertionError error) {
@@ -403,7 +404,8 @@ public final class ContestSteps {
         return "#".equals(columnName)
                 || "NOMBRE".equalsIgnoreCase(columnName)
                 || "usuario_alias".equalsIgnoreCase(columnName)
-                || "RESUELTOS".equalsIgnoreCase(columnName);
+                || "RESUELTOS".equalsIgnoreCase(columnName)
+                || "PUNTOS".equalsIgnoreCase(columnName);
     }
 
     private void sleepBeforeRankRetry() {
