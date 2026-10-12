@@ -69,6 +69,16 @@ public final class CreateContestPage extends BasePage {
     }
 
     /**
+     * Checks "¿Es por puntos?" so the contest is scored IOI style.
+     */
+    public void markAsPointsContest() {
+        WebElement checkbox = waitUtils.waitForElementToBePresent(By.id("obi"));
+        if (!checkbox.isSelected()) {
+            executeJavaScript("arguments[0].click();", checkbox);
+        }
+    }
+
+    /**
      * Submits the contest form.
      */
     public void clickSave() {

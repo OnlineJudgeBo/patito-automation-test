@@ -33,6 +33,7 @@ public final class AdminContestSteps {
     private final WebDriver driver = DriverFactory.getDriver();
     private final CreateContestPage adminCreateContestPage = new CreateContestPage(driver);
     private final ProblemsPage adminProblemsPage = new ProblemsPage(driver);
+    private boolean pointsContest;
 
     @Given("el administrador esta en la pagina de creacion de concursos")
     public void elAdministradorEstaEnLaPaginaDeCreacionDeConcursos() {
@@ -51,6 +52,13 @@ public final class AdminContestSteps {
     @When("crea un concurso {string} con titulo {string}, fecha {string}, hora {string}, problemas {string}")
     public void creaUnConcursoSinUsuarios(
             String contestType, String title, String date, String time, String problemsList) {
+        createContest(title, contestType, date, time, problemsList, "");
+    }
+
+    @When("crea un concurso por puntos {string} con titulo {string}, fecha {string}, hora {string}, problemas {string}")
+    public void creaUnConcursoPorPuntos(
+            String contestType, String title, String date, String time, String problemsList) {
+        pointsContest = true;
         createContest(title, contestType, date, time, problemsList, "");
     }
 
@@ -94,6 +102,9 @@ public final class AdminContestSteps {
         adminCreateContestPage.fillContestDetails(
                 title, isPrivate, schedule.startDate(), schedule.startTime(), schedule.endDate(), schedule.endTime(),
                 contestProblemIds, contestUsernames);
+        if (pointsContest) {
+            adminCreateContestPage.markAsPointsContest();
+        }
         adminCreateContestPage.clickSave();
         rememberContestTitle(title, isPrivate);
     }

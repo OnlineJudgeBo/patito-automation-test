@@ -1,5 +1,10 @@
 package bo.juezvirtual.automation.steps;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import bo.juezvirtual.automation.config.BrowserConfig;
 import bo.juezvirtual.automation.driver.DriverFactory;
 import bo.juezvirtual.automation.pages.client.ProblemDetailPage;
@@ -51,5 +56,12 @@ public final class SubmissionSteps {
         statusPage.waitForSubmissionToFinishEvaluation();
         String actualVerdict = statusPage.getLastSolutionVerdict();
         Assertions.assertEquals(expectedVerdict, actualVerdict, "El veredicto final no coincide.");
+    }
+
+    @When("envia en {string} la solucion {string}")
+    public void enviaEnElLenguajeLaSolucion(String language, String fileName) throws IOException {
+        submissionPage.selectLanguage(language);
+        submissionPage.submitCode(Files.readString(
+                Paths.get("src/test/resources/testdata/solutions", fileName), StandardCharsets.UTF_8));
     }
 }
