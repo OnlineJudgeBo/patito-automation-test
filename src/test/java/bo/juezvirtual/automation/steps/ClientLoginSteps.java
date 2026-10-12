@@ -52,4 +52,21 @@ public final class ClientLoginSteps {
         Assertions.assertTrue(clientLoginPage.isErrorMessageVisible(), "El mensaje de error no es visible.");
         Assertions.assertEquals(expectedMessage, clientLoginPage.getErrorMessageText());
     }
+
+    @When("el participante inicia sesion con el usuario recien registrado y clave {string}")
+    public void elParticipanteIniciaSesionConElUsuarioRecienRegistrado(String password) {
+        elParticipanteNavegaALaPaginaDeInicioDeSesion();
+        clientLoginPage.login(SharedState.getLatestRegisteredNickname(), password);
+    }
+
+    @When("el participante cierra sesion")
+    public void elParticipanteCierraSesion() {
+        clientLoginPage.logout();
+    }
+
+    @Then("el participante deberia ver la opcion de iniciar sesion")
+    public void elParticipanteDeberiaVerLaOpcionDeIniciarSesion() {
+        Assertions.assertFalse(clientLoginPage.isAuthenticated(), "El participante sigue autenticado.");
+        Assertions.assertTrue(clientLoginPage.isLoginLinkVisible(), "No se muestra la opcion de iniciar sesion.");
+    }
 }

@@ -7,6 +7,8 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import bo.juezvirtual.automation.config.BrowserConfig;
 import bo.juezvirtual.automation.pages.admin.AdminLoginPage;
@@ -31,6 +33,9 @@ public final class AdminContestCleaner {
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.ROOT),
             DateTimeFormatter.ISO_LOCAL_DATE_TIME
     );
+
+    private static final Pattern LIST_DATE_TIME =
+            Pattern.compile("\\d{4}-\\d{2}-\\d{2}[ T]\\d{2}:\\d{2}(:\\d{2})?");
 
     private AdminContestCleaner() {
     }
@@ -76,9 +81,13 @@ public final class AdminContestCleaner {
             if (cells.size() < 7) {
                 continue;
             }
-            LocalDateTime startTime = parseListDateTime(cells.get(2).getText());
-            LocalDateTime endTime = parseListDateTime(cells.get(3).getText());
-            if (startTime == null || endTime == null || startTime.isAfter(now) || endTime.isBefore(now)) {
+            // The list shows both dates in one cell: "Inicio: <fecha>" and "Fin: <fecha>".
+            List<LocalDateTime> range = new ArrayList<>();
+            Matcher dates = LIST_DATE_TIME.matcher(cells.get(2).getText());
+            while (dates.find()) {
+                range.add(parseListDateTime(dates.group()));
+            }
+            if (range.size() < 2 || range.contains(null) || range.get(0).isAfter(now) || range.get(1).isBefore(now)) {
                 continue;
             }
             List<WebElement> editLinks = row.findElements(By.xpath("./td[7]//a[contains(@href, '/admin/contests/edit/')"

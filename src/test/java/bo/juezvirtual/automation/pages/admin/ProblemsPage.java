@@ -35,8 +35,8 @@ public final class ProblemsPage extends BasePage {
             + "/following-sibling::section[contains(@class, 'rich-editor')][1]");
     
     // Textareas for samples
-    private final By sampleInputField = By.id("sample-input");
-    private final By sampleOutputField = By.id("sample-output");
+    private final By sampleInputField = By.id("sample-input-0");
+    private final By sampleOutputField = By.id("sample-output-0");
     private final By authorField = By.id("problem-author");
     
     // Form buttons

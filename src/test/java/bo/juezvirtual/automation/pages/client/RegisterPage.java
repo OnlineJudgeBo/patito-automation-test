@@ -21,6 +21,7 @@ public final class RegisterPage extends BasePage {
     // SweetAlert2 elements
     private final By swalContainer = By.cssSelector("div.swal2-container");
     private final By swalTitle = By.id("swal2-title");
+    private final By swalMessage = By.id("swal2-html-container");
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -64,6 +65,10 @@ public final class RegisterPage extends BasePage {
     /**
      * Waits for the SweetAlert2 title to change to the expected text.
      */
+    public String getSwalMessageText() {
+        return getText(swalMessage);
+    }
+
     public void waitForSwalTitleTextToBe(String text) {
         waitUtils.waitForTextToBePresentInElement(swalTitle, text);
     }

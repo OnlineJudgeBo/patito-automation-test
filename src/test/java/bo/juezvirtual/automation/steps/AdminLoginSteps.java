@@ -47,4 +47,9 @@ public final class AdminLoginSteps {
         Assertions.assertTrue(adminLoginPage.isErrorMessageVisible(), "El mensaje de error no es visible.");
         Assertions.assertEquals(expectedMessage, adminLoginPage.getErrorMessageText());
     }
+
+    @Then("el administrador deberia ver el aviso de falta de permisos {string}")
+    public void elAdministradorDeberiaVerElAvisoDeFaltaDePermisos(String expectedNotice) {
+        Assertions.assertEquals(expectedNotice, adminLoginPage.getUnauthorizedNoticeText());
+    }
 }

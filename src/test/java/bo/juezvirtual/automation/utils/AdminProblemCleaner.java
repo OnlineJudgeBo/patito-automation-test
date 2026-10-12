@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +25,7 @@ public final class AdminProblemCleaner {
     private static final Duration WAIT_TIMEOUT = Duration.ofSeconds(15);
     private static final int MAX_DELETE_ATTEMPTS = 500;
     private static final By PROBLEM_ROWS = By.cssSelector("table tbody tr");
+    private static final By DELETE_LINK = By.xpath(".//a[normalize-space(.) = 'Borrar']");
     private static final By EMPTY_RESULTS = By.xpath("//*[contains(., 'No se encontraron')]");
     private static final List<String> PROBLEMS_TO_DELETE = List.of(
             "Suma de dos números",
@@ -57,15 +59,10 @@ public final class AdminProblemCleaner {
             WebElement row = firstDeletableProblemRow(driver);
             if (row == null) {
                 break;
-            } 
-
-            String problemName = row.findElement(By.xpath(".//td[2]")).getText();
-            if (PROBLEMS_TO_DELETE.contains(problemName)) {
-                row.findElement(By.xpath(".//a[normalize-space(.) = 'Borrar']")).click();
-                deleted++;
             }
+            row.findElement(DELETE_LINK).click();
+            deleted++;
         }
-
         clearBrowserSession(driver);
         return deleted;
     }
@@ -85,13 +82,13 @@ public final class AdminProblemCleaner {
     }
 
     private static WebElement firstDeletableProblemRow(WebDriver driver) {
-        List<WebElement> rows = driver.findElements(PROBLEM_ROWS);
-        for (WebElement row : rows) {
+        for (WebElement row : driver.findElements(PROBLEM_ROWS)) {
             try {
-                if (!row.findElements(By.xpath(".//a[normalize-space(.) = 'Borrar']")).isEmpty()) {
+                if (PROBLEMS_TO_DELETE.contains(row.findElement(By.xpath(".//td[2]")).getText().trim())
+                        && !row.findElements(DELETE_LINK).isEmpty()) {
                     return row;
                 }
-            } catch (StaleElementReferenceException ignored) {
+            } catch (StaleElementReferenceException | NoSuchElementException ignored) {
                 return null;
             }
         }

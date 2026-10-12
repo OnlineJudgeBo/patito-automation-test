@@ -21,3 +21,8 @@ Feature: Inicio de Sesión Administrativo en Juez Virtual Admin
     Examples:
       | usuario_alias    | clave_alias |
       | administrador_qa | wrong_pass  |
+
+  Scenario: Un participante sin rol administrativo no entra al panel
+    Given el administrador navega a la pagina de login del panel
+    When el administrador introduce el usuario "participante_qa" y clave "participante_qa"
+    Then el administrador deberia ver el aviso de falta de permisos "Tu usuario no tiene permisos para el admin."

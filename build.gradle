@@ -39,6 +39,10 @@ allure {
     version = '2.24.0'
 }
 
+allureReport {
+    clean = true
+}
+
 test {
     useJUnitPlatform()
     systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
@@ -64,6 +68,11 @@ task executeBDDTests(type: JavaExec) {
     // Pass environment system properties
     systemProperty "env", System.getProperty("env", "dev")
     systemProperty "allure.results.directory", "build/allure-results"
+    ["headless", "browser"].each { name ->
+        if (System.getProperty(name) != null) {
+            systemProperty name, System.getProperty(name)
+        }
+    }
     
     // Pass tags if defined on command line (e.g. -Dtags="@smoke")
     String tagExpression = System.getProperty("tags")
