@@ -72,7 +72,7 @@ public final class AdminContestSteps {
             WebElement contestRow = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
                     "//table/tbody/tr[td[2]//a[contains(normalize-space(.), '"
                             + expectedContest.get("Nombre") + "')]]")));
-            String contestType = contestRow.findElement(By.xpath("./td[5]")).getText().trim();
+            String contestType = contestRow.findElement(By.xpath("./td[4]")).getText().trim();
             Assertions.assertEquals(expectedContest.get("Tipo"), contestType, "El tipo de concurso no coincide.");
         }
     }
