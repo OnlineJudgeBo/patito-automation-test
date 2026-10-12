@@ -18,6 +18,7 @@ public final class AdminLoginPage extends BasePage {
     private final By passwordField = By.id("password");
     private final By submitButton = By.cssSelector("form button[type='submit']");
     private final By errorMessage = By.cssSelector("p.text-red-800");
+    private final By unauthorizedNotice = By.cssSelector("div.bg-amber-50 p.font-semibold");
     private final By authenticatedDashboardMarker = By.xpath(
             "//*[normalize-space(.) = 'Panel de Control' or normalize-space(.) = 'Cerrar Sesión']");
 
@@ -49,12 +50,20 @@ public final class AdminLoginPage extends BasePage {
         return getText(errorMessage);
     }
 
+    /**
+     * Reads the notice shown when the account has no administrative role.
+     */
+    public String getUnauthorizedNoticeText() {
+        return getText(unauthorizedNotice);
+    }
+
     private void waitForLoginRequestToFinish() {
         waitUtils.waitUntil(
                 Duration.ofSeconds(Math.max(BrowserConfig.getExplicitWait(), 20)),
                 Duration.ofMillis(200),
                 webDriver -> isLoggedIn(webDriver)
-                        || webDriver.findElements(errorMessage).stream().anyMatch(WebElement::isDisplayed));
+                        || webDriver.findElements(errorMessage).stream().anyMatch(WebElement::isDisplayed)
+                        || webDriver.findElements(unauthorizedNotice).stream().anyMatch(WebElement::isDisplayed));
     }
 
     private boolean isLoggedIn(WebDriver webDriver) {

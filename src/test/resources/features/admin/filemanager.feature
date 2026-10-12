@@ -22,3 +22,10 @@ Feature: Administrador de Archivos de Problemas
     Given el docente esta en el administrador de archivos del problema "Suma de dos números"
     When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.out"
     Then el archivo "sum_1.out" deberia aparecer listado en la pagina
+
+  Scenario: Borrado de un archivo de casos de prueba
+    Given el docente esta en el administrador de archivos del problema "Suma de dos números"
+    When sube el archivo de casos de prueba "src/test/resources/testcases/sum_1.in"
+    Then el archivo "sum_1.in" deberia aparecer listado en la pagina
+    When borra el archivo de casos de prueba "sum_1.in"
+    Then el archivo "sum_1.in" no deberia aparecer listado en la pagina

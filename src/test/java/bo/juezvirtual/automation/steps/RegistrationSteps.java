@@ -3,6 +3,7 @@ package bo.juezvirtual.automation.steps;
 import bo.juezvirtual.automation.config.BrowserConfig;
 import bo.juezvirtual.automation.driver.DriverFactory;
 import bo.juezvirtual.automation.pages.client.RegisterPage;
+import bo.juezvirtual.automation.utils.UserDataManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -41,5 +42,23 @@ public final class RegistrationSteps {
         clientRegisterPage.waitForSwalTitleTextToBe(expectedSwalText);
         Assertions.assertEquals(expectedSwalText, clientRegisterPage.getSwalTitleText());
         clientRegisterPage.waitForSwalContainerToDisappear();
+    }
+
+    @When("intenta registrarse con nombre {string}, apellido {string}, nickname {string}, email {string}, "
+            + "confirmacion de email {string}, clave {string} y confirmacion de clave {string}")
+    public void intentaRegistrarseConDatosExactos(String name, String lastname, String nickname, String email,
+                                                 String emailConfirm, String password, String passwordConfirm) {
+        UserDataManager.UserCredentials existingUser = UserDataManager.getUser(nickname);
+        String resolvedNickname = existingUser != null ? existingUser.getUsername() : nickname;
+        clientRegisterPage.fillRegistrationForm(
+                name, lastname, resolvedNickname, email, emailConfirm, password, passwordConfirm);
+        clientRegisterPage.clickRegister();
+    }
+
+    @Then("deberia ver la alerta SweetAlert de error {string} con el mensaje {string}")
+    public void deberiaVerLaAlertaSweetAlertDeError(String expectedTitle, String expectedMessage) {
+        Assertions.assertTrue(clientRegisterPage.isSwalContainerVisible(), "La alerta Swal no es visible.");
+        clientRegisterPage.waitForSwalTitleTextToBe(expectedTitle);
+        Assertions.assertEquals(expectedMessage, clientRegisterPage.getSwalMessageText());
     }
 }

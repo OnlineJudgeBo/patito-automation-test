@@ -113,6 +113,17 @@ public final class AdminProblemSteps {
         Assertions.assertTrue(adminFileManagerPage.isFileUploaded(fileName), "El archivo no se subio correctamente.");
     }
 
+    @When("borra el archivo de casos de prueba {string}")
+    public void borraElArchivoDeCasosDePrueba(String fileName) {
+        Assertions.assertTrue(adminFileManagerPage.isFileUploaded(fileName), "El archivo a borrar no esta listado.");
+        adminFileManagerPage.deleteFileIfPresent(fileName);
+    }
+
+    @Then("el archivo {string} no deberia aparecer listado en la pagina")
+    public void elArchivoNoDeberiaAparecerListadoEnLaPagina(String fileName) {
+        Assertions.assertFalse(adminFileManagerPage.isFileUploaded(fileName), "El archivo sigue listado.");
+    }
+
     private void createProblem(String title, String time, String memory, String author) {
         adminProblemsPage.fillProblemDetails(
                 title, time, memory,

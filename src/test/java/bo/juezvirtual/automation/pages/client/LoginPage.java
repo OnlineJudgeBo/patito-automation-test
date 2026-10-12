@@ -21,6 +21,9 @@ public final class LoginPage extends BasePage {
             "//a[normalize-space(.) = 'Salir' or contains(@href, 'logout.php')]"
                     + " | //a[normalize-space(.) = 'Perfil' or contains(@href, 'profile.php')]");
 
+    private final By logoutLink = By.xpath("//a[contains(@href, 'logout.php')]");
+    private final By loginLink = By.xpath("//a[contains(@href, 'login.php')]");
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -61,6 +64,19 @@ public final class LoginPage extends BasePage {
      */
     public boolean isAuthenticated() {
         return driver.findElements(authenticatedNavigationMarker).stream().anyMatch(WebElement::isDisplayed);
+    }
+
+    public void logout() {
+        WebElement link = waitUtils.waitForElementToBePresent(logoutLink);
+        executeJavaScript("arguments[0].click();", link);
+        waitUtils.waitUntil(
+                Duration.ofSeconds(BrowserConfig.getExplicitWait()),
+                Duration.ofMillis(200),
+                webDriver -> !isLoggedIn(webDriver));
+    }
+
+    public boolean isLoginLinkVisible() {
+        return isVisible(loginLink);
     }
 
     private void waitForLoginRequestToFinish() {
