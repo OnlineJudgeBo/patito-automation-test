@@ -40,6 +40,39 @@ public final class AdminProblemSteps {
         createProblem(title, time, memory, author);
     }
 
+    @When("crea el problema {string} con la siguiente evaluacion:")
+    public void creaElProblemaConLaSiguienteEvaluacion(String title, DataTable table) {
+        Map<String, String> evaluation = table.asMap(String.class, String.class);
+        List<String[]> subtasks = new ArrayList<>();
+        for (String subtask : evaluation.getOrDefault("Subtareas", "").split(";")) {
+            if (!subtask.isBlank()) {
+                subtasks.add(subtask.trim().split(":"));
+            }
+        }
+        adminProblemsPage.fillProblemDetails(
+                title, "2", "128",
+                "<p>Descripcion del problema</p>",
+                "<p>Descripcion de la entrada del problema</p>",
+                "<p>Descripcion de la salida del problema</p>",
+                evaluation.getOrDefault("Ejemplo de entrada", sampleInputFor(title)),
+                evaluation.getOrDefault("Ejemplo de salida", sampleOutputFor(title)), "Patito QA");
+        adminProblemsPage.fillEvaluation(
+                evaluation.get("Tipo"), fixturePaths(evaluation.get("Casos")), fixturePaths(evaluation.get("Checker")),
+                fixturePaths(evaluation.get("Grader")), fixturePaths(evaluation.get("Cabeceras")), subtasks);
+        adminProblemsPage.clickSave();
+    }
+
+    private static String fixturePaths(String files) {
+        if (files == null) {
+            return null;
+        }
+        List<String> paths = new ArrayList<>();
+        for (String file : files.split(",")) {
+            paths.add(Paths.get("src/test/resources/testdata/problem_types", file.trim()).toAbsolutePath().toString());
+        }
+        return String.join("\n", paths);
+    }
+
     @When("crea los siguientes problemas:")
     public void creaLosSiguientesProblemas(DataTable table) {
         recentlyCreatedProblemTitles.clear();

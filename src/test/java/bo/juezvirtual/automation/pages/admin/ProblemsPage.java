@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import bo.juezvirtual.automation.config.BrowserConfig;
@@ -72,6 +73,44 @@ public final class ProblemsPage extends BasePage {
         type(sampleInputField, sampleInput);
         type(sampleOutputField, sampleOutput);
         type(authorField, author);
+    }
+
+    /**
+     * Fills the "Evaluación" section: kind of problem, tests, subtasks, checker and grader.
+     * File values are absolute paths; several files go separated by line breaks.
+     */
+    public void fillEvaluation(String kind, String tests, String checker, String grader, String headers,
+                               List<String[]> subtasks) {
+        if (kind != null) {
+            chooseRadio("problem-kind", kind);
+        }
+        if (tests != null) {
+            waitUtils.waitForElementToBePresent(By.cssSelector("input[aria-label='Casos de prueba']")).sendKeys(tests);
+        }
+        for (String[] subtask : subtasks) {
+            click(By.xpath("//button[normalize-space(.) = 'Agregar subtarea']"));
+            typeNumeric(By.xpath("(//input[@aria-label='Puntos'])[last()]"), subtask[0]);
+            new Select(driver.findElement(By.xpath("(//select[@aria-label='Tipo de grupo'])[last()]")))
+                    .selectByValue(subtask[1]);
+            type(By.xpath("(//input[@aria-label='Casos del grupo'])[last()]"), subtask[2]);
+        }
+        if (checker != null) {
+            chooseRadio("problem-correction", "checker");
+            waitUtils.waitForElementToBePresent(By.id("problem-checker")).sendKeys(checker);
+        }
+        if (grader != null) {
+            chooseRadio("problem-solving", "function");
+            waitUtils.waitForElementToBePresent(By.id("problem-grader-cpp")).sendKeys(grader);
+            if (headers != null) {
+                waitUtils.waitForElementToBePresent(By.id("problem-headers")).sendKeys(headers);
+            }
+        }
+    }
+
+    private void chooseRadio(String name, String value) {
+        WebElement radio = waitUtils.waitForElementToBePresent(
+                By.cssSelector("input[name='" + name + "'][value='" + value + "']"));
+        executeJavaScript("arguments[0].click();", radio);
     }
 
     /**

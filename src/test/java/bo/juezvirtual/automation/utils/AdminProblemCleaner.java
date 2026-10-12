@@ -37,7 +37,10 @@ public final class AdminProblemCleaner {
             "Invertir una cadena",
             "Máximo de un arreglo",
             "¿Es primo?",
-            "Serie Fibonacci");
+            "Serie Fibonacci",
+            "Dos sumandos",
+            "Suma con grader",
+            "Doble por puntos");
 
     private AdminProblemCleaner() {
     }
