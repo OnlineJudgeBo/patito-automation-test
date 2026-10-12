@@ -76,3 +76,35 @@ Feature: Tipos de problema
       | Problema | Estado         |
       | A        | Parcial · 40   |
       | A        | Accepted · 100 |
+    When selecciona el ranking
+    Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:
+      | usuario_alias   | PUNTOS |
+      | participante_qa | 100    |
+
+  Scenario: Un checker da puntaje parcial a una respuesta cercana
+    Given el docente esta en la pagina de creacion de problemas
+    When crea el problema "Doble aproximado" con la siguiente evaluacion:
+      | Tipo               | ioi |
+      | Ejemplo de entrada | 3   |
+      | Ejemplo de salida  | 6   |
+      | Casos              | doble/s1_1.in, doble/s1_1.out, doble/s1_2.in, doble/s1_2.out, doble/s2_1.in, doble/s2_1.out |
+      | Checker            | doble/checker.cpp |
+      | Subtareas          | 60:mul:s1_*; 40:min:s2_* |
+    Then el problema deberia ser guardado con exito
+    Given el administrador esta en la pagina de creacion de concursos
+    When crea un concurso por puntos "publico" con titulo "Concurso Checker Parcial QA", fecha "actual", hora "actual", problemas "Doble aproximado"
+    Then el concurso deberia ser guardado con exito
+    Given existe un contest público activo
+    And el participante introduce el usuario "participante_qa" y clave "participante_qa"
+    When el participante ingresa al contest público
+    And el participante envía las siguientes soluciones:
+      | Problema | Nombre problema  | Lenguaje | Codigo         |
+      | A        | Doble aproximado | C++      | doble_casi.cpp |
+    Then el sistema debe registrar el envío
+    And los envios deben tener los siguientes estados en la pagina de status:
+      | Problema | Estado       |
+      | A        | Parcial · 35 |
+    When selecciona el ranking
+    Then se debe registrar la cantidad de problemas correctos y la cantidad de fallos:
+      | usuario_alias   | PUNTOS |
+      | participante_qa | 35     |

@@ -40,7 +40,8 @@ public final class AdminProblemCleaner {
             "Serie Fibonacci",
             "Dos sumandos",
             "Suma con grader",
-            "Doble por puntos");
+            "Doble por puntos",
+            "Doble aproximado");
 
     private AdminProblemCleaner() {
     }
