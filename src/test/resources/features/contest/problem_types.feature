@@ -68,12 +68,14 @@ Feature: Tipos de problema
     And el participante introduce el usuario "participante_qa" y clave "participante_qa"
     When el participante ingresa al contest público
     And el participante envía las siguientes soluciones:
-      | Problema | Nombre problema  | Lenguaje | Codigo            |
-      | A        | Doble por puntos | C++      | doble_parcial.cpp |
-      | A        | Doble por puntos | C++      | doble_ac.cpp      |
+      | Problema | Nombre problema  | Lenguaje | Codigo                  |
+      | A        | Doble por puntos | C++      | doble_falla_ejemplo.cpp |
+      | A        | Doble por puntos | C++      | doble_parcial.cpp       |
+      | A        | Doble por puntos | C++      | doble_ac.cpp            |
     Then el sistema debe registrar el envío
     And los envios deben tener los siguientes estados en la pagina de status:
       | Problema | Estado         |
+      | A        | Wrong Answer   |
       | A        | Parcial · 40   |
       | A        | Accepted · 100 |
     When selecciona el ranking
