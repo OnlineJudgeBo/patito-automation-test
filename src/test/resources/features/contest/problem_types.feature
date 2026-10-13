@@ -75,7 +75,7 @@ Feature: Tipos de problema
     Then el sistema debe registrar el envío
     And los envios deben tener los siguientes estados en la pagina de status:
       | Problema | Estado         |
-      | A        | Wrong Answer   |
+      | A        | Parcial · 80   |
       | A        | Parcial · 40   |
       | A        | Accepted · 100 |
     When selecciona el ranking
